@@ -1,3 +1,22 @@
+# Create a new repository
+
+git clone https://gitlab.com/giodelabarrera/finqueselmercat.git
+cd finqueselmercat
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+# Existing folder or Git repository
+
+cd existing_folder
+git init
+git remote add origin https://gitlab.com/giodelabarrera/finqueselmercat.git
+git add .
+git commit
+git push -u origin master
+
+
 
 # Actualizar vendor via composer "ESTO NO SE DEBE DE HACER"
 
@@ -22,12 +41,6 @@ sudo chmod -R 777 app/cache/ app/logs/; sudo chown -R $user:www-data app/cache/ 
 
 sudo chmod -R 777 app/cache/; sudo chmod -R 777 app/logs/; sudo chown -R $user:www-data app/cache/; sudo chown -R $user:www-data app/logs/; sudo php app/console cache:clear --env=prod; sudo chmod -R 777 app/cache/; sudo chmod -R 777 app/logs/; sudo chown -R $user:www-data app/cache/; sudo chown -R $user:www-data app/logs/
 
-
-# SSH
-ssh root@188.165.254.133
-6LTCeaRuY1PC
-cd /var/www/vhosts/foxize.com/new.foxize.com/
-cd /var/www/vhosts/foxize.com/httpdocs/
 
 # Limpiar cache dev
 
