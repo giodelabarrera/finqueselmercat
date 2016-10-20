@@ -31,13 +31,6 @@ class Subtype
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
-     */
-    private $slug;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="num_order", type="integer", nullable=true)
@@ -57,6 +50,12 @@ class Subtype
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Type")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     */
+    private $type;
 
     /**
      * Subtype constructor.
@@ -198,5 +197,28 @@ class Subtype
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\Type $type
+     * @return Subtype
+     */
+    public function setType(\AppBundle\Entity\Type $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\Type 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

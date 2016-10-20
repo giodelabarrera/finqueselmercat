@@ -60,14 +60,6 @@ class Type
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Subtype")
-     * @ORM\JoinTable(name="type_subtype",
-     *      joinColumns={@ORM\JoinColumn(name="type_id", referencedColumnName="id", onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="subtype_id", referencedColumnName="id", onDelete="CASCADE")}
-     *      )
-     */
-    private $subtypes;
 
     /**
      * Type constructor.
@@ -75,7 +67,6 @@ class Type
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->subtypes = new ArrayCollection();
     }
 
     /**
@@ -209,38 +200,5 @@ class Type
     public function getNumOrder()
     {
         return $this->numOrder;
-    }
-
-    /**
-     * Add subtypes
-     *
-     * @param \AppBundle\Entity\Subtype $subtypes
-     * @return Type
-     */
-    public function addSubtype(\AppBundle\Entity\Subtype $subtypes)
-    {
-        $this->subtypes[] = $subtypes;
-
-        return $this;
-    }
-
-    /**
-     * Remove subtypes
-     *
-     * @param \AppBundle\Entity\Subtype $subtypes
-     */
-    public function removeSubtype(\AppBundle\Entity\Subtype $subtypes)
-    {
-        $this->subtypes->removeElement($subtypes);
-    }
-
-    /**
-     * Get subtypes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSubtypes()
-    {
-        return $this->subtypes;
     }
 }
