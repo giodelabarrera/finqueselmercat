@@ -3,42 +3,49 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Currency
+ * EnergyCertificate
  *
- * @ORM\Table(name="currency")
- * @ORM\Entity
- * @UniqueEntity("reference")
+ * @ORM\Table(name="energy_certificate")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EnergyCertificateRepository")
  */
-class Currency
+class EnergyCertificate
 {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="sign", type="string", length=255, nullable=false)
+     * @ORM\Column(name="num_order", type="integer", nullable=true)
      */
-    private $sign;
+    private $numOrder;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
@@ -50,17 +57,7 @@ class Currency
     private $updatedAt;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-
-    /**
-     * Currency constructor.
+     * EnergyCertificate constructor.
      */
     public function __construct()
     {
@@ -72,15 +69,24 @@ class Currency
      */
     public function __toString()
     {
-        return $this->sign;
+        return $this->name;
     }
 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name
      *
      * @param string $name
-     * @return Currency
+     * @return EnergyCertificate
      */
     public function setName($name)
     {
@@ -103,7 +109,7 @@ class Currency
      * Set slug
      *
      * @param string $slug
-     * @return Currency
+     * @return EnergyCertificate
      */
     public function setSlug($slug)
     {
@@ -123,33 +129,33 @@ class Currency
     }
 
     /**
-     * Set sign
+     * Set numOrder
      *
-     * @param string $sign
-     * @return Currency
+     * @param integer $numOrder
+     * @return EnergyCertificate
      */
-    public function setSign($sign)
+    public function setNumOrder($numOrder)
     {
-        $this->sign = $sign;
+        $this->numOrder = $numOrder;
 
         return $this;
     }
 
     /**
-     * Get sign
+     * Get numOrder
      *
-     * @return string 
+     * @return integer 
      */
-    public function getSign()
+    public function getNumOrder()
     {
-        return $this->sign;
+        return $this->numOrder;
     }
 
     /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Currency
+     * @return EnergyCertificate
      */
     public function setCreatedAt($createdAt)
     {
@@ -172,7 +178,7 @@ class Currency
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Currency
+     * @return EnergyCertificate
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -189,15 +195,5 @@ class Currency
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

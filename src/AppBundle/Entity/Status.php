@@ -6,14 +6,23 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Currency
+ * PropertyStatus
  *
- * @ORM\Table(name="currency")
+ * @ORM\Table(name="status")
  * @ORM\Entity
- * @UniqueEntity("reference")
+ * @UniqueEntity("slug")
  */
-class Currency
+class Status
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -29,11 +38,11 @@ class Currency
     private $slug;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="sign", type="string", length=255, nullable=false)
+     * @ORM\Column(name="num_order", type="integer", nullable=true)
      */
-    private $sign;
+    private $numOrder;
 
     /**
      * @var \DateTime
@@ -50,17 +59,19 @@ class Currency
     private $updatedAt;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\ManyToOne(targetEntity="StatusReserved")
+     * @ORM\JoinColumn(name="status_reserved_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    private $id;
-
+    private $statusReserved;
 
     /**
-     * Currency constructor.
+     * @ORM\ManyToOne(targetEntity="StatusNotAvailable")
+     * @ORM\JoinColumn(name="status_not_available_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $statusNotAvailable;
+
+    /**
+     * PropertyStatus constructor.
      */
     public function __construct()
     {
@@ -72,15 +83,24 @@ class Currency
      */
     public function __toString()
     {
-        return $this->sign;
+        return $this->name;
     }
 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name
      *
      * @param string $name
-     * @return Currency
+     * @return Status
      */
     public function setName($name)
     {
@@ -103,7 +123,7 @@ class Currency
      * Set slug
      *
      * @param string $slug
-     * @return Currency
+     * @return Status
      */
     public function setSlug($slug)
     {
@@ -123,33 +143,33 @@ class Currency
     }
 
     /**
-     * Set sign
+     * Set numOrder
      *
-     * @param string $sign
-     * @return Currency
+     * @param integer $numOrder
+     * @return Status
      */
-    public function setSign($sign)
+    public function setNumOrder($numOrder)
     {
-        $this->sign = $sign;
+        $this->numOrder = $numOrder;
 
         return $this;
     }
 
     /**
-     * Get sign
+     * Get numOrder
      *
-     * @return string 
+     * @return integer 
      */
-    public function getSign()
+    public function getNumOrder()
     {
-        return $this->sign;
+        return $this->numOrder;
     }
 
     /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Currency
+     * @return Status
      */
     public function setCreatedAt($createdAt)
     {
@@ -172,7 +192,7 @@ class Currency
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Currency
+     * @return Status
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -192,12 +212,48 @@ class Currency
     }
 
     /**
-     * Get id
+     * Set statusReserved
      *
-     * @return integer 
+     * @param \AppBundle\Entity\StatusReserved $statusReserved
+     * @return Status
      */
-    public function getId()
+    public function setStatusReserved(\AppBundle\Entity\StatusReserved $statusReserved = null)
     {
-        return $this->id;
+        $this->statusReserved = $statusReserved;
+
+        return $this;
+    }
+
+    /**
+     * Get statusReserved
+     *
+     * @return \AppBundle\Entity\StatusReserved 
+     */
+    public function getStatusReserved()
+    {
+        return $this->statusReserved;
+    }
+
+    /**
+     * Set statusNotAvailable
+     *
+     * @param \AppBundle\Entity\StatusNotAvailable $statusNotAvailable
+     * @return Status
+     */
+    public function setStatusNotAvailable(\AppBundle\Entity\StatusNotAvailable $statusNotAvailable = null)
+    {
+        $this->statusNotAvailable = $statusNotAvailable;
+
+        return $this;
+    }
+
+    /**
+     * Get statusNotAvailable
+     *
+     * @return \AppBundle\Entity\StatusNotAvailable 
+     */
+    public function getStatusNotAvailable()
+    {
+        return $this->statusNotAvailable;
     }
 }

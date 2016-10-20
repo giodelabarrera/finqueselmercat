@@ -3,42 +3,40 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * PropertyStatus
+ * HotWater
  *
- * @ORM\Table(name="property_status")
- * @ORM\Entity
- * @UniqueEntity("slug")
+ * @ORM\Table(name="hot_water")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HotWaterRepository")
  */
-class PropertyStatus
+class HotWater
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="num_order", type="integer", nullable=true)
      */
@@ -47,7 +45,7 @@ class PropertyStatus
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
@@ -60,7 +58,7 @@ class PropertyStatus
 
 
     /**
-     * PropertyStatus constructor.
+     * HotWater constructor.
      */
     public function __construct()
     {
@@ -74,7 +72,6 @@ class PropertyStatus
     {
         return $this->name;
     }
-
 
     /**
      * Get id
@@ -90,7 +87,7 @@ class PropertyStatus
      * Set name
      *
      * @param string $name
-     * @return PropertyStatus
+     * @return HotWater
      */
     public function setName($name)
     {
@@ -113,7 +110,7 @@ class PropertyStatus
      * Set slug
      *
      * @param string $slug
-     * @return PropertyStatus
+     * @return HotWater
      */
     public function setSlug($slug)
     {
@@ -136,7 +133,7 @@ class PropertyStatus
      * Set numOrder
      *
      * @param integer $numOrder
-     * @return PropertyStatus
+     * @return HotWater
      */
     public function setNumOrder($numOrder)
     {
@@ -159,7 +156,7 @@ class PropertyStatus
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return PropertyStatus
+     * @return HotWater
      */
     public function setCreatedAt($createdAt)
     {
@@ -182,7 +179,7 @@ class PropertyStatus
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return PropertyStatus
+     * @return HotWater
      */
     public function setUpdatedAt($updatedAt)
     {
