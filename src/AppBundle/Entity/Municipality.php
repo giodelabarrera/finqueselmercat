@@ -3,51 +3,42 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Country
+ * Municipality
  *
- * @ORM\Table(name="country")
- * @ORM\Entity
- * @UniqueEntity("slug")
+ * @ORM\Table(name="municipality")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MunicipalityRepository")
  */
-class Country
+class Municipality
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="num_order", type="integer", nullable=true)
-     */
-    private $numOrder;
-
-    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
@@ -60,7 +51,7 @@ class Country
 
 
     /**
-     * Country constructor.
+     * Municipality constructor.
      */
     public function __construct()
     {
@@ -74,7 +65,6 @@ class Country
     {
         return $this->name;
     }
-
 
 
     /**
@@ -91,7 +81,7 @@ class Country
      * Set name
      *
      * @param string $name
-     * @return Country
+     * @return Municipality
      */
     public function setName($name)
     {
@@ -114,7 +104,7 @@ class Country
      * Set slug
      *
      * @param string $slug
-     * @return Country
+     * @return Municipality
      */
     public function setSlug($slug)
     {
@@ -134,33 +124,10 @@ class Country
     }
 
     /**
-     * Set numOrder
-     *
-     * @param integer $numOrder
-     * @return Country
-     */
-    public function setNumOrder($numOrder)
-    {
-        $this->numOrder = $numOrder;
-
-        return $this;
-    }
-
-    /**
-     * Get numOrder
-     *
-     * @return integer 
-     */
-    public function getNumOrder()
-    {
-        return $this->numOrder;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Country
+     * @return Municipality
      */
     public function setCreatedAt($createdAt)
     {
@@ -183,7 +150,7 @@ class Country
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Country
+     * @return Municipality
      */
     public function setUpdatedAt($updatedAt)
     {
