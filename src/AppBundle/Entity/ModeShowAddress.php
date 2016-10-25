@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Floor
+ * ModeShowAddress
  *
- * @ORM\Table(name="floor")
+ * @ORM\Table(name="mode_show_address")
  * @ORM\Entity
  * @UniqueEntity("slug")
  */
-class Floor
+class ModeShowAddress
 {
     /**
      * @var integer
@@ -52,7 +52,7 @@ class Floor
     private $updatedAt;
 
     /**
-     * Floor constructor.
+     * ModeShowAddress constructor.
      */
     public function __construct()
     {
@@ -81,7 +81,7 @@ class Floor
      * Set name
      *
      * @param string $name
-     * @return Floor
+     * @return ModeShowAddress
      */
     public function setName($name)
     {
@@ -104,7 +104,7 @@ class Floor
      * Set slug
      *
      * @param string $slug
-     * @return Floor
+     * @return ModeShowAddress
      */
     public function setSlug($slug)
     {
@@ -127,7 +127,7 @@ class Floor
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Floor
+     * @return ModeShowAddress
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +150,7 @@ class Floor
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Floor
+     * @return ModeShowAddress
      */
     public function setUpdatedAt($updatedAt)
     {

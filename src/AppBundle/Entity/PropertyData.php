@@ -35,7 +35,17 @@ class PropertyData
      */
     private $hideSurface;
 
-    // @TODO: Modalidad
+    /**
+     * @ORM\OneToOne(targetEntity="ModalitySale")
+     * @ORM\JoinColumn(name="modality_sale_id", referencedColumnName="id", nullable=true)
+     */
+    private $modalitySale;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ModalityRental")
+     * @ORM\JoinColumn(name="modality_rental_id", referencedColumnName="id", nullable=true)
+     */
+    private $modalityRental;
 
     /**
      * @ORM\ManyToOne(targetEntity="Currency")
@@ -103,10 +113,30 @@ class PropertyData
     private $numRoom;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="num_offices", type="integer", nullable=true)
+     */
+    private $numOffices;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Orientation")
      * @ORM\JoinColumn(name="orientation_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $orientation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="building_name", type="string", length=255, nullable=true)
+     */
+    private $buildingName;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ParkingType")
+     * @ORM\JoinColumn(name="parking_type_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $parkingType;
 
     /**
      * @var string
@@ -454,5 +484,97 @@ class PropertyData
     public function getOrientation()
     {
         return $this->orientation;
+    }
+
+    /**
+     * Set buildingName
+     *
+     * @param string $buildingName
+     * @return PropertyData
+     */
+    public function setBuildingName($buildingName)
+    {
+        $this->buildingName = $buildingName;
+
+        return $this;
+    }
+
+    /**
+     * Get buildingName
+     *
+     * @return string 
+     */
+    public function getBuildingName()
+    {
+        return $this->buildingName;
+    }
+
+    /**
+     * Set modalitySale
+     *
+     * @param \AppBundle\Entity\ModalitySale $modalitySale
+     * @return PropertyData
+     */
+    public function setModalitySale(\AppBundle\Entity\ModalitySale $modalitySale = null)
+    {
+        $this->modalitySale = $modalitySale;
+
+        return $this;
+    }
+
+    /**
+     * Get modalitySale
+     *
+     * @return \AppBundle\Entity\ModalitySale 
+     */
+    public function getModalitySale()
+    {
+        return $this->modalitySale;
+    }
+
+    /**
+     * Set modalityRental
+     *
+     * @param \AppBundle\Entity\ModalityRental $modalityRental
+     * @return PropertyData
+     */
+    public function setModalityRental(\AppBundle\Entity\ModalityRental $modalityRental = null)
+    {
+        $this->modalityRental = $modalityRental;
+
+        return $this;
+    }
+
+    /**
+     * Get modalityRental
+     *
+     * @return \AppBundle\Entity\ModalityRental 
+     */
+    public function getModalityRental()
+    {
+        return $this->modalityRental;
+    }
+
+    /**
+     * Set parkingType
+     *
+     * @param \AppBundle\Entity\ParkingType $parkingType
+     * @return PropertyData
+     */
+    public function setParkingType(\AppBundle\Entity\ParkingType $parkingType = null)
+    {
+        $this->parkingType = $parkingType;
+
+        return $this;
+    }
+
+    /**
+     * Get parkingType
+     *
+     * @return \AppBundle\Entity\ParkingType 
+     */
+    public function getParkingType()
+    {
+        return $this->parkingType;
     }
 }

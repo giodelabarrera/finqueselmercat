@@ -6,13 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Floor
+ * ModalitySale
  *
- * @ORM\Table(name="floor")
+ * @ORM\Table(name="modality_sale")
  * @ORM\Entity
- * @UniqueEntity("slug")
  */
-class Floor
+class ModalitySale
 {
     /**
      * @var integer
@@ -26,16 +25,16 @@ class Floor
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="price", type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $name;
+    private $price;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="price_meter_square", type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $slug;
+    private $priceMeterSquare;
 
     /**
      * @var \DateTime
@@ -52,19 +51,11 @@ class Floor
     private $updatedAt;
 
     /**
-     * Floor constructor.
+     * ModalitySale constructor.
      */
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->name;
     }
 
     /**
@@ -78,56 +69,56 @@ class Floor
     }
 
     /**
-     * Set name
+     * Set price
      *
-     * @param string $name
-     * @return Floor
+     * @param string $price
+     * @return ModalitySale
      */
-    public function setName($name)
+    public function setPrice($price)
     {
-        $this->name = $name;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get price
      *
      * @return string 
      */
-    public function getName()
+    public function getPrice()
     {
-        return $this->name;
+        return $this->price;
     }
 
     /**
-     * Set slug
+     * Set priceMeterSquare
      *
-     * @param string $slug
-     * @return Floor
+     * @param string $priceMeterSquare
+     * @return ModalitySale
      */
-    public function setSlug($slug)
+    public function setPriceMeterSquare($priceMeterSquare)
     {
-        $this->slug = $slug;
+        $this->priceMeterSquare = $priceMeterSquare;
 
         return $this;
     }
 
     /**
-     * Get slug
+     * Get priceMeterSquare
      *
      * @return string 
      */
-    public function getSlug()
+    public function getPriceMeterSquare()
     {
-        return $this->slug;
+        return $this->priceMeterSquare;
     }
 
     /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Floor
+     * @return ModalitySale
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +141,7 @@ class Floor
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Floor
+     * @return ModalitySale
      */
     public function setUpdatedAt($updatedAt)
     {

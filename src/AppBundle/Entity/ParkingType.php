@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Floor
+ * ParkingType
  *
- * @ORM\Table(name="floor")
+ * @ORM\Table(name="parking_type")
  * @ORM\Entity
  * @UniqueEntity("slug")
  */
-class Floor
+class ParkingType
 {
     /**
      * @var integer
@@ -52,7 +52,7 @@ class Floor
     private $updatedAt;
 
     /**
-     * Floor constructor.
+     * ParkingType constructor.
      */
     public function __construct()
     {
@@ -81,7 +81,7 @@ class Floor
      * Set name
      *
      * @param string $name
-     * @return Floor
+     * @return ParkingType
      */
     public function setName($name)
     {
@@ -104,7 +104,7 @@ class Floor
      * Set slug
      *
      * @param string $slug
-     * @return Floor
+     * @return ParkingType
      */
     public function setSlug($slug)
     {
@@ -127,7 +127,7 @@ class Floor
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Floor
+     * @return ParkingType
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +150,7 @@ class Floor
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Floor
+     * @return ParkingType
      */
     public function setUpdatedAt($updatedAt)
     {

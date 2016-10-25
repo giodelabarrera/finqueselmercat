@@ -3,16 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Floor
+ * Zone
  *
- * @ORM\Table(name="floor")
+ * @ORM\Table(name="zone")
  * @ORM\Entity
- * @UniqueEntity("slug")
  */
-class Floor
+class Zone
 {
     /**
      * @var integer
@@ -31,11 +29,10 @@ class Floor
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\ManyToOne(targetEntity="Municipality")
+     * @ORM\JoinColumn(name="municipality_id", referencedColumnName="id", nullable=false)
      */
-    private $slug;
+    private $municipality;
 
     /**
      * @var \DateTime
@@ -52,7 +49,7 @@ class Floor
     private $updatedAt;
 
     /**
-     * Floor constructor.
+     * Zone constructor.
      */
     public function __construct()
     {
@@ -81,7 +78,7 @@ class Floor
      * Set name
      *
      * @param string $name
-     * @return Floor
+     * @return Zone
      */
     public function setName($name)
     {
@@ -101,33 +98,10 @@ class Floor
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Floor
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Floor
+     * @return Zone
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +124,7 @@ class Floor
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Floor
+     * @return Zone
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -167,5 +141,28 @@ class Floor
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set municipality
+     *
+     * @param \AppBundle\Entity\Municipality $municipality
+     * @return Zone
+     */
+    public function setMunicipality(\AppBundle\Entity\Municipality $municipality)
+    {
+        $this->municipality = $municipality;
+
+        return $this;
+    }
+
+    /**
+     * Get municipality
+     *
+     * @return \AppBundle\Entity\Municipality 
+     */
+    public function getMunicipality()
+    {
+        return $this->municipality;
     }
 }

@@ -6,13 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Floor
+ * PropertyDescription
  *
- * @ORM\Table(name="floor")
+ * @ORM\Table(name="property_description")
  * @ORM\Entity
- * @UniqueEntity("slug")
  */
-class Floor
+class PropertyDescription
 {
     /**
      * @var integer
@@ -26,16 +25,16 @@ class Floor
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="short_description", type="text", length=65535, nullable=true)
      */
-    private $name;
+    private $shortDescription;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="full_description", type="text", length=65535, nullable=true)
      */
-    private $slug;
+    private $fullDescription;
 
     /**
      * @var \DateTime
@@ -52,19 +51,11 @@ class Floor
     private $updatedAt;
 
     /**
-     * Floor constructor.
+     * PropertyDescription constructor.
      */
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->name;
     }
 
     /**
@@ -78,56 +69,56 @@ class Floor
     }
 
     /**
-     * Set name
+     * Set shortDescription
      *
-     * @param string $name
-     * @return Floor
+     * @param string $shortDescription
+     * @return PropertyDescription
      */
-    public function setName($name)
+    public function setShortDescription($shortDescription)
     {
-        $this->name = $name;
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get shortDescription
      *
      * @return string 
      */
-    public function getName()
+    public function getShortDescription()
     {
-        return $this->name;
+        return $this->shortDescription;
     }
 
     /**
-     * Set slug
+     * Set fullDescription
      *
-     * @param string $slug
-     * @return Floor
+     * @param string $fullDescription
+     * @return PropertyDescription
      */
-    public function setSlug($slug)
+    public function setFullDescription($fullDescription)
     {
-        $this->slug = $slug;
+        $this->fullDescription = $fullDescription;
 
         return $this;
     }
 
     /**
-     * Get slug
+     * Get fullDescription
      *
      * @return string 
      */
-    public function getSlug()
+    public function getFullDescription()
     {
-        return $this->slug;
+        return $this->fullDescription;
     }
 
     /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Floor
+     * @return PropertyDescription
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +141,7 @@ class Floor
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Floor
+     * @return PropertyDescription
      */
     public function setUpdatedAt($updatedAt)
     {

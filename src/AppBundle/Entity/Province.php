@@ -6,41 +6,41 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Floor
+ * Province
  *
- * @ORM\Table(name="floor")
- * @ORM\Entity
+ * @ORM\Table(name="province")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProvinceRepository")
  * @UniqueEntity("slug")
  */
-class Floor
+class Province
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
@@ -52,7 +52,7 @@ class Floor
     private $updatedAt;
 
     /**
-     * Floor constructor.
+     * Province constructor.
      */
     public function __construct()
     {
@@ -66,6 +66,7 @@ class Floor
     {
         return $this->name;
     }
+
 
     /**
      * Get id
@@ -81,7 +82,7 @@ class Floor
      * Set name
      *
      * @param string $name
-     * @return Floor
+     * @return Province
      */
     public function setName($name)
     {
@@ -104,7 +105,7 @@ class Floor
      * Set slug
      *
      * @param string $slug
-     * @return Floor
+     * @return Province
      */
     public function setSlug($slug)
     {
@@ -127,7 +128,7 @@ class Floor
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Floor
+     * @return Province
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +151,7 @@ class Floor
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Floor
+     * @return Province
      */
     public function setUpdatedAt($updatedAt)
     {

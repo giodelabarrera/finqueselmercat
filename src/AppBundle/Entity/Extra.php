@@ -6,13 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Floor
+ * Extra
  *
- * @ORM\Table(name="floor")
+ * @ORM\Table(name="extra")
  * @ORM\Entity
- * @UniqueEntity("slug")
  */
-class Floor
+class Extra
 {
     /**
      * @var integer
@@ -31,11 +30,17 @@ class Floor
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\ManyToOne(targetEntity="Type")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
      */
-    private $slug;
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ExtraType")
+     * @ORM\JoinColumn(name="extra_type_id", referencedColumnName="id", nullable=false)
+     */
+    private $extraType;
+
 
     /**
      * @var \DateTime
@@ -52,7 +57,7 @@ class Floor
     private $updatedAt;
 
     /**
-     * Floor constructor.
+     * Extra constructor.
      */
     public function __construct()
     {
@@ -81,7 +86,7 @@ class Floor
      * Set name
      *
      * @param string $name
-     * @return Floor
+     * @return Extra
      */
     public function setName($name)
     {
@@ -101,33 +106,10 @@ class Floor
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Floor
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Floor
+     * @return Extra
      */
     public function setCreatedAt($createdAt)
     {
@@ -150,7 +132,7 @@ class Floor
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Floor
+     * @return Extra
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -167,5 +149,51 @@ class Floor
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\Type $type
+     * @return Extra
+     */
+    public function setType(\AppBundle\Entity\Type $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\Type 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set extraType
+     *
+     * @param \AppBundle\Entity\ExtraType $extraType
+     * @return Extra
+     */
+    public function setExtraType(\AppBundle\Entity\ExtraType $extraType)
+    {
+        $this->extraType = $extraType;
+
+        return $this;
+    }
+
+    /**
+     * Get extraType
+     *
+     * @return \AppBundle\Entity\ExtraType 
+     */
+    public function getExtraType()
+    {
+        return $this->extraType;
     }
 }
