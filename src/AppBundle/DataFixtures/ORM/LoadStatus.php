@@ -8,6 +8,8 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\BankAwarded;
+use AppBundle\Entity\Status;
 use AppBundle\Entity\Type;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -15,8 +17,15 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadType extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+/**
+ * Class LoadStatus
+ * @package AppBundle\DataFixtures\ORM
+ */
+class LoadStatus extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var
+     */
     private $container;
 
     /**
@@ -37,21 +46,16 @@ class LoadType extends AbstractFixture implements OrderedFixtureInterface, Conta
     public function load(ObjectManager $manager)
     {
         $names = array(
-            'Piso',
-            'Casa',
-            'Local',
-            'Oficina',
-            //'Edificio',
-            //'Suelo',
-            //'Industrial',
-            'Parking',
-            //'Hotel',
-            'Trastero',
+            'Disponible',
+            'Reservado',
+            'Captación',
+            'No disponible',
+            'En construcción',
         );
 
         $numOrder = 1;
         foreach ($names as $name) {
-            $entity = new Type();
+            $entity = new Status();
             $entity->setName($name);
             $slug = $this->container->get('sonata.core.slugify.cocur')->slugify($name, '-');
             $entity->setSlug($slug);
@@ -72,6 +76,6 @@ class LoadType extends AbstractFixture implements OrderedFixtureInterface, Conta
      */
     public function getOrder()
     {
-        return 10;
+        return 40;
     }
 }

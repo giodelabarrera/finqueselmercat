@@ -110,7 +110,7 @@ class LoadSubtype extends AbstractFixture implements OrderedFixtureInterface, Co
             'Centro de negocios',
             'Piso',
         );
-        $subtypesName['edificio'] = array(
+        /*$subtypesName['edificio'] = array(
             'Residencial',
             'Industrial',
             'Mixto',
@@ -134,7 +134,7 @@ class LoadSubtype extends AbstractFixture implements OrderedFixtureInterface, Co
             'Polígono semiurbanizado',
             'Nave industrial',
             'Polígono no urbanizado',
-        );
+        );*/
         $subtypesName['parking'] = array(
             'Negocio',
             'Otro',
@@ -142,16 +142,34 @@ class LoadSubtype extends AbstractFixture implements OrderedFixtureInterface, Co
             'Doble',
             'Individual',
         );
+        /*
         $subtypesName['hotel'] = array(
             'Residencia 3ª Edad',
             'Apart Hotel',
             'Hotel',
             'Turismo Rural',
-        );
+        );*/
         $subtypesName['trastero'] = array(
         );
 
-        $subtypesRepeated = array();
+        foreach ($types as $typeSlug => $type) {
+
+            $subtypeNameArr = $subtypesName[$typeSlug];
+            $numOrder = 1;
+
+            foreach ($subtypeNameArr as $name) {
+
+                $subtype = new Subtype();
+                $subtype->setName($name);
+                $subtype->setNumOrder($numOrder);
+                $subtype->setType($type);
+
+                $manager->persist($subtype);
+                $numOrder++;
+            }
+        }
+
+        /*$subtypesRepeated = array();
 
         foreach ($types as $typeSlug => $type) {
 
@@ -180,7 +198,7 @@ class LoadSubtype extends AbstractFixture implements OrderedFixtureInterface, Co
                 $type->addSubtype($subtype);
                 $manager->persist($type);
             }
-        }
+        }*/
         $manager->flush();
     }
 

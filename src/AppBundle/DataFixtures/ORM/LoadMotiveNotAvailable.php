@@ -8,20 +8,19 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\BankAwarded;
-use AppBundle\Entity\PropertyStatus;
-use AppBundle\Entity\Type;
+use AppBundle\Entity\MotiveNotAvailable;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+
 /**
- * Class LoadPropertyStatus
+ * Class LoadMotiveNotAvailable
  * @package AppBundle\DataFixtures\ORM
  */
-class LoadPropertyStatus extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadMotiveNotAvailable extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var
@@ -46,16 +45,20 @@ class LoadPropertyStatus extends AbstractFixture implements OrderedFixtureInterf
     public function load(ObjectManager $manager)
     {
         $names = array(
-            'Disponible',
-            'Reservado',
-            'Captación',
-            'No disponible',
-            'En construcción',
+            'Vendido',
+            'Anulación',
+            'Alquilado',
+            'Bloqueado por geografía',
+            'Caducado',
+            'Sin registro de catastro',
+            'Duplicado',
+            'Bloqueado',
+            'Venta Compartida',
         );
 
         $numOrder = 1;
         foreach ($names as $name) {
-            $entity = new PropertyStatus();
+            $entity = new MotiveNotAvailable();
             $entity->setName($name);
             $slug = $this->container->get('sonata.core.slugify.cocur')->slugify($name, '-');
             $entity->setSlug($slug);
@@ -76,6 +79,6 @@ class LoadPropertyStatus extends AbstractFixture implements OrderedFixtureInterf
      */
     public function getOrder()
     {
-        return 40;
+        return 50;
     }
 }

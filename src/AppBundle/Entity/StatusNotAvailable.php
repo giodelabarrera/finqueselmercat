@@ -34,6 +34,42 @@ class StatusNotAvailable
      */
     private $motiveNotAvailable;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="amount_close", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $amountClose;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_close", type="string", length=255, nullable=true)
+     */
+    private $clientClose;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * StatusNotAvailable constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
 
     /**
      * Get id
@@ -89,5 +125,97 @@ class StatusNotAvailable
     public function getMotiveNotAvailable()
     {
         return $this->motiveNotAvailable;
+    }
+
+    /**
+     * Set amountClose
+     *
+     * @param string $amountClose
+     * @return StatusNotAvailable
+     */
+    public function setAmountClose($amountClose)
+    {
+        $this->amountClose = $amountClose;
+
+        return $this;
+    }
+
+    /**
+     * Get amountClose
+     *
+     * @return string 
+     */
+    public function getAmountClose()
+    {
+        return $this->amountClose;
+    }
+
+    /**
+     * Set clientClose
+     *
+     * @param string $clientClose
+     * @return StatusNotAvailable
+     */
+    public function setClientClose($clientClose)
+    {
+        $this->clientClose = $clientClose;
+
+        return $this;
+    }
+
+    /**
+     * Get clientClose
+     *
+     * @return string 
+     */
+    public function getClientClose()
+    {
+        return $this->clientClose;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return StatusNotAvailable
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return StatusNotAvailable
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

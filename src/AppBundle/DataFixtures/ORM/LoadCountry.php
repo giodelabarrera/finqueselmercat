@@ -73,6 +73,6 @@ class LoadCountry extends AbstractFixture implements OrderedFixtureInterface, Co
      */
     public function getOrder()
     {
-        return 50;
+        return 100;
     }
 }

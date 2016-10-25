@@ -36,19 +36,41 @@ class MotiveNotAvailable
     private $slug;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="amount_close", type="decimal", precision=10, scale=2, nullable=true)
+     * @ORM\Column(name="num_order", type="integer", nullable=true)
      */
-    private $amountClose;
+    private $numOrder;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="client_close", type="string", length=255, nullable=true)
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    private $clientClose;
+    private $createdAt;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * MotiveNotAvailable constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Get id
@@ -107,48 +129,71 @@ class MotiveNotAvailable
     }
 
     /**
-     * Set amountClose
+     * Set createdAt
      *
-     * @param string $amountClose
+     * @param \DateTime $createdAt
      * @return MotiveNotAvailable
      */
-    public function setAmountClose($amountClose)
+    public function setCreatedAt($createdAt)
     {
-        $this->amountClose = $amountClose;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get amountClose
+     * Get createdAt
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getAmountClose()
+    public function getCreatedAt()
     {
-        return $this->amountClose;
+        return $this->createdAt;
     }
 
     /**
-     * Set clientClose
+     * Set updatedAt
      *
-     * @param string $clientClose
+     * @param \DateTime $updatedAt
      * @return MotiveNotAvailable
      */
-    public function setClientClose($clientClose)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->clientClose = $clientClose;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get clientClose
+     * Get updatedAt
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getClientClose()
+    public function getUpdatedAt()
     {
-        return $this->clientClose;
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set numOrder
+     *
+     * @param integer $numOrder
+     * @return MotiveNotAvailable
+     */
+    public function setNumOrder($numOrder)
+    {
+        $this->numOrder = $numOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get numOrder
+     *
+     * @return integer 
+     */
+    public function getNumOrder()
+    {
+        return $this->numOrder;
     }
 }
