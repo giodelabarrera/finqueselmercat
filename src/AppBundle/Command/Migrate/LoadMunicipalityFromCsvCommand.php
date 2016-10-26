@@ -16,14 +16,30 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Filesystem\Filesystem;
 
+/**
+ * Class LoadMunicipalityFromCsvCommand
+ * @package AppBundle\Command\Migrate
+ */
 class LoadMunicipalityFromCsvCommand extends ContainerAwareCommand
 {
+    /**
+     *
+     */
     const CSV_DIR = 'uploads/command/migrate';
 
+    /**
+     *
+     */
     const CSV_FILENAME = 'FicheroRelacion_INE_CodigoPostal.csv';
 
+    /**
+     *
+     */
     const LOG_DIR = 'command/migrate';
 
+    /**
+     *
+     */
     const LOG_FILENAME = 'load_municipality_from_command.log';
 
     /**
@@ -36,6 +52,9 @@ class LoadMunicipalityFromCsvCommand extends ContainerAwareCommand
      */
     private $em;
 
+    /**
+     * @var
+     */
     private $fs;
 
     /**

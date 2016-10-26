@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Orientation
  *
  * @ORM\Table(name="orientation")
  * @ORM\Entity
+ * @UniqueEntity("slug")
  */
 class Orientation
 {

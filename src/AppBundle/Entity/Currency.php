@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="currency")
  * @ORM\Entity
- * @UniqueEntity("reference")
+ * @UniqueEntity("slug")
  */
 class Currency
 {

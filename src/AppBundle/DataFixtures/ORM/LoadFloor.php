@@ -2,16 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: giorgio
- * Date: 15/10/16
- * Time: 15:48
+ * Date: 26/10/16
+ * Time: 21:53
  */
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\BankAwarded;
-use AppBundle\Entity\Country;
-use AppBundle\Entity\PropertyStatus;
-use AppBundle\Entity\Type;
+use AppBundle\Entity\Floor;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -19,10 +16,10 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class LoadPropertyStatus
+ * Class LoadFloor
  * @package AppBundle\DataFixtures\ORM
  */
-class LoadCountry extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadFloor extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var
@@ -47,12 +44,40 @@ class LoadCountry extends AbstractFixture implements OrderedFixtureInterface, Co
     public function load(ObjectManager $manager)
     {
         $names = array(
-            'España',
+            'Calle',
+            'Paseo',
+            'Avenida',
+            'Ronda',
+            'Travesía',
+            'Carretera',
+            'Rambla',
+            'Plaza',
+            'Pasaje',
+            'Bajada',
+            'Vía',
+            'Urbanización',
+            'Camino',
+            'Sector',
+            'Glorieta',
+            'Alameda',
+            'Barranco',
+            'Calleja',
+            'Cuesta',
+            'Grupo',
+            'Gran via',
+            'Jardines',
+            'Muelle',
+            'Poligono industrial',
+            'Parque',
+            'Prolongación',
+            'Riera',
+            'Rua',
+            'Subida',
         );
 
         $numOrder = 1;
         foreach ($names as $name) {
-            $entity = new Country();
+            $entity = new Floor();
             $entity->setName($name);
             $slug = $this->container->get('sonata.core.slugify.cocur')->slugify($name, '-');
             $entity->setSlug($slug);
@@ -73,6 +98,6 @@ class LoadCountry extends AbstractFixture implements OrderedFixtureInterface, Co
      */
     public function getOrder()
     {
-        return 60;
+        return 80;
     }
 }

@@ -38,6 +38,13 @@ class StreetType
     private $slug;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="num_order", type="integer", nullable=true)
+     */
+    private $numOrder;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -168,5 +175,28 @@ class StreetType
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set numOrder
+     *
+     * @param integer $numOrder
+     * @return StreetType
+     */
+    public function setNumOrder($numOrder)
+    {
+        $this->numOrder = $numOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get numOrder
+     *
+     * @return integer 
+     */
+    public function getNumOrder()
+    {
+        return $this->numOrder;
     }
 }
