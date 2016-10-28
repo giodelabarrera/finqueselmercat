@@ -61,7 +61,7 @@ class PropertyData
     private $hidePrice;
 
     /**
-     * @ORM\ManyToOne(targetEntity="HotWater")
+     * @ORM\ManyToOne(targetEntity="EnergyType")
      * @ORM\JoinColumn(name="hot_water_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $hotWater;
@@ -74,7 +74,7 @@ class PropertyData
     private $constructionYear;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Heating")
+     * @ORM\ManyToOne(targetEntity="EnergyType")
      * @ORM\JoinColumn(name="heating_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $heating;

@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="province")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProvinceRepository")
  * @UniqueEntity("slug")
+ * @UniqueEntity("code")
  */
 class Province
 {
@@ -36,6 +37,13 @@ class Province
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255, unique=true)
+     */
+    private $code;
 
     /**
      * @var \DateTime
@@ -168,5 +176,28 @@ class Province
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return Province
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

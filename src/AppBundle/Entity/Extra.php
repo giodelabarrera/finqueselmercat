@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="extra")
  * @ORM\Entity
+ * @UniqueEntity("slug")
  */
 class Extra
 {
@@ -30,17 +31,20 @@ class Extra
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
      */
-    private $type;
+    private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ExtraType")
-     * @ORM\JoinColumn(name="extra_type_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToMany(targetEntity="Type")
+     * @ORM\JoinTable(name="extra_type",
+     *      joinColumns={@ORM\JoinColumn(name="extra_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="type_id", referencedColumnName="id", onDelete="CASCADE")}
+     *      )
      */
-    private $extraType;
-
+    private $types;
 
     /**
      * @var \DateTime
@@ -152,48 +156,58 @@ class Extra
     }
 
     /**
-     * Set type
+     * Add types
      *
-     * @param \AppBundle\Entity\Type $type
+     * @param \AppBundle\Entity\Type $types
      * @return Extra
      */
-    public function setType(\AppBundle\Entity\Type $type)
+    public function addType(\AppBundle\Entity\Type $types)
     {
-        $this->type = $type;
+        $this->types[] = $types;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Remove types
      *
-     * @return \AppBundle\Entity\Type 
+     * @param \AppBundle\Entity\Type $types
      */
-    public function getType()
+    public function removeType(\AppBundle\Entity\Type $types)
     {
-        return $this->type;
+        $this->types->removeElement($types);
     }
 
     /**
-     * Set extraType
+     * Get types
      *
-     * @param \AppBundle\Entity\ExtraType $extraType
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
      * @return Extra
      */
-    public function setExtraType(\AppBundle\Entity\ExtraType $extraType)
+    public function setSlug($slug)
     {
-        $this->extraType = $extraType;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get extraType
+     * Get slug
      *
-     * @return \AppBundle\Entity\ExtraType 
+     * @return string 
      */
-    public function getExtraType()
+    public function getSlug()
     {
-        return $this->extraType;
+        return $this->slug;
     }
 }
