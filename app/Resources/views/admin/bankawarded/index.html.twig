@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>BankAwarded list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Numorder</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bankAwarded in bankAwardeds %}
+            <tr>
+                <td><a href="{{ path('admin_bankawarded_show', { 'id': bankAwarded.id }) }}">{{ bankAwarded.id }}</a></td>
+                <td>{{ bankAwarded.name }}</td>
+                <td>{{ bankAwarded.slug }}</td>
+                <td>{{ bankAwarded.numOrder }}</td>
+                <td>{% if bankAwarded.createdAt %}{{ bankAwarded.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if bankAwarded.updatedAt %}{{ bankAwarded.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_bankawarded_show', { 'id': bankAwarded.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_bankawarded_edit', { 'id': bankAwarded.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_bankawarded_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
