@@ -1278,7 +1278,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 06;160;06430;Zalamea de la Serena
 06;161;06611;Zarza-Capilla
 06;162;06830;Zarza, La
-06;162;06830;Zarza, La
 06;901;06185;Valdelacalzada
 06;902;06184;Pueblonuevo del Guadiana
 06;903;06186;Guadiana del Caudillo
@@ -2656,7 +2655,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 10;152;10813;Pozuelo de Zarzón
 10;153;10261;Puerto de Santa Cruz
 10;154;10617;Rebollar
-10;154;10617;Rebollar
 10;155;10693;Riolobos
 10;155;10829;Riolobos
 10;156;10867;Robledillo de Gata
@@ -2906,8 +2904,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 12;029;12181;Benlloch
 12;031;12190;Borriol
 12;032;12530;Borriana/Burriana
-12;033;12180;Cabanes
-12;033;12595;Cabanes
 12;033;12180;Cabanes
 12;033;12595;Cabanes
 12;034;12589;Càlig
@@ -3180,7 +3176,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 13;090;13343;Villamanrique
 13;091;13595;Villamayor de Calatrava
 13;092;13330;Villanueva de la Fuente
-13;093;13320;Villanueva de los Infantes
 13;093;13320;Villanueva de los Infantes
 13;094;13379;Villanueva de San Carlos
 13;095;13431;Villar del Pozo
@@ -3699,9 +3694,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 15;075;15160;Sada
 15;075;15168;Sada
 15;075;15169;Sada
-15;075;15160;Sada
-15;075;15168;Sada
-15;075;15169;Sada
 15;076;15560;San Sadurniño
 15;076;15561;San Sadurniño
 15;076;15562;San Sadurniño
@@ -3736,9 +3728,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 15;078;15688;Santiago de Compostela
 15;078;15890;Santiago de Compostela
 15;079;15808;Santiso
-15;080;15813;Sobrado
-15;080;15814;Sobrado
-15;080;15815;Sobrado
 15;080;15813;Sobrado
 15;080;15814;Sobrado
 15;080;15815;Sobrado
@@ -7662,7 +7651,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 28;013;28300;Aranjuez
 28;014;28500;Arganda del Rey
 28;015;28939;Arroyomolinos
-28;015;28939;Arroyomolinos
 28;016;28189;Atazar, El
 28;017;28939;Batres
 28;017;28976;Batres
@@ -8497,7 +8485,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 31;068;31520;Cascante
 31;069;31312;Cáseda
 31;069;31490;Cáseda
-31;070;31590;Castejón
 31;070;31590;Castejón
 31;071;31454;Castillonuevo
 31;072;31592;Cintruénigo
@@ -9465,20 +9452,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 33;037;33610;Mieres
 33;037;33600;Mieres
 33;037;33619;Mieres
-33;037;33617;Mieres
-33;037;33683;Mieres
-33;037;33682;Mieres
-33;037;33650;Mieres
-33;037;33640;Mieres
-33;037;33618;Mieres
-33;037;33616;Mieres
-33;037;33615;Mieres
-33;037;33614;Mieres
-33;037;33612;Mieres
-33;037;33611;Mieres
-33;037;33610;Mieres
-33;037;33600;Mieres
-33;037;33619;Mieres
 33;038;33161;Morcín
 33;038;33162;Morcín
 33;038;33163;Morcín
@@ -10003,11 +9976,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 35;012;35129;Mogán
 35;012;35120;Mogán
 35;012;35140;Mogán
-35;013;35422;Moya
-35;013;35423;Moya
-35;013;35421;Moya
-35;013;35420;Moya
-35;013;35413;Moya
 35;013;35422;Moya
 35;013;35423;Moya
 35;013;35421;Moya
@@ -10915,8 +10883,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 37;278;37439;San Cristóbal de la Cuesta
 37;279;37479;Sancti-Spíritus
 37;279;37470;Sancti-Spíritus
-37;279;37479;Sancti-Spíritus
-37;279;37470;Sancti-Spíritus
 37;280;37217;Sanchón de la Ribera
 37;281;37466;Sanchón de la Sagrada
 37;282;37794;Sanchotello
@@ -11368,7 +11334,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 39;020;39706;Castro-Urdiales
 39;020;39700;Castro-Urdiales
 39;020;39708;Castro-Urdiales
-39;021;39407;Cieza
 39;021;39407;Cieza
 39;022;39584;Cillorigo de Liébana
 39;022;39585;Cillorigo de Liébana
@@ -12443,7 +12408,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 43;083;43143;Milà, El
 43;084;43747;Miravet
 43;085;43736;Molar, El
-43;085;43736;Molar, El
 43;086;43459;Montblanc
 43;086;43415;Montblanc
 43;086;43414;Montblanc
@@ -13435,12 +13399,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 46;244;46900;Torrent
 46;244;46901;Torrent
 46;244;43900;Torrent
-46;244;46185;Torrent
-46;244;46480;Torrent
-46;244;46840;Torrent
-46;244;46900;Torrent
-46;244;46901;Torrent
-46;244;43900;Torrent
 46;245;46595;Torres Torres
 46;246;46269;Tous
 46;247;46177;Tuéjar
@@ -13528,7 +13486,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 47;028;47689;Cabezón de Valderaduey
 47;029;47832;Cabreros del Monte
 47;030;47310;Campaspero
-47;031;47460;Campillo, El
 47;031;47460;Campillo, El
 47;032;47165;Camporredondo
 47;033;47311;Canalejas de Peñafiel
@@ -14020,11 +13977,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 49;071;49511;Fonfría
 49;071;49510;Fonfría
 49;071;49514;Fonfría
-49;071;49513;Fonfría
-49;071;49512;Fonfría
-49;071;49511;Fonfría
-49;071;49510;Fonfría
-49;071;49514;Fonfría
 49;075;49693;Fresno de la Polvorosa
 49;076;49590;Fresno de la Ribera
 49;077;49174;Fresno de Sayago
@@ -14263,7 +14215,6 @@ cod_provincia;cod_municipio;cod_postal;municipio
 49;238;49782;Villabrázaro
 49;239;49820;Villabuena del Puente
 49;240;49250;Villadepera
-49;241;49430;Villaescusa
 49;241;49430;Villaescusa
 49;242;49136;Villafáfila
 49;242;49137;Villafáfila

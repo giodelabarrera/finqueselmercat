@@ -116,7 +116,7 @@ class LoadGeolocationFromCsvCommand extends ContainerAwareCommand
         $iterableResult = $query->iterate();
         foreach ($iterableResult as $row) {
             $province = $row[0];
-            $provinces[(string)$province->getCode()] = $province;
+            $provinces[(int)$province->getCode()] = $province;
         }
 
         // postal code
@@ -127,7 +127,7 @@ class LoadGeolocationFromCsvCommand extends ContainerAwareCommand
         $iterableResult = $query->iterate();
         foreach ($iterableResult as $row) {
             $postalCode = $row[0];
-            $postalCodes[$postalCode->getCode()] = $postalCode;
+            $postalCodes[(int)$postalCode->getCode()] = $postalCode;
         }
 
         // municipality
@@ -163,20 +163,61 @@ class LoadGeolocationFromCsvCommand extends ContainerAwareCommand
         // recorre csv
         foreach ($reader as $row) {
 
-            var_dump($row['cod_provinciaa']);
-
-
-
             // linea csv
             $line = $reader->key()+1;
 
-            if ($geolocationLen == 3) die();
+            if (!isset($row['cod_provincia'])) {
+                $message = sprintf('[Linea %d] No existe codigo provincia en linea', $line);
+                $output->writeln($message);
+                $logDump .= $message."\n";
+            }
 
-            $test = $row;
+            // country
+            $country = $countries['espana'];
+            if (!$country) {
+                $message = sprintf('[Linea %d] No existe pais con nombre: %s', $line, $countries['espana']);
+                $output->writeln($message);
+                $logDump .= $message."\n";
+            }
+
+            // province
+            $province = $provinces[(int)$row['cod_provincia']];
+            if (!$province) {
+                $message = sprintf('[Linea %d] No existe provincia con codigo: %s', $line, $row['cod_provincia']);
+                $output->writeln($message);
+                $logDump .= $message."\n";
+            }
+
+            // municipality
+            $municipality = $municipalities[$row['municipio']];
+            if (!$municipality) {
+                $message = sprintf('[Linea %d] No existe municipio con nombre: %s', $line, $row['municipio']);
+                $output->writeln($message);
+                $logDump .= $message."\n";
+            }
+
+            // postal code
+            $postalCode = $postalCodes[(int)$row['cod_postal']];
+            if (!$postalCode) {
+                $message = sprintf('[Linea %d] No existe codigo postal con codigo: %s', $line, $row['cod_postal']);
+                $output->writeln($message);
+                $logDump .= $message."\n";
+            }
+
+            // geolocation
+            $geolocation = new Geolocation();
+            $geolocation
+                ->setCountry($country)
+                ->setProvince($province)
+                ->setMunicipality($municipality)
+                ->setPostalCode($postalCode)
+            ;
+
+            $this->em->persist($geolocation);
             $geolocationLen++;
         }
 
-        //$this->em->flush();
+        $this->em->flush();
 
         $output->writeln('Se ha generado correctamente las inserciones de geolocation segun el csv');
         $message = sprintf('Numero de geolocations creados: %d', $geolocationLen);
