@@ -1,3 +1,4 @@
+{#
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -18,4 +19,39 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endblock %}
+#}
+
+{% extends 'admin/base.html.twig' %}
+
+{% set form = edit_form %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block gba_admin_content %}
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                {#<div class="box-header with-border">
+                    <h3 class="box-title">Bank awarded</h3>
+                </div>
+                <!-- /.box-header -->
+                #}
+                <div class="box-body">
+                    {{ form_widget(form) }}
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+
+    <div class="sonata-ba-form-actions well well-small form-actions">
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> Update</button>
+        <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> <i class="fa fa-list"></i> Update and close</button>
+        or
+        <a class="btn btn-danger" href="/admin/sonata/demo/material/1/delete"><i class="fa fa-minus-circle"></i> Delete</a>
+    </div>
+    {{ form_end(form) }}
+
 {% endblock %}

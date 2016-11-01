@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Address list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Street</th>
+                <th>Number</th>
+                <th>Stair</th>
+                <th>Door</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for address in addresses %}
+            <tr>
+                <td><a href="{{ path('admin_address_show', { 'id': address.id }) }}">{{ address.id }}</a></td>
+                <td>{{ address.street }}</td>
+                <td>{{ address.number }}</td>
+                <td>{{ address.stair }}</td>
+                <td>{{ address.door }}</td>
+                <td>{% if address.createdAt %}{{ address.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if address.updatedAt %}{{ address.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_address_show', { 'id': address.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_address_edit', { 'id': address.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_address_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

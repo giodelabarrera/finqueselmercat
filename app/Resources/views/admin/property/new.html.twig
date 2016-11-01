@@ -1,0 +1,100 @@
+{#
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Property creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_property_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
+#}
+
+{% extends 'admin/base.html.twig' %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block gba_admin_content %}
+
+    {{ form_start(form) }}
+    <div class="row">
+
+        {# Detalles del nuevo inmueble #}
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Detalles del nuevo inmueble</h3>
+                </div>
+                <div class="box-body">
+
+                    {{ form_row(form.reference) }}
+                    {{ form_row(form.type) }}
+                    {{ form_row(form.subtype) }}
+                    {{ form_row(form.isNewConstruction) }}
+                    {{ form_row(form.isBankAwarded) }}
+                    {{ form_row(form.bankAwarded) }}
+                    {{ form_row(form.activationDate) }}
+                    {{ form_row(form.status) }}
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+        {# Dirección del nuevo inmueble #}
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Dirección del nuevo inmueble</h3>
+                </div>
+                <div class="box-body">
+                    {{ form_widget(form) }}
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+        {# Datos del inmueble #}
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Datos del inmueble</h3>
+                </div>
+                <div class="box-body">
+                    {{ form_widget(form) }}
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+        {# Descripción #}
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Descripción</h3>
+                </div>
+                <div class="box-body">
+                    {{ form_widget(form) }}
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="sonata-ba-form-actions well well-small form-actions">
+        <button class="btn btn-success" type="submit" name="btn_create_and_edit"><i class="fa fa-save"></i> Create</button>
+        <button type="submit" class="btn btn-success" name="btn_create_and_list"><i class="fa fa-save"></i> <i class="fa fa-list"></i> Create and return to list</button>
+        <button class="btn btn-success" type="submit" name="btn_create_and_create"><i class="fa fa-plus-circle"></i> Create and add another</button>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

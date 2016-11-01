@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Property</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ property.id }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ property.reference }}</td>
+            </tr>
+            <tr>
+                <th>Isnewconstruction</th>
+                <td>{% if property.isNewConstruction %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isbankawarded</th>
+                <td>{% if property.isBankAwarded %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Activationdate</th>
+                <td>{% if property.activationDate %}{{ property.activationDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if property.createdAt %}{{ property.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if property.updatedAt %}{{ property.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_property_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
