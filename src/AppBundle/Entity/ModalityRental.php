@@ -80,6 +80,8 @@ class ModalityRental
         $this->optionPurchase = false;
     }
 
+    
+
     /**
      * Get id
      *
@@ -134,6 +136,75 @@ class ModalityRental
     public function getPriceMeterSquare()
     {
         return $this->priceMeterSquare;
+    }
+
+    /**
+     * Set optionPurchase
+     *
+     * @param boolean $optionPurchase
+     * @return ModalityRental
+     */
+    public function setOptionPurchase($optionPurchase)
+    {
+        $this->optionPurchase = $optionPurchase;
+
+        return $this;
+    }
+
+    /**
+     * Get optionPurchase
+     *
+     * @return boolean 
+     */
+    public function getOptionPurchase()
+    {
+        return $this->optionPurchase;
+    }
+
+    /**
+     * Set purchaseFinalPrice
+     *
+     * @param string $purchaseFinalPrice
+     * @return ModalityRental
+     */
+    public function setPurchaseFinalPrice($purchaseFinalPrice)
+    {
+        $this->purchaseFinalPrice = $purchaseFinalPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get purchaseFinalPrice
+     *
+     * @return string 
+     */
+    public function getPurchaseFinalPrice()
+    {
+        return $this->purchaseFinalPrice;
+    }
+
+    /**
+     * Set purchaseConditions
+     *
+     * @param string $purchaseConditions
+     * @return ModalityRental
+     */
+    public function setPurchaseConditions($purchaseConditions)
+    {
+        $this->purchaseConditions = $purchaseConditions;
+
+        return $this;
+    }
+
+    /**
+     * Get purchaseConditions
+     *
+     * @return string 
+     */
+    public function getPurchaseConditions()
+    {
+        return $this->purchaseConditions;
     }
 
     /**

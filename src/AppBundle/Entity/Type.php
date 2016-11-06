@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Type
  *
  * @ORM\Table(name="type")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TypeRepository")
  * @UniqueEntity("slug")
  */
 class Type

@@ -8,14 +8,12 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
-    admin.address:
-        class: AppBundle\Admin\AddressAdmin
-        arguments: [~, AppBundle\Entity\Address, ~]
+    admin.form.property_type:
+        class: AppBundle\Form\PropertyType
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Address }
+            - { name: form.type }
 
-    admin.type:
-        class: AppBundle\Admin\TypeAdmin
-        arguments: [~, AppBundle\Entity\Type, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Type }
+    # admin.form.add_subtype_field_subscriber:
+    #     class: AppBundle\Form\EventListener\AddSubtypeFieldSubscriber
+    #    arguments: ['@doctrine.orm.entity_manager']

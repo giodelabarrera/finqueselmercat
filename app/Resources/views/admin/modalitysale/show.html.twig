@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ModalitySale</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ modalitySale.id }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ modalitySale.price }}</td>
+            </tr>
+            <tr>
+                <th>Pricemetersquare</th>
+                <td>{{ modalitySale.priceMeterSquare }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if modalitySale.createdAt %}{{ modalitySale.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if modalitySale.updatedAt %}{{ modalitySale.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_modality_sale_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_modality_sale_edit', { 'id': modalitySale.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

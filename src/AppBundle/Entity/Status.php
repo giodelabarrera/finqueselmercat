@@ -59,18 +59,6 @@ class Status
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="StatusReserved")
-     * @ORM\JoinColumn(name="status_reserved_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
-     */
-    private $statusReserved;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="StatusNotAvailable")
-     * @ORM\JoinColumn(name="status_not_available_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
-     */
-    private $statusNotAvailable;
-
-    /**
      * PropertyStatus constructor.
      */
     public function __construct()
@@ -209,51 +197,5 @@ class Status
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set statusReserved
-     *
-     * @param \AppBundle\Entity\StatusReserved $statusReserved
-     * @return Status
-     */
-    public function setStatusReserved(\AppBundle\Entity\StatusReserved $statusReserved = null)
-    {
-        $this->statusReserved = $statusReserved;
-
-        return $this;
-    }
-
-    /**
-     * Get statusReserved
-     *
-     * @return \AppBundle\Entity\StatusReserved 
-     */
-    public function getStatusReserved()
-    {
-        return $this->statusReserved;
-    }
-
-    /**
-     * Set statusNotAvailable
-     *
-     * @param \AppBundle\Entity\StatusNotAvailable $statusNotAvailable
-     * @return Status
-     */
-    public function setStatusNotAvailable(\AppBundle\Entity\StatusNotAvailable $statusNotAvailable = null)
-    {
-        $this->statusNotAvailable = $statusNotAvailable;
-
-        return $this;
-    }
-
-    /**
-     * Get statusNotAvailable
-     *
-     * @return \AppBundle\Entity\StatusNotAvailable 
-     */
-    public function getStatusNotAvailable()
-    {
-        return $this->statusNotAvailable;
     }
 }

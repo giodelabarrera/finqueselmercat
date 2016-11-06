@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ModalitySale list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>Pricemetersquare</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modalitySale in modalitySales %}
+            <tr>
+                <td><a href="{{ path('admin_modality_sale_show', { 'id': modalitySale.id }) }}">{{ modalitySale.id }}</a></td>
+                <td>{{ modalitySale.price }}</td>
+                <td>{{ modalitySale.priceMeterSquare }}</td>
+                <td>{% if modalitySale.createdAt %}{{ modalitySale.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if modalitySale.updatedAt %}{{ modalitySale.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_modality_sale_show', { 'id': modalitySale.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_modality_sale_edit', { 'id': modalitySale.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_modality_sale_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

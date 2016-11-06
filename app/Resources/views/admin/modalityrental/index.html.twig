@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ModalityRental list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>Pricemetersquare</th>
+                <th>Optionpurchase</th>
+                <th>Purchasefinalprice</th>
+                <th>Purchaseconditions</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modalityRental in modalityRentals %}
+            <tr>
+                <td><a href="{{ path('admin_modality_rental_show', { 'id': modalityRental.id }) }}">{{ modalityRental.id }}</a></td>
+                <td>{{ modalityRental.price }}</td>
+                <td>{{ modalityRental.priceMeterSquare }}</td>
+                <td>{% if modalityRental.optionPurchase %}Yes{% else %}No{% endif %}</td>
+                <td>{{ modalityRental.purchaseFinalPrice }}</td>
+                <td>{{ modalityRental.purchaseConditions }}</td>
+                <td>{% if modalityRental.createdAt %}{{ modalityRental.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if modalityRental.updatedAt %}{{ modalityRental.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_modality_rental_show', { 'id': modalityRental.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_modality_rental_edit', { 'id': modalityRental.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_modality_rental_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

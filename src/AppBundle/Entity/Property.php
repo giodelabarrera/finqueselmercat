@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="property")
  * @ORM\Entity
  * @UniqueEntity("reference")
- * @UniqueEntity("inmofactory_reference")
  */
 class Property
 {
@@ -78,31 +77,17 @@ class Property
     private $status;
 
     /**
-     * @ORM\OneToOne(targetEntity="Address")
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", nullable=false)
+     * @ORM\OneToOne(targetEntity="StatusReserved", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="status_reserved_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    private $address;
+    private $statusReserved;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PropertyData")
-     * @ORM\JoinColumn(name="property_data_id", referencedColumnName="id", nullable=false)
+     * @ORM\OneToOne(targetEntity="StatusNotAvailable", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="status_not_available_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    private $propertyData;
+    private $statusNotAvailable;
 
-    /**
-     * @ORM\OneToOne(targetEntity="PropertyDescription")
-     * @ORM\JoinColumn(name="property_description_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
-     */
-    private $propertyDescription;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Extra")
-     * @ORM\JoinTable(name="property_extra",
-     *      joinColumns={@ORM\JoinColumn(name="property_id", referencedColumnName="id", onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="extra_id", referencedColumnName="id", onDelete="CASCADE")}
-     *      )
-     */
-    private $extras;
 
     /**
      * @var \DateTime
@@ -126,6 +111,7 @@ class Property
     {
         $this->isBankAwarded = false;
         $this->createdAt = new \DateTime();
+        $this->activationDate = new \DateTime('today');
         $this->extras = new ArrayCollection();
     }
 
@@ -378,104 +364,48 @@ class Property
     }
 
     /**
-     * Set address
+     * Set statusReserved
      *
-     * @param \AppBundle\Entity\Address $address
+     * @param \AppBundle\Entity\StatusReserved $statusReserved
      * @return Property
      */
-    public function setAddress(\AppBundle\Entity\Address $address)
+    public function setStatusReserved(\AppBundle\Entity\StatusReserved $statusReserved = null)
     {
-        $this->address = $address;
+        $this->statusReserved = $statusReserved;
 
         return $this;
     }
 
     /**
-     * Get address
+     * Get statusReserved
      *
-     * @return \AppBundle\Entity\Address 
+     * @return \AppBundle\Entity\StatusReserved 
      */
-    public function getAddress()
+    public function getStatusReserved()
     {
-        return $this->address;
+        return $this->statusReserved;
     }
 
     /**
-     * Set propertyData
+     * Set statusNotAvailable
      *
-     * @param \AppBundle\Entity\PropertyData $propertyData
+     * @param \AppBundle\Entity\StatusNotAvailable $statusNotAvailable
      * @return Property
      */
-    public function setPropertyData(\AppBundle\Entity\PropertyData $propertyData)
+    public function setStatusNotAvailable(\AppBundle\Entity\StatusNotAvailable $statusNotAvailable = null)
     {
-        $this->propertyData = $propertyData;
+        $this->statusNotAvailable = $statusNotAvailable;
 
         return $this;
     }
 
     /**
-     * Get propertyData
+     * Get statusNotAvailable
      *
-     * @return \AppBundle\Entity\PropertyData 
+     * @return \AppBundle\Entity\StatusNotAvailable 
      */
-    public function getPropertyData()
+    public function getStatusNotAvailable()
     {
-        return $this->propertyData;
-    }
-
-    /**
-     * Set propertyDescription
-     *
-     * @param \AppBundle\Entity\PropertyDescription $propertyDescription
-     * @return Property
-     */
-    public function setPropertyDescription(\AppBundle\Entity\PropertyDescription $propertyDescription = null)
-    {
-        $this->propertyDescription = $propertyDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get propertyDescription
-     *
-     * @return \AppBundle\Entity\PropertyDescription 
-     */
-    public function getPropertyDescription()
-    {
-        return $this->propertyDescription;
-    }
-
-    /**
-     * Add extras
-     *
-     * @param \AppBundle\Entity\Extra $extras
-     * @return Property
-     */
-    public function addExtra(\AppBundle\Entity\Extra $extras)
-    {
-        $this->extras[] = $extras;
-
-        return $this;
-    }
-
-    /**
-     * Remove extras
-     *
-     * @param \AppBundle\Entity\Extra $extras
-     */
-    public function removeExtra(\AppBundle\Entity\Extra $extras)
-    {
-        $this->extras->removeElement($extras);
-    }
-
-    /**
-     * Get extras
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getExtras()
-    {
-        return $this->extras;
+        return $this->statusNotAvailable;
     }
 }

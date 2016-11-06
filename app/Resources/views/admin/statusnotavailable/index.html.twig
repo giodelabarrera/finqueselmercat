@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>StatusNotAvailable list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datenotavailable</th>
+                <th>Amountclose</th>
+                <th>Clientclose</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statusNotAvailable in statusNotAvailables %}
+            <tr>
+                <td><a href="{{ path('admin_status_not_available_show', { 'id': statusNotAvailable.id }) }}">{{ statusNotAvailable.id }}</a></td>
+                <td>{% if statusNotAvailable.dateNotAvailable %}{{ statusNotAvailable.dateNotAvailable|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ statusNotAvailable.amountClose }}</td>
+                <td>{{ statusNotAvailable.clientClose }}</td>
+                <td>{% if statusNotAvailable.createdAt %}{{ statusNotAvailable.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if statusNotAvailable.updatedAt %}{{ statusNotAvailable.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_status_not_available_show', { 'id': statusNotAvailable.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_status_not_available_edit', { 'id': statusNotAvailable.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_status_not_available_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

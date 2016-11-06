@@ -36,14 +36,14 @@ class PropertyData
     private $hideSurface;
 
     /**
-     * @ORM\OneToOne(targetEntity="ModalitySale")
-     * @ORM\JoinColumn(name="modality_sale_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToOne(targetEntity="ModalitySale", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="modality_sale_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $modalitySale;
 
     /**
-     * @ORM\OneToOne(targetEntity="ModalityRental")
-     * @ORM\JoinColumn(name="modality_rental_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToOne(targetEntity="ModalityRental", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="modality_rental_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $modalityRental;
 
@@ -153,7 +153,7 @@ class PropertyData
         $this->hideSurface = false;
         $this->hidePrice = false;
     }
-    
+
     /**
      * Get id
      *
@@ -326,6 +326,52 @@ class PropertyData
     }
 
     /**
+     * Set numOffices
+     *
+     * @param integer $numOffices
+     * @return PropertyData
+     */
+    public function setNumOffices($numOffices)
+    {
+        $this->numOffices = $numOffices;
+
+        return $this;
+    }
+
+    /**
+     * Get numOffices
+     *
+     * @return integer 
+     */
+    public function getNumOffices()
+    {
+        return $this->numOffices;
+    }
+
+    /**
+     * Set buildingName
+     *
+     * @param string $buildingName
+     * @return PropertyData
+     */
+    public function setBuildingName($buildingName)
+    {
+        $this->buildingName = $buildingName;
+
+        return $this;
+    }
+
+    /**
+     * Get buildingName
+     *
+     * @return string 
+     */
+    public function getBuildingName()
+    {
+        return $this->buildingName;
+    }
+
+    /**
      * Set observation
      *
      * @param string $observation
@@ -346,6 +392,52 @@ class PropertyData
     public function getObservation()
     {
         return $this->observation;
+    }
+
+    /**
+     * Set modalitySale
+     *
+     * @param \AppBundle\Entity\ModalitySale $modalitySale
+     * @return PropertyData
+     */
+    public function setModalitySale(\AppBundle\Entity\ModalitySale $modalitySale = null)
+    {
+        $this->modalitySale = $modalitySale;
+
+        return $this;
+    }
+
+    /**
+     * Get modalitySale
+     *
+     * @return \AppBundle\Entity\ModalitySale 
+     */
+    public function getModalitySale()
+    {
+        return $this->modalitySale;
+    }
+
+    /**
+     * Set modalityRental
+     *
+     * @param \AppBundle\Entity\ModalityRental $modalityRental
+     * @return PropertyData
+     */
+    public function setModalityRental(\AppBundle\Entity\ModalityRental $modalityRental = null)
+    {
+        $this->modalityRental = $modalityRental;
+
+        return $this;
+    }
+
+    /**
+     * Get modalityRental
+     *
+     * @return \AppBundle\Entity\ModalityRental 
+     */
+    public function getModalityRental()
+    {
+        return $this->modalityRental;
     }
 
     /**
@@ -374,10 +466,10 @@ class PropertyData
     /**
      * Set hotWater
      *
-     * @param \AppBundle\Entity\HotWater $hotWater
+     * @param \AppBundle\Entity\EnergyType $hotWater
      * @return PropertyData
      */
-    public function setHotWater(\AppBundle\Entity\HotWater $hotWater = null)
+    public function setHotWater(\AppBundle\Entity\EnergyType $hotWater = null)
     {
         $this->hotWater = $hotWater;
 
@@ -387,7 +479,7 @@ class PropertyData
     /**
      * Get hotWater
      *
-     * @return \AppBundle\Entity\HotWater 
+     * @return \AppBundle\Entity\EnergyType 
      */
     public function getHotWater()
     {
@@ -397,10 +489,10 @@ class PropertyData
     /**
      * Set heating
      *
-     * @param \AppBundle\Entity\Heating $heating
+     * @param \AppBundle\Entity\EnergyType $heating
      * @return PropertyData
      */
-    public function setHeating(\AppBundle\Entity\Heating $heating = null)
+    public function setHeating(\AppBundle\Entity\EnergyType $heating = null)
     {
         $this->heating = $heating;
 
@@ -410,7 +502,7 @@ class PropertyData
     /**
      * Get heating
      *
-     * @return \AppBundle\Entity\Heating 
+     * @return \AppBundle\Entity\EnergyType 
      */
     public function getHeating()
     {
@@ -484,75 +576,6 @@ class PropertyData
     public function getOrientation()
     {
         return $this->orientation;
-    }
-
-    /**
-     * Set buildingName
-     *
-     * @param string $buildingName
-     * @return PropertyData
-     */
-    public function setBuildingName($buildingName)
-    {
-        $this->buildingName = $buildingName;
-
-        return $this;
-    }
-
-    /**
-     * Get buildingName
-     *
-     * @return string 
-     */
-    public function getBuildingName()
-    {
-        return $this->buildingName;
-    }
-
-    /**
-     * Set modalitySale
-     *
-     * @param \AppBundle\Entity\ModalitySale $modalitySale
-     * @return PropertyData
-     */
-    public function setModalitySale(\AppBundle\Entity\ModalitySale $modalitySale = null)
-    {
-        $this->modalitySale = $modalitySale;
-
-        return $this;
-    }
-
-    /**
-     * Get modalitySale
-     *
-     * @return \AppBundle\Entity\ModalitySale 
-     */
-    public function getModalitySale()
-    {
-        return $this->modalitySale;
-    }
-
-    /**
-     * Set modalityRental
-     *
-     * @param \AppBundle\Entity\ModalityRental $modalityRental
-     * @return PropertyData
-     */
-    public function setModalityRental(\AppBundle\Entity\ModalityRental $modalityRental = null)
-    {
-        $this->modalityRental = $modalityRental;
-
-        return $this;
-    }
-
-    /**
-     * Get modalityRental
-     *
-     * @return \AppBundle\Entity\ModalityRental 
-     */
-    public function getModalityRental()
-    {
-        return $this->modalityRental;
     }
 
     /**

@@ -33,11 +33,11 @@ Extiende
 
     <title>
     {% block gba_head_title %}
-        AdminLTE 2 | Blank Page
+        Finques El Mercat | Admin
     {% endblock %}
     </title>
 
-    {% block stylesheets %}
+    {% block stylesheets_core %}
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
@@ -53,7 +53,16 @@ Extiende
         <link rel="stylesheet" href="{{ asset('admin/dist/css/skins/_all-skins.min.css') }}">
     {% endblock %}
 
-    {% block javascripts %}
+    {% block stylesheets %}
+        <style type="text/css">
+            .form-group .control-label.required:after {
+                content: " *";
+                color: red;
+            }
+        </style>
+    {% endblock %}
+
+    {% block javascripts_head %}
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -583,6 +592,7 @@ Extiende
 </div>
 <!-- ./wrapper -->
 
+{% block javascripts_core %}
 <!-- jQuery 2.2.3 -->
 <script src="{{ asset('admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -595,5 +605,8 @@ Extiende
 <script src="{{ asset('admin/dist/js/app.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
 </body>
 </html>

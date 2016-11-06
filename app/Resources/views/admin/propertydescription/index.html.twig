@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PropertyDescription list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Shortdescription</th>
+                <th>Fulldescription</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for propertyDescription in propertyDescriptions %}
+            <tr>
+                <td><a href="{{ path('admin_property_description_show', { 'id': propertyDescription.id }) }}">{{ propertyDescription.id }}</a></td>
+                <td>{{ propertyDescription.shortDescription }}</td>
+                <td>{{ propertyDescription.fullDescription }}</td>
+                <td>{% if propertyDescription.createdAt %}{{ propertyDescription.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if propertyDescription.updatedAt %}{{ propertyDescription.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_property_description_show', { 'id': propertyDescription.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_property_description_edit', { 'id': propertyDescription.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_property_description_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

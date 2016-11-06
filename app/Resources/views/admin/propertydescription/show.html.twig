@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PropertyDescription</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ propertyDescription.id }}</td>
+            </tr>
+            <tr>
+                <th>Shortdescription</th>
+                <td>{{ propertyDescription.shortDescription }}</td>
+            </tr>
+            <tr>
+                <th>Fulldescription</th>
+                <td>{{ propertyDescription.fullDescription }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if propertyDescription.createdAt %}{{ propertyDescription.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if propertyDescription.updatedAt %}{{ propertyDescription.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_property_description_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_property_description_edit', { 'id': propertyDescription.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>StatusReserved</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statusReserved.id }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{% if statusReserved.startDate %}{{ statusReserved.startDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enddate</th>
+                <td>{% if statusReserved.endDate %}{{ statusReserved.endDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Clientclose</th>
+                <td>{{ statusReserved.clientClose }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if statusReserved.createdAt %}{{ statusReserved.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if statusReserved.updatedAt %}{{ statusReserved.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_status_reserved_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_status_reserved_edit', { 'id': statusReserved.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

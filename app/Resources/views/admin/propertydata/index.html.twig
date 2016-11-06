@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>PropertyData list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Surface</th>
+                <th>Hidesurface</th>
+                <th>Hideprice</th>
+                <th>Constructionyear</th>
+                <th>Numtoilet</th>
+                <th>Numbath</th>
+                <th>Numroom</th>
+                <th>Numoffices</th>
+                <th>Buildingname</th>
+                <th>Observation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for propertyDatum in propertyDatas %}
+            <tr>
+                <td><a href="{{ path('admin_property_data_show', { 'id': propertyDatum.id }) }}">{{ propertyDatum.id }}</a></td>
+                <td>{{ propertyDatum.surface }}</td>
+                <td>{% if propertyDatum.hideSurface %}Yes{% else %}No{% endif %}</td>
+                <td>{% if propertyDatum.hidePrice %}Yes{% else %}No{% endif %}</td>
+                <td>{{ propertyDatum.constructionYear }}</td>
+                <td>{{ propertyDatum.numToilet }}</td>
+                <td>{{ propertyDatum.numBath }}</td>
+                <td>{{ propertyDatum.numRoom }}</td>
+                <td>{{ propertyDatum.numOffices }}</td>
+                <td>{{ propertyDatum.buildingName }}</td>
+                <td>{{ propertyDatum.observation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_property_data_show', { 'id': propertyDatum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_property_data_edit', { 'id': propertyDatum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_property_data_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
