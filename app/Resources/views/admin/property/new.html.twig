@@ -44,8 +44,8 @@
                     </div>
                     {{ form_row(form.activationDate) }}
                     {{ form_row(form.status) }}
-                    {{ form_row(form.statusReserved) }}
-                    {{ form_row(form.statusNotAvailable) }}
+                    {#{{ form_row(form.statusReserved) }}
+                    {{ form_row(form.statusNotAvailable) }}#}
 
                 </div>
                 <!-- /.box-body -->
@@ -59,7 +59,21 @@
                     <h3 class="box-title">Dirección del nuevo inmueble</h3>
                 </div>
                 <div class="box-body">
-                    {#{{ form_row(form.address) }}#}
+                    {{ form_row(form.address.country) }}
+                    {{ form_row(form.address.postalCode) }}
+                    {{ form_row(form.address.municipality) }}
+                    {{ form_row(form.address.streetType) }}
+                    {{ form_row(form.address.street) }}
+
+                    <div class="row">
+                        <div class="col-sm-6">{{ form_row(form.address.number) }}</div>
+                        <div class="col-sm-6">{{ form_row(form.address.floor) }}</div>
+                        <div class="col-sm-6">{{ form_row(form.address.stair) }}</div>
+                        <div class="col-sm-6">{{ form_row(form.address.door) }}</div>
+                    </div>
+
+                    {{ form_row(form.address.modeShowAddress) }}
+                    {{ form_row(form.address.zone) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -170,7 +184,29 @@
                 }
             }
         });
+    });
 
+    var $postalCode = $('#property_address_postalCode');
+    $postalCode.change(function() {
+        // ... retrieve the corresponding form.
+        var $form = $(this).closest('form');
+        // Simulate form data, but only include the selected value.
+        var data = {};
+        data['address_postalCode'] = $type.val();
+        // Submit data via AJAX to the form's action path.
+        $.ajax({
+            //url : $form.attr('action'),
+            url : 'http://finqueselmercat/app_dev.php/admin/address/new',
+            type: 'post',
+            data : data,
+            success: function(html) {
+                // Replace current position field ...
+                $('#property_address_municipality').replaceWith(
+                        // ... with the returned one from the AJAX response.
+                        $(html).find('#property_address_municipality')
+                );
+            }
+        });
     });
 </script>
 {% endblock %}

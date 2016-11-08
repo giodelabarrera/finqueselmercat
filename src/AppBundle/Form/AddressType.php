@@ -3,9 +3,13 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\ModeShowAddress;
+use AppBundle\Form\EventListener\AddMunicipalityFieldSubscriber;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddressType extends AbstractType
@@ -18,8 +22,11 @@ class AddressType extends AbstractType
     {
         $builder
             ->add('country')
-            //->add('postalCode')
+            ->add('postalCode', TextType::class)
             //->add('municipality')
+            ;
+        $builder->addEventSubscriber(new AddMunicipalityFieldSubscriber());
+        $builder
             ->add('streetType')
             ->add('street')
             ->add('number')

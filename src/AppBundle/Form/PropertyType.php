@@ -63,14 +63,18 @@ class PropertyType extends AbstractType
             ->add('activationDate', 'date')
             ->add('status')
             ;
-        $builder->addEventSubscriber(new AddStatusReservedTypeFieldSubscriber());
-        $builder
-            //->add('statusReserved', StatusReservedType::class)
-            ->add('statusNotAvailable', StatusNotAvailableType::class)
-            ;
-
         /*$builder
-            ->add('address', AddressType::class)
+            ->add('statusReserved', StatusReservedType::class)
+            ->add('statusNotAvailable', StatusNotAvailableType::class)
+            ;*/
+
+
+        $builder
+            ->add('address', AddressType::class, array(
+                'auto_initialize' => true,
+            ))
+            ;
+        /*$builder
             ->add('propertyData', PropertyDataType::class)
             ->add('propertyDescription', PropertyDescriptionType::class)
             ->add('extras', EntityType::class, array(

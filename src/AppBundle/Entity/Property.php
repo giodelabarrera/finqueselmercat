@@ -88,6 +88,11 @@ class Property
      */
     private $statusNotAvailable;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Address", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     */
+    private $address;
 
     /**
      * @var \DateTime
@@ -407,5 +412,28 @@ class Property
     public function getStatusNotAvailable()
     {
         return $this->statusNotAvailable;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \AppBundle\Entity\Address $address
+     * @return Property
+     */
+    public function setAddress(\AppBundle\Entity\Address $address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \AppBundle\Entity\Address 
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }
