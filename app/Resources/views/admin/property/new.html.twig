@@ -39,7 +39,7 @@
                     {{ form_row(form.subtype) }}
                     {{ form_row(form.isNewConstruction) }}
                     {{ form_row(form.isBankAwarded) }}
-                    <div class="field-wrapper {% if not property.isBankAwarded %}hide{% endif %}">
+                    <div class="field-wrapper" {% if not property.isBankAwarded %}style="display:none"{% endif %}">
                         {{ form_row(form.bankAwarded) }}
                     </div>
                     {{ form_row(form.activationDate) }}
@@ -59,6 +59,7 @@
                     <h3 class="box-title">Dirección del nuevo inmueble</h3>
                 </div>
                 <div class="box-body">
+
                     {{ form_row(form.address.country) }}
                     {{ form_row(form.address.postalCode) }}
                     {{ form_row(form.address.municipality) }}
@@ -73,7 +74,18 @@
                     </div>
 
                     {{ form_row(form.address.modeShowAddress) }}
-                    {{ form_row(form.address.zone) }}
+
+                    {% set addressZoneStyle = 'display:none' %}
+                    {% if property.address %}
+                        {% if property.address.modeShowAddress %}
+                            {% if property.address.modeShowAddress.id == 3 %}
+                                {% set addressZoneStyle = '' %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    <div class="field-wrapper" style="{{ addressZoneStyle }}">
+                        {{ form_row(form.address.zone) }}
+                    </div>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -86,7 +98,23 @@
                     <h3 class="box-title">Datos del inmueble</h3>
                 </div>
                 <div class="box-body">
-                    {#{{ form_row(form.propertyData) }}#}
+                    {{ form_row(form.surface) }}
+                    {{ form_row(form.hideSurface) }}
+                    {{ form_row(form.modalities) }}
+                    {{ form_row(form.modalitySale) }}
+                    {{ form_row(form.modalityRental) }}
+                    {{ form_row(form.currency) }}
+                    {{ form_row(form.hidePrice) }}
+                    {{ form_row(form.hotWater) }}
+                    {{ form_row(form.constructionYear) }}
+                    {{ form_row(form.heating) }}
+                    {{ form_row(form.energyCertificate) }}
+                    {{ form_row(form.conservation) }}
+                    {{ form_row(form.numToilet) }}
+                    {{ form_row(form.numBath) }}
+                    {{ form_row(form.numRoom) }}
+                    {{ form_row(form.orientation) }}
+                    {{ form_row(form.observation) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -99,7 +127,8 @@
                     <h3 class="box-title">Descripción</h3>
                 </div>
                 <div class="box-body">
-                    {#{{ form_row(form.propertyDescription) }}#}
+                    {{ form_row(form.shortDescription) }}
+                    {{ form_row(form.fullDescription) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -112,7 +141,7 @@
                     <h3 class="box-title">Extras</h3>
                 </div>
                 <div class="box-body">
-                    {#{{ form_row(form.extras) }}#}
+                    {{ form_row(form.extras) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -132,7 +161,8 @@
 
 
 {% block javascripts %}
-<script>
+
+    <script>
     var $type = $('#property_type');
     // When sport gets selected ...
     $type.change(function() {
@@ -164,7 +194,7 @@
         var $form = $(this).closest('form');
         // Simulate form data, but only include the selected value.
         var data = {};
-        if ($isBankAwarded.is(':checked')) data[$isBankAwarded.attr('name')] = 1;
+        if ($isBankAwarded.is(':checked')) data[$isBankAwarded.attr('name')] = '1';
         // Submit data via AJAX to the form's action path.
         $.ajax({
             url : $form.attr('action'),
@@ -176,12 +206,6 @@
                     // ... with the returned one from the AJAX response.
                     $(html).find('#property_bankAwarded').parents('.field-wrapper')
                 );
-                // Position field now displays the appropriate positions.
-                if ($isBankAwarded.is(':checked')) {
-                    $('#property_bankAwarded').parents('.field-wrapper').removeClass('hide');
-                } else {
-                    $('#property_bankAwarded').parents('.field-wrapper').addClass('hide');
-                }
             }
         });
     });
@@ -192,22 +216,44 @@
         var $form = $(this).closest('form');
         // Simulate form data, but only include the selected value.
         var data = {};
-        data['address_postalCode'] = $type.val();
+        data[$postalCode.attr('name')] = $postalCode.val();
         // Submit data via AJAX to the form's action path.
         $.ajax({
-            //url : $form.attr('action'),
-            url : 'http://finqueselmercat/app_dev.php/admin/address/new',
-            type: 'post',
+            url : $form.attr('action'),
+            type: $form.attr('method'),
             data : data,
             success: function(html) {
                 // Replace current position field ...
                 $('#property_address_municipality').replaceWith(
-                        // ... with the returned one from the AJAX response.
-                        $(html).find('#property_address_municipality')
+                    // ... with the returned one from the AJAX response.
+                    $(html).find('#property_address_municipality')
                 );
             }
         });
     });
+
+    var $modeShowAddress = $('#property_address_modeShowAddress input:radio');
+    $modeShowAddress.change(function() {
+        // ... retrieve the corresponding form.
+        var $form = $(this).closest('form');
+        // Simulate form data, but only include the selected value.
+        var data = {};
+        data[$modeShowAddress.attr('name')] = $(this).val();
+        // Submit data via AJAX to the form's action path.
+        $.ajax({
+            url : $form.attr('action'),
+            type: $form.attr('method'),
+            data : data,
+            success: function(html) {
+                // Replace current position field ...
+                $('#property_address_zone').parents('.field-wrapper').replaceWith(
+                    // ... with the returned one from the AJAX response.
+                    $(html).find('#property_address_zone').parents('.field-wrapper')
+                );
+            }
+        });
+    });
+
 </script>
 {% endblock %}
 

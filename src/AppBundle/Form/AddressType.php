@@ -3,9 +3,13 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\ModeShowAddress;
+use AppBundle\Entity\Municipality;
+use AppBundle\Entity\PostalCode;
 use AppBundle\Form\EventListener\AddMunicipalityFieldSubscriber;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -22,11 +26,31 @@ class AddressType extends AbstractType
     {
         $builder
             ->add('country')
-            ->add('postalCode', TextType::class)
-            //->add('municipality')
-            ;
-        $builder->addEventSubscriber(new AddMunicipalityFieldSubscriber());
-        $builder
+//            ->add('postalCode', TextType::class)
+//            ->add('municipality', ChoiceType::class, array(
+//                'placeholder' => 'Selecciona',
+//            ))
+            //->add('municipality', TextType::class)
+            ->add('postalCode', EntityType::class, array(
+                'class' => PostalCode::class,
+                'placeholder' => 'Selecciona',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('pc')
+                        ->join('AppBundle:Geolocation', 'g', 'WITH', 'pc.id = g.postalCode')
+                        ->where('g.province = 8')
+                        ->orderBy('pc.code', 'ASC');
+                },
+            ))
+            ->add('municipality', EntityType::class, array(
+                'class' => Municipality::class,
+                'placeholder' => 'Selecciona',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('m')
+                        ->join('AppBundle:Geolocation', 'g', 'WITH', 'm.id = g.municipality')
+                        ->where('g.province = 8')
+                        ->orderBy('m.name', 'ASC');
+                },
+            ))
             ->add('streetType')
             ->add('street')
             ->add('number')
@@ -37,7 +61,9 @@ class AddressType extends AbstractType
                 'class' => ModeShowAddress::class,
                 'expanded' => true,
             ))
-            ->add('zone')
+            ->add('zone', null, array(
+                'placeholder' => 'Selecciona',
+            ))
             //->add('createdAt', 'datetime')
             //->add('updatedAt', 'datetime')
         ;

@@ -6,38 +6,34 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * ModeShowAddress
+ * Modality
  *
- * @ORM\Table(name="mode_show_address")
- * @ORM\Entity
+ * @ORM\Table(name="modality")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ModalityRepository")
  * @UniqueEntity("slug")
  */
-class ModeShowAddress
+class Modality
 {
-    const CALLE_Y_NUMERO = 'calle-y-numero';
-    const SOLO_CALLE = 'solo-calle';
-    const ZONA = 'zona';
-
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
@@ -51,7 +47,7 @@ class ModeShowAddress
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
@@ -63,7 +59,7 @@ class ModeShowAddress
     private $updatedAt;
 
     /**
-     * ModeShowAddress constructor.
+     * Modality constructor.
      */
     public function __construct()
     {
@@ -92,7 +88,7 @@ class ModeShowAddress
      * Set name
      *
      * @param string $name
-     * @return ModeShowAddress
+     * @return Modality
      */
     public function setName($name)
     {
@@ -115,7 +111,7 @@ class ModeShowAddress
      * Set slug
      *
      * @param string $slug
-     * @return ModeShowAddress
+     * @return Modality
      */
     public function setSlug($slug)
     {
@@ -135,10 +131,33 @@ class ModeShowAddress
     }
 
     /**
+     * Set numOrder
+     *
+     * @param integer $numOrder
+     * @return Modality
+     */
+    public function setNumOrder($numOrder)
+    {
+        $this->numOrder = $numOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get numOrder
+     *
+     * @return integer 
+     */
+    public function getNumOrder()
+    {
+        return $this->numOrder;
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return ModeShowAddress
+     * @return Modality
      */
     public function setCreatedAt($createdAt)
     {
@@ -161,7 +180,7 @@ class ModeShowAddress
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return ModeShowAddress
+     * @return Modality
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -178,28 +197,5 @@ class ModeShowAddress
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set numOrder
-     *
-     * @param integer $numOrder
-     * @return ModeShowAddress
-     */
-    public function setNumOrder($numOrder)
-    {
-        $this->numOrder = $numOrder;
-
-        return $this;
-    }
-
-    /**
-     * Get numOrder
-     *
-     * @return integer 
-     */
-    public function getNumOrder()
-    {
-        return $this->numOrder;
     }
 }

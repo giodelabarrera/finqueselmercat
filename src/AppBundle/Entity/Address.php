@@ -87,7 +87,7 @@ class Address
 
     /**
      * @ORM\ManyToOne(targetEntity="Zone")
-     * @ORM\JoinColumn(name="zone_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="zone_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $zone;
 
@@ -414,7 +414,7 @@ class Address
      * @param \AppBundle\Entity\Zone $zone
      * @return Address
      */
-    public function setZone(\AppBundle\Entity\Zone $zone)
+    public function setZone(\AppBundle\Entity\Zone $zone = null)
     {
         $this->zone = $zone;
 

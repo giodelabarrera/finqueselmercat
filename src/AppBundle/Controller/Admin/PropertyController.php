@@ -46,8 +46,8 @@ class PropertyController extends Controller
         dump($em->getRepository('AppBundle:Subtype')->findByType($type));
         die();*/
 
-        /*dump($request);
-        die();*/
+        //dump($request);
+        //die();
 
         $property = new Property();
         $form = $this->createForm('AppBundle\Form\PropertyType', $property);
