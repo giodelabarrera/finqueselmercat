@@ -97,19 +97,24 @@ class Property
     private $hideSurface;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Modality")
-     * @ORM\JoinTable(name="property_modality",
-     *      joinColumns={@ORM\JoinColumn(name="property_id", referencedColumnName="id", onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="modality_id", referencedColumnName="id", onDelete="CASCADE")}
-     *      )
+     * @var boolean
+     *
+     * @ORM\Column(name="sale", type="boolean", nullable=false)
      */
-    private $modalities;
+    private $sale;
 
     /**
      * @ORM\OneToOne(targetEntity="ModalitySale", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="modality_sale_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $modalitySale;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="rental", type="boolean", nullable=false)
+     */
+    private $rental;
 
     /**
      * @ORM\OneToOne(targetEntity="ModalityRental", cascade={"persist", "remove"})
@@ -814,39 +819,6 @@ class Property
     }
 
     /**
-     * Add modalities
-     *
-     * @param \AppBundle\Entity\Modality $modalities
-     * @return Property
-     */
-    public function addModality(\AppBundle\Entity\Modality $modalities)
-    {
-        $this->modalities[] = $modalities;
-
-        return $this;
-    }
-
-    /**
-     * Remove modalities
-     *
-     * @param \AppBundle\Entity\Modality $modalities
-     */
-    public function removeModality(\AppBundle\Entity\Modality $modalities)
-    {
-        $this->modalities->removeElement($modalities);
-    }
-
-    /**
-     * Get modalities
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getModalities()
-    {
-        return $this->modalities;
-    }
-
-    /**
      * Set modalitySale
      *
      * @param \AppBundle\Entity\ModalitySale $modalitySale
@@ -1084,5 +1056,51 @@ class Property
     public function getExtras()
     {
         return $this->extras;
+    }
+
+    /**
+     * Set sale
+     *
+     * @param boolean $sale
+     * @return Property
+     */
+    public function setSale($sale)
+    {
+        $this->sale = $sale;
+
+        return $this;
+    }
+
+    /**
+     * Get sale
+     *
+     * @return boolean 
+     */
+    public function getSale()
+    {
+        return $this->sale;
+    }
+
+    /**
+     * Set rental
+     *
+     * @param boolean $rental
+     * @return Property
+     */
+    public function setRental($rental)
+    {
+        $this->rental = $rental;
+
+        return $this;
+    }
+
+    /**
+     * Get rental
+     *
+     * @return boolean 
+     */
+    public function getRental()
+    {
+        return $this->rental;
     }
 }

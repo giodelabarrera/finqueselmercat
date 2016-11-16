@@ -100,9 +100,14 @@
                 <div class="box-body">
                     {{ form_row(form.surface) }}
                     {{ form_row(form.hideSurface) }}
-                    {{ form_row(form.modalities) }}
-                    {{ form_row(form.modalitySale) }}
-                    {{ form_row(form.modalityRental) }}
+                    {{ form_row(form.sale) }}
+                    <div class="field-wrapper" style="{% if not property.sale %}display:none{% endif %}">
+                        {{ form_row(form.modalitySale) }}
+                    </div>
+                    {{ form_row(form.rental) }}
+                    <div class="field-wrapper" style="{% if not property.rental %}display:none{% endif %}">
+                        {{ form_row(form.modalityRental) }}
+                    </div>
                     {{ form_row(form.currency) }}
                     {{ form_row(form.hidePrice) }}
                     {{ form_row(form.hotWater) }}
@@ -252,6 +257,24 @@
                 );
             }
         });
+    });
+
+    var $sale = $('#property_sale');
+    $sale.change(function() {
+        if ($sale.is(':checked')) {
+            $('#property_modalitySale').parents('.field-wrapper').show();
+        } else {
+            $('#property_modalitySale').parents('.field-wrapper').hide();
+        }
+    });
+
+    var $rental = $('#property_rental');
+    $rental.change(function() {
+        if ($rental.is(':checked')) {
+            $('#property_modalityRental').parents('.field-wrapper').show();
+        } else {
+            $('#property_modalityRental').parents('.field-wrapper').hide();
+        }
     });
 
 </script>

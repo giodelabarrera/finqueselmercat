@@ -64,13 +64,14 @@ class PropertyType extends AbstractType
             ->add('address', AddressType::class)
             ->add('surface')
             ->add('hideSurface')
-            ->add('modalities', null, array(
-                'multiple' => true,
-                'expanded' => true,
-                'required' => true,
+            ->add('sale')
+            ->add('modalitySale', ModalitySaleType::class, array(
+                'required' => false,
             ))
-            ->add('modalitySale', ModalitySaleType::class)
-            ->add('modalityRental', ModalityRentalType::class)
+            ->add('rental')
+            ->add('modalityRental', ModalityRentalType::class, array(
+                'required' => false,
+            ))
             ->add('currency')
             ->add('hidePrice')
             ->add('hotWater')
@@ -182,6 +183,8 @@ class PropertyType extends AbstractType
                 // address zone
                 $modeShowAddress = ($address) ? $address->getModeShowAddress() : null;
                 $zoneModifier($event->getForm()->get('address'), $modeShowAddress);
+
+
             }
         );
 
