@@ -16,6 +16,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -49,8 +50,6 @@ class PropertyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        //$builder->addEventSubscriber(new AddSubtypeFieldSubscriber());
-        //$builder->addEventSubscriber(new AddBankAwardedFieldSubscriber());
         $builder
             ->add('reference')
             ->add('type', null, array(
@@ -126,38 +125,29 @@ class PropertyType extends AbstractType
             }
         };
 
-        /*$postalCodeModifier = function (FormInterface $form, PostalCode $postalCode = null) {
-            $form->add('postalCode', TextType::class, array(
-                'required' => true,
-            ));
-            if ($postalCode) {
-                if ($postalCode->getSlug() == ModeShowAddress::ZONA) {
-                    $form->add('zone', null, array(
-                        'placeholder' => 'Selecciona',
-                        'required' => true,
-                    ));
-                }
+        $municipalityModifier = function (FormInterface $form, PostalCode $postalCode = null) {
+            if (!$postalCode) {
+                $form->add('municipality', ChoiceType::class, array(
+                    'placeholder' => 'Selecciona',
+                    'choices' => array(),
+                    'required' => true,
+                ));
+            } else {
+                $form->add('municipality', null, array(
+                    'query_builder' => function (EntityRepository $er) use ($postalCode) {
+                        return $er->createQueryBuilder('m')
+                            ->join('AppBundle:Geolocation', 'g', 'WITH', 'm.id = g.municipality')
+                            ->join('g.postalCode', 'pc')
+                            ->where('pc.id = :postalCode')
+                            ->setParameter('postalCode', $postalCode)
+                            ->orderBy('m.name', 'ASC');
+                    },
+                    'required' => true,
+                ));
             }
-        };*/
-
-        $municipalityModifier = function (FormInterface $form, $postalCodeCode = '') {
-
-            $form->add('municipality', null, array(
-                //'placeholder' => 'Selecciona',
-                'query_builder' => function (EntityRepository $er) use ($postalCodeCode) {
-                    return $er->createQueryBuilder('m')
-                        ->join('AppBundle:Geolocation', 'g', 'WITH', 'm.id = g.municipality')
-                        ->join('g.postalCode', 'pc')
-                        ->where('pc.code = :postalCodeCode')
-                        ->setParameter('postalCodeCode', $postalCodeCode)
-                        ->orderBy('m.name', 'ASC');
-                },
-                'required' => true,
-            ));
-
         };
 
-        $modeShowAddressModifier = function (FormInterface $form, ModeShowAddress $modeShowAddress = null) {
+        $zoneModifier = function (FormInterface $form, ModeShowAddress $modeShowAddress = null) {
             if ($modeShowAddress) {
                 if ($modeShowAddress->getSlug() == ModeShowAddress::ZONA) {
                     $form->add('zone', null, array(
@@ -170,21 +160,28 @@ class PropertyType extends AbstractType
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($subtypeModifier, $bankAwardedModifier, $municipalityModifier, $modeShowAddressModifier) {
+            function (FormEvent $event) use (
+                $subtypeModifier,
+                $bankAwardedModifier,
+                $municipalityModifier,
+                $zoneModifier
+            ) {
                 $data = $event->getData();
                 $form = $event->getForm();
+
+                // subtype
                 $subtypeModifier($event->getForm(), $data->getType());
+                // bankAwarded
                 $bankAwardedModifier($event->getForm(), $data->getIsBankAwarded());
 
+                // address
                 $address = $data->getAddress();
-                // municipality
-                $postalCodeCode = ($address) ? $address->getPostalCode()->getCode() : '';
-                $municipalityModifier($event->getForm()->get('address'), $postalCodeCode);
-
-                //$postalCode = ($address) ? $address->getPostalCode() : null;
-                //$postalCodeModifier($event->getForm()->get('address'), $postalCode);
+                // address municipality
+                $postalCode = ($address) ? $address->getPostalCode() : null;
+                $municipalityModifier($event->getForm()->get('address'), $postalCode);
+                // address zone
                 $modeShowAddress = ($address) ? $address->getModeShowAddress() : null;
-                $modeShowAddressModifier($event->getForm()->get('address'), $modeShowAddress);
+                $zoneModifier($event->getForm()->get('address'), $modeShowAddress);
             }
         );
 
@@ -207,28 +204,18 @@ class PropertyType extends AbstractType
         $builder->get('address')->get('postalCode')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($municipalityModifier) {
-                $postalCodeCode = $event->getForm()->getData();
-                $municipalityModifier($event->getForm()->getParent(), $postalCodeCode);
+                $postalCode = $event->getForm()->getData();
+                $municipalityModifier($event->getForm()->getParent(), $postalCode);
             }
         );
 
         $builder->get('address')->get('modeShowAddress')->addEventListener(
             FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($modeShowAddressModifier) {
+            function (FormEvent $event) use ($zoneModifier) {
                 $modeShowAddress = $event->getForm()->getData();
-                $modeShowAddressModifier($event->getForm()->getParent(), $modeShowAddress);
+                $zoneModifier($event->getForm()->getParent(), $modeShowAddress);
             }
         );
-
-        /*
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-            $data = $event->getForm()->getData();
-            dump($data);
-            //die();
-            //$bankAwardedModifier($event->getForm()->getParent(), $isBankAwarded);
-        });
-        */
-
     }
     
     /**

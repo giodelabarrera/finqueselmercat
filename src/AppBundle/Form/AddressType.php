@@ -26,11 +26,6 @@ class AddressType extends AbstractType
     {
         $builder
             ->add('country')
-//            ->add('postalCode', TextType::class)
-//            ->add('municipality', ChoiceType::class, array(
-//                'placeholder' => 'Selecciona',
-//            ))
-            //->add('municipality', TextType::class)
             ->add('postalCode', EntityType::class, array(
                 'class' => PostalCode::class,
                 'placeholder' => 'Selecciona',
@@ -41,15 +36,9 @@ class AddressType extends AbstractType
                         ->orderBy('pc.code', 'ASC');
                 },
             ))
-            ->add('municipality', EntityType::class, array(
-                'class' => Municipality::class,
+            ->add('municipality', ChoiceType::class, array(
                 'placeholder' => 'Selecciona',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('m')
-                        ->join('AppBundle:Geolocation', 'g', 'WITH', 'm.id = g.municipality')
-                        ->where('g.province = 8')
-                        ->orderBy('m.name', 'ASC');
-                },
+                'choices' => array(),
             ))
             ->add('streetType')
             ->add('street')
