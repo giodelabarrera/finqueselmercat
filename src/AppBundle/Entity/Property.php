@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Property
@@ -28,12 +30,14 @@ class Property
      * @var string
      *
      * @ORM\Column(name="reference", type="string", length=255, nullable=false, unique=true)
+     * @Assert\NotBlank()
      */
     private $reference;
 
     /**
      * @ORM\ManyToOne(targetEntity="Type")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
      */
     private $type;
 
@@ -67,18 +71,21 @@ class Property
      * @var \DateTime
      *
      * @ORM\Column(name="activation_date", type="date", nullable=false)
+     * @Assert\Date()
      */
     private $activationDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="Status")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
      */
     private $status;
 
     /**
      * @ORM\OneToOne(targetEntity="Address", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @Assert\NotBlank()
      */
     private $address;
 
@@ -86,6 +93,7 @@ class Property
      * @var integer
      *
      * @ORM\Column(name="surface", type="integer", nullable=false)
+     * @Assert\NotBlank()
      */
     private $surface;
 
@@ -125,6 +133,7 @@ class Property
     /**
      * @ORM\ManyToOne(targetEntity="Currency")
      * @ORM\JoinColumn(name="currency_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
      */
     private $currency;
 
@@ -247,6 +256,8 @@ class Property
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @Assert\DateTime()
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -254,6 +265,7 @@ class Property
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 

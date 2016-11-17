@@ -23,6 +23,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Class PropertyType
@@ -118,20 +119,23 @@ class PropertyType extends AbstractType
                 $form->add('bankAwarded', null, array(
                     'placeholder' => 'Selecciona',
                     'required' => true,
-                    ));
+                    'constraints' => new NotBlank(),
+                ));
             } else {
                 $form->add('bankAwarded', null, array(
                     'placeholder' => 'Selecciona',
+                    'choices' => array(),
                 ));
             }
         };
 
         $municipalityModifier = function (FormInterface $form, PostalCode $postalCode = null) {
             if (!$postalCode) {
-                $form->add('municipality', ChoiceType::class, array(
+                $form->add('municipality', null, array(
                     'placeholder' => 'Selecciona',
                     'choices' => array(),
                     'required' => true,
+                    'constraints' => new NotBlank(),
                 ));
             } else {
                 $form->add('municipality', null, array(
@@ -144,6 +148,7 @@ class PropertyType extends AbstractType
                             ->orderBy('m.name', 'ASC');
                     },
                     'required' => true,
+                    'constraints' => new NotBlank(),
                 ));
             }
         };
@@ -154,6 +159,7 @@ class PropertyType extends AbstractType
                     $form->add('zone', null, array(
                         'placeholder' => 'Selecciona',
                         'required' => true,
+                        'constraints' => new NotBlank(),
                     ));
                 }
             }
@@ -183,8 +189,6 @@ class PropertyType extends AbstractType
                 // address zone
                 $modeShowAddress = ($address) ? $address->getModeShowAddress() : null;
                 $zoneModifier($event->getForm()->get('address'), $modeShowAddress);
-
-
             }
         );
 
@@ -227,7 +231,8 @@ class PropertyType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Property'
+            'data_class' => 'AppBundle\Entity\Property',
+            'cascade_validation' => true,
         ));
     }
 }

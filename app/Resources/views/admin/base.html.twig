@@ -46,6 +46,8 @@ Extiende
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -593,20 +595,29 @@ Extiende
 <!-- ./wrapper -->
 
 {% block javascripts_core %}
-<!-- jQuery 2.2.3 -->
-<script src="{{ asset('admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="{{ asset('admin/bootstrap/js/bootstrap.min.js') }}"></script>
-<!-- SlimScroll -->
-<script src="{{ asset('admin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-<!-- FastClick -->
-<script src="{{ asset('admin/plugins/fastclick/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('admin/dist/js/app.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+    <!-- jQuery 2.2.3 -->
+    <script src="{{ asset('admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="{{ asset('admin/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
+    <!-- SlimScroll -->
+    <script src="{{ asset('admin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('admin/plugins/fastclick/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('admin/dist/js/app.min.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script>
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+    });
+    </script>
+{% endblock %}
 </body>
 </html>

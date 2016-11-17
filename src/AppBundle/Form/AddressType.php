@@ -26,8 +26,7 @@ class AddressType extends AbstractType
     {
         $builder
             ->add('country')
-            ->add('postalCode', EntityType::class, array(
-                'class' => PostalCode::class,
+            ->add('postalCode', null, array(
                 'placeholder' => 'Selecciona',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('pc')
@@ -36,7 +35,7 @@ class AddressType extends AbstractType
                         ->orderBy('pc.code', 'ASC');
                 },
             ))
-            ->add('municipality', ChoiceType::class, array(
+            ->add('municipality', null, array(
                 'placeholder' => 'Selecciona',
                 'choices' => array(),
             ))
@@ -52,6 +51,7 @@ class AddressType extends AbstractType
             ))
             ->add('zone', null, array(
                 'placeholder' => 'Selecciona',
+                'choices' => array(),
             ))
             //->add('createdAt', 'datetime')
             //->add('updatedAt', 'datetime')

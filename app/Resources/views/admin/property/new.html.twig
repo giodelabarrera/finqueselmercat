@@ -61,7 +61,7 @@
                 <div class="box-body">
 
                     {{ form_row(form.address.country) }}
-                    {{ form_row(form.address.postalCode) }}
+                    {{ form_row(form.address.postalCode, {'attr': {'class': 'select2'}}) }}
                     {{ form_row(form.address.municipality) }}
                     {{ form_row(form.address.streetType) }}
                     {{ form_row(form.address.street) }}
@@ -166,7 +166,7 @@
 
 
 {% block javascripts %}
-
+    {{ parent() }}
     <script>
     var $type = $('#property_type');
     // When sport gets selected ...
