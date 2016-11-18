@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Country;
 use AppBundle\Entity\ModeShowAddress;
 use AppBundle\Entity\Municipality;
 use AppBundle\Entity\PostalCode;
@@ -25,7 +26,10 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('country')
+            ->add('country', EntityType::class, array(
+                'class' => Country::class,
+                'required' => true,
+            ))
             ->add('postalCode', null, array(
                 'placeholder' => 'Selecciona',
                 'query_builder' => function (EntityRepository $er) {

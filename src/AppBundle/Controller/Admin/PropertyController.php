@@ -41,14 +41,6 @@ class PropertyController extends Controller
      */
     public function newAction(Request $request)
     {
-        /*$em = $this->getDoctrine()->getManager();
-        $type = $em->getRepository('AppBundle:Type')->find(1);
-        dump($em->getRepository('AppBundle:Subtype')->findByType($type));
-        die();*/
-
-        //dump($request);
-        //die();
-
         $property = new Property();
         $form = $this->createForm('AppBundle\Form\PropertyType', $property);
         $form->handleRequest($request);
@@ -93,6 +85,9 @@ class PropertyController extends Controller
     {
         $deleteForm = $this->createDeleteForm($property);
         $editForm = $this->createForm('AppBundle\Form\PropertyType', $property);
+        /*dump($request);
+        dump($property);
+        die();*/
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -103,14 +98,9 @@ class PropertyController extends Controller
             return $this->redirectToRoute('admin_property_edit', array('id' => $property->getId()));
         }
 
-        /*return $this->render('admin/property/edit.html.twig', array(
+        return $this->render('admin/property/edit.html.twig', array(
             'property' => $property,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));*/
-        return $this->render('admin/property/new.html.twig', array(
-            'property' => $property,
-            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
