@@ -130,7 +130,8 @@ class PropertyType extends AbstractType
         };
 
         $municipalityModifier = function (FormInterface $form, PostalCode $postalCode = null) {
-            if (!$postalCode) {
+            $form->add('municipality');
+            /*if (!$postalCode) {
                 $form->add('municipality', null, array(
                     'placeholder' => 'Selecciona',
                     'choices' => array(),
@@ -150,7 +151,7 @@ class PropertyType extends AbstractType
                     'required' => true,
                     'constraints' => new NotBlank(),
                 ));
-            }
+            }*/
         };
 
         $zoneModifier = function (FormInterface $form, ModeShowAddress $modeShowAddress = null) {
@@ -182,13 +183,14 @@ class PropertyType extends AbstractType
                 $bankAwardedModifier($event->getForm(), $data->getIsBankAwarded());
 
                 // address
-                $address = $data->getAddress();
+                /*$address = $data->getAddress();
                 // address municipality
                 $postalCode = ($address) ? $address->getPostalCode() : null;
                 $municipalityModifier($event->getForm()->get('address'), $postalCode);
                 // address zone
                 $modeShowAddress = ($address) ? $address->getModeShowAddress() : null;
                 $zoneModifier($event->getForm()->get('address'), $modeShowAddress);
+                */
             }
         );
 
@@ -208,7 +210,7 @@ class PropertyType extends AbstractType
             }
         );
 
-        $builder->get('address')->get('postalCode')->addEventListener(
+        /*$builder->get('address')->get('postalCode')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($municipalityModifier) {
                 $postalCode = $event->getForm()->getData();
@@ -222,7 +224,7 @@ class PropertyType extends AbstractType
                 $modeShowAddress = $event->getForm()->getData();
                 $zoneModifier($event->getForm()->getParent(), $modeShowAddress);
             }
-        );
+        );*/
     }
     
     /**

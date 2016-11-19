@@ -26,11 +26,24 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('country', EntityType::class, array(
-                'class' => Country::class,
-                'required' => true,
-            ))
+            ->add('country')
             ->add('postalCode', null, array(
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('pc')
+                        ->join('AppBundle:Geolocation', 'g', 'WITH', 'pc.id = g.postalCode')
+                        ->where('g.province = 8')
+                        ->orderBy('pc.code', 'ASC');
+                },
+            ))
+            ->add('municipality', null, array(
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('m')
+                        ->join('AppBundle:Geolocation', 'g', 'WITH', 'm.id = g.municipality')
+                        ->where('g.province = 8')
+                        ->orderBy('m.name', 'ASC');
+                },
+            ))
+            /*->add('postalCode', null, array(
                 'placeholder' => 'Selecciona',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('pc')
@@ -42,7 +55,7 @@ class AddressType extends AbstractType
             ->add('municipality', null, array(
                 'placeholder' => 'Selecciona',
                 'choices' => array(),
-            ))
+            ))*/
             ->add('streetType')
             ->add('street')
             ->add('number')

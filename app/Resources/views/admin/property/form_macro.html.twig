@@ -189,17 +189,19 @@
             var $form = $(this).closest('form');
             // Simulate form data, but only include the selected value.
             var data = {};
-            data[$postalCode.attr('name')] = $postalCode.val();
+            //data[$postalCode.attr('name')] = $postalCode.val();
+            data['address[postalCode]'] = $postalCode.val();
             // Submit data via AJAX to the form's action path.
             $.ajax({
-                url : $form.attr('action'),
+                //url : $form.attr('action'),
+                url : 'http://finqueselmercat/app_dev.php/admin/address/2/edit',
                 type: $form.attr('method'),
                 data : data,
                 success: function(html) {
                     // Replace current position field ...
                     $('#property_address_municipality').replaceWith(
-                            // ... with the returned one from the AJAX response.
-                            $(html).find('#property_address_municipality')
+                        // ... with the returned one from the AJAX response.
+                        $(html).find('#property_address_municipality')
                     );
                 }
             });

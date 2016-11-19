@@ -85,7 +85,8 @@ class AddressController extends Controller
     {
         $deleteForm = $this->createDeleteForm($address);
         $editForm = $this->createForm('AppBundle\Form\AddressType', $address);
-        $editForm->handleRequest($request);
+        /*dump($request);dump($address);die();
+        $editForm->handleRequest($request);*/
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();

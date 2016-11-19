@@ -85,10 +85,9 @@ class PropertyController extends Controller
     {
         $deleteForm = $this->createDeleteForm($property);
         $editForm = $this->createForm('AppBundle\Form\PropertyType', $property);
-        /*dump($request);
-        dump($property);
-        die();*/
+        //dump($request);die();
         $editForm->handleRequest($request);
+        //dump($request);dump($property);die();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
