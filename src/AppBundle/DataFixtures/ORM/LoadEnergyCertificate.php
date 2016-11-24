@@ -44,12 +44,15 @@ class LoadEnergyCertificate extends AbstractFixture implements OrderedFixtureInt
     public function load(ObjectManager $manager)
     {
         $names = array(
-            'Gas natural',
-            'Electricidad',
-            'Gasóleo',
-            'Butano',
-            'Propano',
-            'Solar',
+            'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F',
+            'G',
+            'En trámite',
+            'Exento',
         );
 
         $numOrder = 1;

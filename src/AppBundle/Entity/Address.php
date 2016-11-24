@@ -89,6 +89,7 @@ class Address
     /**
      * @ORM\ManyToOne(targetEntity="ModeShowAddress")
      * @ORM\JoinColumn(name="mode_show_address_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank()
      */
     private $modeShowAddress;
 
@@ -240,7 +241,7 @@ class Address
      * @param \AppBundle\Entity\Country $country
      * @return Address
      */
-    public function setCountry(\AppBundle\Entity\Country $country)
+    public function setCountry(\AppBundle\Entity\Country $country = null)
     {
         $this->country = $country;
 
@@ -263,7 +264,7 @@ class Address
      * @param \AppBundle\Entity\PostalCode $postalCode
      * @return Address
      */
-    public function setPostalCode(\AppBundle\Entity\PostalCode $postalCode)
+    public function setPostalCode(\AppBundle\Entity\PostalCode $postalCode = null)
     {
         $this->postalCode = $postalCode;
 
@@ -286,7 +287,7 @@ class Address
      * @param \AppBundle\Entity\Municipality $municipality
      * @return Address
      */
-    public function setMunicipality(\AppBundle\Entity\Municipality $municipality)
+    public function setMunicipality(\AppBundle\Entity\Municipality $municipality = null)
     {
         $this->municipality = $municipality;
 
@@ -309,7 +310,7 @@ class Address
      * @param \AppBundle\Entity\StreetType $streetType
      * @return Address
      */
-    public function setStreetType(\AppBundle\Entity\StreetType $streetType)
+    public function setStreetType(\AppBundle\Entity\StreetType $streetType = null)
     {
         $this->streetType = $streetType;
 
@@ -332,7 +333,7 @@ class Address
      * @param \AppBundle\Entity\Floor $floor
      * @return Address
      */
-    public function setFloor(\AppBundle\Entity\Floor $floor)
+    public function setFloor(\AppBundle\Entity\Floor $floor = null)
     {
         $this->floor = $floor;
 
@@ -355,7 +356,7 @@ class Address
      * @param \AppBundle\Entity\ModeShowAddress $modeShowAddress
      * @return Address
      */
-    public function setModeShowAddress(\AppBundle\Entity\ModeShowAddress $modeShowAddress)
+    public function setModeShowAddress(\AppBundle\Entity\ModeShowAddress $modeShowAddress = null)
     {
         $this->modeShowAddress = $modeShowAddress;
 

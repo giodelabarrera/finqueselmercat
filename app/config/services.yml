@@ -8,12 +8,6 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
-    admin.form.property_type:
-        class: AppBundle\Form\PropertyType
-        arguments: ['@doctrine.orm.entity_manager']
-        tags:
-            - { name: form.type }
-
     # admin.form.add_subtype_field_subscriber:
     #     class: AppBundle\Form\EventListener\AddSubtypeFieldSubscriber
     #    arguments: ['@doctrine.orm.entity_manager']

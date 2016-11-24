@@ -291,6 +291,7 @@ class Property
         return (string)$this->id;
     }
 
+
     /**
      * Get id
      *
@@ -437,6 +438,52 @@ class Property
     public function getHideSurface()
     {
         return $this->hideSurface;
+    }
+
+    /**
+     * Set sale
+     *
+     * @param boolean $sale
+     * @return Property
+     */
+    public function setSale($sale)
+    {
+        $this->sale = $sale;
+
+        return $this;
+    }
+
+    /**
+     * Get sale
+     *
+     * @return boolean 
+     */
+    public function getSale()
+    {
+        return $this->sale;
+    }
+
+    /**
+     * Set rental
+     *
+     * @param boolean $rental
+     * @return Property
+     */
+    public function setRental($rental)
+    {
+        $this->rental = $rental;
+
+        return $this;
+    }
+
+    /**
+     * Get rental
+     *
+     * @return boolean 
+     */
+    public function getRental()
+    {
+        return $this->rental;
     }
 
     /**
@@ -721,7 +768,7 @@ class Property
      * @param \AppBundle\Entity\Type $type
      * @return Property
      */
-    public function setType(\AppBundle\Entity\Type $type)
+    public function setType(\AppBundle\Entity\Type $type = null)
     {
         $this->type = $type;
 
@@ -790,7 +837,7 @@ class Property
      * @param \AppBundle\Entity\Status $status
      * @return Property
      */
-    public function setStatus(\AppBundle\Entity\Status $status)
+    public function setStatus(\AppBundle\Entity\Status $status = null)
     {
         $this->status = $status;
 
@@ -882,7 +929,7 @@ class Property
      * @param \AppBundle\Entity\Currency $currency
      * @return Property
      */
-    public function setCurrency(\AppBundle\Entity\Currency $currency)
+    public function setCurrency(\AppBundle\Entity\Currency $currency = null)
     {
         $this->currency = $currency;
 
@@ -1068,51 +1115,5 @@ class Property
     public function getExtras()
     {
         return $this->extras;
-    }
-
-    /**
-     * Set sale
-     *
-     * @param boolean $sale
-     * @return Property
-     */
-    public function setSale($sale)
-    {
-        $this->sale = $sale;
-
-        return $this;
-    }
-
-    /**
-     * Get sale
-     *
-     * @return boolean 
-     */
-    public function getSale()
-    {
-        return $this->sale;
-    }
-
-    /**
-     * Set rental
-     *
-     * @param boolean $rental
-     * @return Property
-     */
-    public function setRental($rental)
-    {
-        $this->rental = $rental;
-
-        return $this;
-    }
-
-    /**
-     * Get rental
-     *
-     * @return boolean 
-     */
-    public function getRental()
-    {
-        return $this->rental;
     }
 }
