@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MediaFile list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Contenttype</th>
+                <th>Contentsize</th>
+                <th>Path</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mediaFile in mediaFiles %}
+            <tr>
+                <td><a href="{{ path('admin_media_file_show', { 'id': mediaFile.id }) }}">{{ mediaFile.id }}</a></td>
+                <td>{{ mediaFile.name }}</td>
+                <td>{{ mediaFile.contentType }}</td>
+                <td>{{ mediaFile.contentSize }}</td>
+                <td>{{ mediaFile.path }}</td>
+                <td>{% if mediaFile.createdAt %}{{ mediaFile.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if mediaFile.updatedAt %}{{ mediaFile.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_media_file_show', { 'id': mediaFile.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_media_file_edit', { 'id': mediaFile.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_media_file_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

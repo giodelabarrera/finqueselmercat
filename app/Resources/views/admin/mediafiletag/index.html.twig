@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MediaFileTag list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mediaFileTag in mediaFileTags %}
+            <tr>
+                <td><a href="{{ path('admin_media_file_tag_show', { 'id': mediaFileTag.id }) }}">{{ mediaFileTag.id }}</a></td>
+                <td>{{ mediaFileTag.name }}</td>
+                <td>{% if mediaFileTag.createdAt %}{{ mediaFileTag.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if mediaFileTag.updatedAt %}{{ mediaFileTag.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_media_file_tag_show', { 'id': mediaFileTag.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_media_file_tag_edit', { 'id': mediaFileTag.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_media_file_tag_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
