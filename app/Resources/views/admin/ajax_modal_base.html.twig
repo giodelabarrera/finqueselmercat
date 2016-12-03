@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html {% block html_attributes %}{% endblock %}>
+<head>
+    {% block meta_tags %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% endblock %}
+
+    <title>
+        {% block gba_head_title %}
+            Finques El Mercat | Admin
+        {% endblock %}
+    </title>
+</head>
+<body {% block body_attributes %}class="hold-transition skin-blue sidebar-mini"{% endblock %}>
+
+
+    {% block gba_page_content %}
+        <!-- Main content -->
+        <section class="content">
+            {% block gba_admin_content %}
+            {% endblock %}
+        </section>
+    <!-- /.content -->
+    {% endblock gba_page_content %}
+
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

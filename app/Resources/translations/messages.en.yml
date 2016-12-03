@@ -1,0 +1,504 @@
+################################################################################
+########################### backend (admin) ####################################
+################################################################################
+
+admin:
+    title:
+        dashboard: Dashboard
+        list: List
+        new: New
+        edit: Edit
+        show: Show
+        actions: Actions
+        language: Language
+        content: Content
+        aviso: Notice
+    form:
+        label:
+            title: Title
+            name: Name
+            content: Content
+            baseSlug: Base slug
+            slug: Slug
+            published: Published
+            created: Created
+            updated: Updated
+            active: Active
+            parent: Parent
+            level: Level
+            iconPath: Icon
+            menu: Menu
+            position: Position
+            linkTypeId: Link type
+            toUrl: URL
+            page: Page
+            newWindow: Open in new window
+            notLink: No link
+            sectionId: Section
+            pageTypeId: Page type
+            originContentId: Origin of the content
+            apiTcmUrl: URL of API TCM
+            active: Active
+            section: Section
+            sideMenu: Side menu
+            parentMenu: Parent menú
+            description: Description
+            department: Department
+            username: Username
+            email: Email
+            lastLogin: Last login
+            owner: Owner
+    action:
+        create: Create
+        update: Update
+        delete: Delete
+        edit: Edit
+        backToList: Back to list
+        logout: Log out
+        showList: Show list
+        createNew: Create new
+        newPassword: New password
+
+    page:
+        action:
+            new: Create new page
+        title:
+            entity: Page
+        form:
+            label:
+                sectionId:
+                    academicManagement: Aceademic Management
+                    services: Services
+                    studentsInfo: Students Information
+                pageTypeId:
+                    normal: Normal page
+                    modal: Modal window
+                    url: Go to URL
+
+    menu:
+        action:
+            new: Create new menu
+        title:
+            entity: Menu
+
+    menuItem:
+        action:
+            new: Create new menu item
+        title:
+            entity: Menu item
+        form:
+            label:
+                parentItem: Parent item
+                positionInMenu: Position in menu
+
+    aviso:
+        action:
+            new: Create new notice
+        title:
+            entity: Notice
+
+    pie:
+        seccion:
+            action:
+                new: Create new section
+            title:
+                entity: Section
+
+        pregunta:
+            action:
+                new: Create new question
+            title:
+                entity: Question
+
+    shortcut:
+        title:
+            entity: Shortcut
+        action:
+            new: Create new shortcut
+
+    service:
+        title:
+            entity: Service
+        action:
+            new: Create new service
+
+    department:
+        title:
+            entity: Department
+        action:
+            new: Create new department
+
+    user:
+        title:
+            entity: User
+            password: Password
+        action:
+            new: Create new user
+
+    word:
+        default: Default
+        created: Created
+        by: by
+        and: and
+        welcome: Welcome
+        please: please
+        login: login
+
+    login:
+        login:    Access
+        username: Username
+        password: Password
+        submit:   Submit
+        placeholder:
+            username: Enter your username..
+            password: Enter your password..
+
+    validators:
+        notBlank: This field should not be blank
+        entity:
+            name:
+                notBlank: The field name should not be blank
+            title:
+                notBlank: The field title should not be blank
+
+    flash:
+        #error:
+        #notice:
+        success:
+            entity:
+                created: Entity "%entity%" successfully created
+                updated: Entity "%entity%" successfully updated
+                deleted: Entity "%entity%" successfully deleted
+        questions:
+            entity:
+                delete: Are you sure?
+            menu:
+                delete: Are you sure? All your Menu Items related will be deleted
+            pie:
+                seccion:
+                    delete: Are you sure? All your Questions related will be deleted
+            department:
+                delete: Are you sure? All the related Notices will be deleted
+            user:
+                delete: Are you sure? All his Notices will be deleted
+
+################################################################################
+######################### end backend (admin) ##################################
+################################################################################
+
+################################################################################
+############################### frontend #######################################
+################################################################################
+
+app:
+    title:
+        access: Access
+        profile: Profile
+        changeProfile: Change profile
+        editProfile: Edit profile
+        myProfile: Mi profile
+        personalData: Personal data
+        date: Date
+        request: Request
+        status: Status
+        credit: Credit
+        home: Home
+        help: Helpdesk
+        gmail: Gmail
+        changeLanguage: Change language
+        currentLanguage: Current language
+        cvpdi: Currículum PDI
+    action:
+        logIn: LogIn
+        changeProfile: Change profile
+        see: See
+        editProfile: Edit profile
+        editCV: Currículum
+        manageHome: Manage Home
+        logout: LogOut
+        submit: Submit
+        change: Change
+        goBack: Go back
+        saveChanges: Save changes
+        remove: Remove
+        save: Save
+        accept: Accept
+        close: Close
+        edit: Edit
+        show: Show
+    form:
+        placeholder:
+            username: Username
+            password: Password
+            search: Search
+        requiredFields: Required fields
+    # breadcrumb:
+    #     myProfile: Mi profile
+    dashboard:
+        title:
+            notices: eCampus notices
+            universityDiary: University diary
+            helpdesk: Helpdesk
+            reservations: Reservations
+            myShortcuts: My shortcuts
+            outstanding: Outstanding
+            news: eCampus news
+            editDashboard: Edit dashboard
+            manageMyDashboard: Manage my dashboard
+            leftModules: Left modules
+            rightModules: Right modules
+            diary: Diary
+            shortcuts: Shortcuts
+        action:
+            showAllNotices: Show all notices
+            showAllDiary: Show all diary
+            showAllTickets: Show all tickets
+            showAllReservations: Show all reservations
+            showAllNews: Show all news
+        form:
+            label:
+                name: Name
+                position: Position
+                active: Active
+        shortcut:
+            mailbox: Mailbox
+            timetable: Timetable
+            academicRecord: Academic record
+            availableWifis: Available Wifis
+            printCredit: Print credit
+
+    menu:
+        title:
+            pie: Students information point
+            relatedSites: Related sites
+            follow: Follow us
+            legalWarning: Legal warning
+            webMap: Web map
+            cookies: Cookies
+            thisPlace: About this site
+        action:
+            showMap: See map
+            mailSuggestions: Mail suggestions
+        paragraph:
+            allRightsReserved: All rights reserved
+    profile:
+        title:
+            nia: NIA
+            studentCarnetCode: Student license code
+            academicData: Academic data
+            manageCarnet: Card Management
+            historicalPrints: History print
+            lastRecharge: Last recharge
+            manageMyProfile: Manage my profile
+            studentMail: Student email
+            personalMail: Personal email
+            certifications: Certifications
+            researchGroups: Research groups
+            publications: Publications
+            personalInfo: Personal information
+            position: Position
+            office: Office
+            email: Email
+            researchId: Research ID
+            orcId: ORC ID
+            researchGate: Research Gate
+            linkedin: Linkedin
+            web: Web
+            schools: Schools
+            studies: Degree or degrees in who teaches
+            subjects: Subjects who teaches
+            description: Description of academic profile, research and/or professional
+            experience: Experience
+            teachingExperience: Teaching experience
+            professionalExperience: Professional experience
+            books: Books
+            articles: Articles
+            magazines: Magazines
+            newspaper: Newspapers
+            enciclopedies: Enciclopedies
+            webs: Webs
+            author: Author
+            year: Year
+            title: Title
+            location: Location
+            publisher: Publisher
+            name: Name
+            pages: Pages
+            date: Date
+            volume: Bolume
+            association: Association
+            url: Url
+            certification: Certification
+            institution: Institution
+            company: Company
+        action:
+            consultAcademicRecord: Check your academic record
+            newCarnet: Order new license
+            pdfGuide: PDF Guide
+            selectFile: Select file
+            modifyPassword: Change password
+        form:
+            label:
+                profile: Profile
+                name: Name
+                lastname: Surnames
+                usernameName: Username
+                email: Email
+                imageProfile: Profile image
+                weightMax: Max weight
+                sizes: Size
+                personalMail: Personal mail
+        historicalPrints:
+            document: Document
+            date: Date
+            hour: Hour
+            pages: Pages
+            copys: Copys
+            totalPages: Total pages
+            color: On color
+            totalCost: Total cost
+        paragraph:
+            selectProfile: Select the new profile that you want to change in your user session
+            academicData: >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quisquam, ea, praesentium libero itaque fugit, ullam exercitationem adipisci harum excepturi sint minima ut fugiat aliquid quis quod doloribus consequuntur. Suscipit voluptas consequatur magni, repellendus et itaque delectus, vitae aut ad accusantium odit at debitis aliquid veniam voluptate deserunt cumque aliquam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, consequatur!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore numquam omnis eos dolore nesciunt quis.
+                Lorem ipsum dolor sit amet.
+            manageCarnet: Lorem ipsum
+            historicalPrints: >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam debitis dolor commodi impedit cupiditate eaque, neque facere laudantium ut quibusdam vel eligendi, soluta eum suscipit deleniti. Ipsum, beatae, repellendus. Asperiores hic vel, voluptatum earum, placeat sapiente debitis, ratione, unde porro iusto quaerat. Fugiat eos maiores assumenda, provident iusto doloremque doloribus!
+            noCarnets: No licenses
+            gradeStudying: Grade studying
+            noNIA: You do not have NIA code
+            noPrints: You do not have prints
+            noProfile: No profile
+            seePdfVersion: See PDF version
+    aviso:
+        title:
+            avisos: Notices
+        form:
+            label:
+                content: Content
+        paragraph:
+            noAvisos: No notices
+
+    ticket:
+        title:
+            tickets: Tickets
+            newTicket: New ticket
+            ticketSent: Ticket sent
+        action:
+            newTicket: New ticket
+            showDetail: Show detail
+        form:
+            label:
+                number: Ticket No.
+                subject: Subject
+                message: Message
+                status: Status
+                date: Date
+                solved: Solved
+                note: Note
+                description: Description
+        paragraph:
+            noTickets: No tickets
+            ticketSent: Your ticket has been successfully sent. We will contact you as soon as possible.
+        status:
+            Open: Open
+            Pending: Pending
+            Closed: Closed
+            Cancelled: Cancelled
+            Resolved: Resolved
+
+    agenda:
+        paragraph:
+            noEvents: No events
+
+    outstanding:
+        paragraph:
+            noOutstandings: No outstanding
+
+    news:
+        paragraph:
+            noNews: No news
+
+    reserva:
+        title:
+            reservas: Reservations
+            new: New reservation
+        form:
+            label:
+                num_reserva: Reservation number
+                num_recurso: Resource number
+                dispositivo: Device
+                modelo: Model
+                fecha_reserva: Reservation date
+                fecha_reserva_programada: Collect
+                fecha_devolucion_programada: Return
+        paragraph:
+            noReservas: No reservations
+
+    pie:
+        title:
+            pie: PIE
+            howCanWeHelpYou: How can we help you
+            contact: Contact
+
+        button:
+            faq: Frequently asked questions
+            contact: Contact us
+
+        contact:
+            form:
+                label:
+                    subject: Subject
+                    title: Title
+                    message: Message
+                subject:
+                    one: Subject one
+                    two: Subject two
+                    three: Subject three
+            title:
+                messageSent: Message sent
+                messageHeader: Sent from the contact form of eCampus platform
+
+            paragraph:
+                messageSent: Your message has been successfully sent. We will contact you as soon as possible.
+
+        paragraph:
+            noAnswers: No answers
+            noQuestions: No questions
+
+    services:
+        title:
+            services: Student services
+        paragraph:
+            noServices: There are not services for your profile
+
+    bolsaTalento:
+        title:
+            bolsaTalento: Talent bag
+            subscribe: Subscribe on offer
+            requiredProfile: Required profile
+            details: Details
+            description: >
+                             <blockquote>
+                             <p>La bolsa de talento es un servicio ofrecido a los alumno y alumnis de Tecnocampus a traves del cual podemos encontrar una amplia oferta de empresas que estan buscando trabajadores</p>
+                             <p>También podréis encontrar ofertas de trabajo para realizar becas col·aborativas con Tecnocampus</p>
+                             </blockquote>
+        form:
+            label:
+                description: Description
+        paragraph:
+            noOffers: There are not offers
+            noExist: The offer do not exist 
+
+    word:
+        affirmation: Yes
+        negation: No
+
+    paragraph:
+        connectionError: Service connection error
+
+################################################################################
+############################# end frontend  ####################################
+################################################################################

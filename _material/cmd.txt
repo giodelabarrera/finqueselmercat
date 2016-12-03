@@ -34,7 +34,7 @@ rm -R app/logs/* app/cache/*;
 
 # Limpiar cache local dev
 
-sudo chmod -R 777 app/cache/ app/logs/; sudo chown -R $user:www-data app/cache/ app/logs/; sudo php app/console cache:clear; sudo chmod -R 777 app/cache/ app/logs/; sudo chown -R $user:www-data app/cache/ app/logs/
+sudo chmod -R 777 app/cache/ app/logs/; sudo chown -R $user:$group app/cache/ app/logs/; sudo php app/console cache:clear; sudo chmod -R 777 app/cache/ app/logs/; sudo chown -R $user:$group app/cache/ app/logs/
 
 
 # Limpiar cache local prod

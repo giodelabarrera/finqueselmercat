@@ -12,6 +12,7 @@ use AppBundle\Entity\Type;
 use AppBundle\Form\EventListener\AddBankAwardedFieldSubscriber;
 use AppBundle\Form\EventListener\AddStatusReservedTypeFieldSubscriber;
 use AppBundle\Form\EventListener\AddSubtypeFieldSubscriber;
+use AppBundle\Form\Type\ModalEntityType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -81,6 +82,11 @@ class PropertyType extends AbstractType
             ))
             ->add('shortDescription')
             ->add('fullDescription')
+            ->add('energyCertificateFile', ModalEntityType::class, array(
+                'class' => 'AppBundle:MediaFile',
+                'route_prefix' => 'admin_media_file',
+                'required' => false,
+            ))
             ;
         /*$builder
             //->add('createdAt', 'datetime')

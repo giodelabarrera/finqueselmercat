@@ -14,34 +14,34 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class MediaFile
 {
-    const UPLOAD_DIR = 'uploads/media_files';
+    const UPLOAD_DIR = 'uploads/media_file';
 
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    public $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    public $name;
+    private $name;
 
     /**
      * @ORM\Column(name="content_type", type="string", length=255, nullable=true)
      */
-    public $contentType;
+    private $contentType;
 
     /**
      * @ORM\Column(name="content_size", type="integer", nullable=true)
      */
-    public $contentSize;
+    private $contentSize;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $path;
+    private $path;
 
     /**
      * @Assert\File(maxSize="2000000", groups={"creation"})

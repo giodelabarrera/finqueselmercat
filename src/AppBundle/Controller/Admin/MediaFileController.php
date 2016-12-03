@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -49,6 +50,14 @@ class MediaFileController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($mediaFile);
             $em->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(array(
+                    'status'    => 'OK',
+                    'objectId'  => $mediaFile->getId(),
+                ));
+            }
+            $this->addFlash('success', $this->get('translator')->trans('admin.flash.success.entity.created'));
 
             return $this->redirectToRoute('admin_media_file_show', array('id' => $mediaFile->getId()));
         }

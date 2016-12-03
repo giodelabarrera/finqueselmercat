@@ -253,6 +253,12 @@ class Property
     private $extras;
 
     /**
+     * @ORM\ManyToOne(targetEntity="MediaFile")
+     * @ORM\JoinColumn(name="energy_certificate_file_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $energyCertificateFile;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -1115,5 +1121,30 @@ class Property
     public function getExtras()
     {
         return $this->extras;
+    }
+
+    
+
+    /**
+     * Set energyCertificateFile
+     *
+     * @param \AppBundle\Entity\MediaFile $energyCertificateFile
+     * @return Property
+     */
+    public function setEnergyCertificateFile(\AppBundle\Entity\MediaFile $energyCertificateFile = null)
+    {
+        $this->energyCertificateFile = $energyCertificateFile;
+
+        return $this;
+    }
+
+    /**
+     * Get energyCertificateFile
+     *
+     * @return \AppBundle\Entity\MediaFile 
+     */
+    public function getEnergyCertificateFile()
+    {
+        return $this->energyCertificateFile;
     }
 }

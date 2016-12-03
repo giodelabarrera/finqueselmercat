@@ -1,0 +1,504 @@
+################################################################################
+########################### backend (admin) ####################################
+################################################################################
+
+admin:
+    title:
+        dashboard: Dashboard
+        list: Llistat
+        new: Nou
+        edit: Editar
+        show: Mostrar
+        actions: Accions
+        language: Idioma
+        content: Contingut
+        home: Home
+        aviso: Avís
+        editPassword: Editar
+    form:
+        label:
+            title: Títol
+            name: Nom
+            content: Contingut
+            baseSlug: Base slug
+            slug: Slug
+            published: Publicat
+            created: Creat
+            updated: Modificat
+            active: Actiu
+            parent: Pare
+            level: Nivell
+            iconPath: Icona
+            menu: Menú
+            position: Posició
+            linkTypeId: Tipus de link
+            toUrl: URL
+            page: Pàgina
+            newWindow: Obrir en nova finestra
+            notLink: No link
+            sectionId: Secció
+            pageTypeId: Tipus de pàgina
+            originContentId: Origen del contingut
+            apiTcmUrl: URL de la API TCM
+            active: Actiu
+            section: Secció
+            sideMenu: Menú lateral
+            parentMenu: Menú pare
+            description: Descripció
+            department: Departament
+            username: Nom d'usuari
+            email: Correu
+            lastLogin: Últim accés
+            owner: Propietari
+    action:
+        create: Crear
+        update: Actualitzar
+        delete: Eliminar
+        edit: Editar
+        backToList: Tornar a la llista
+        logout: Tancar sessió
+        showList: Veure llistat
+        createNew: Crear nou
+        newPassword: Nova contrassenya
+
+    page:
+        action:
+            new: Crear nova pàgina
+        title:
+            entity: Pàgina
+        form:
+            label:
+                sectionId:
+                    academicManagement: Gestió acadèmica
+                    services: Serveis
+                    studentsInfo: Informació estudiants
+                pageTypeId:
+                    normal: Pàgina normal
+                    modal: Finestra modal
+                    url: Anar a Url
+
+    menu:
+        action:
+            new: Crear nou menú
+        title:
+            entity: Menú
+
+    menuItem:
+        action:
+            new: Crear nou item de menú
+        title:
+            entity: Menú item
+        form:
+            label:
+                parentItem: Item pare
+                positionInMenu: Posició en menú
+
+    aviso:
+        action:
+            new: Crear nou avís
+        title:
+            entity: Avís
+
+    pie:
+        seccion:
+            action:
+                new: Crear nova secció
+            title:
+                entity: Secció
+
+        pregunta:
+            action:
+                new: Crear nova pregunta
+            title:
+                entity: Pregunta
+
+    shortcut:
+        title:
+            entity: Accés directe
+        action:
+            new: Crear nou accés directe
+
+    service:
+        title:
+            entity: Servei
+        action:
+            new: Crear nou servei
+
+    department:
+        title:
+            entity: Departament
+        action:
+            new: Crear nou departament
+
+    user:
+        title:
+            entity: Usuari
+            password: Contrassenya
+        action:
+            new: Crear nou usuari
+    word:
+        default: Per defecte
+        created: Creat
+        by: per
+        and: i
+        welcome: Benvingut
+        please: si us plau
+        login: accedeix
+
+    login:
+        login:               Accés
+        usernameplaceholder: Usuari
+        passwordplaceholder: Contrasenya
+        submit:              Accedir
+        placeholder:
+            username: Escriu el teu nom d'usuari..
+            password: Escriu la teva contrasenya..
+
+    validators:
+        notBlank: Aquest camp no ha d'estar en blanc
+        entity:
+            name:
+                notBlank: El camp nom no ha d'estar en blanc
+            title:
+                notBlank: El camp títol no ha d'estar en blanc
+
+    flash:
+        #error:
+        #notice:
+        success:
+            entity:
+                created: Entitat "%entity%" creada correctament
+                updated: Entitat "%entity%" actualitzada correctament
+                deleted: Entitat "%entity%" eliminada correctament
+        questions:
+            entity:
+                delete: Estàs segur?
+            menu:
+                delete: Estàs segur? Tots els seus Menú ítems relacionats seran esborrats
+            pie:
+                seccion:
+                    delete: Estàs segur? Totes les seves Preguntes relacionats seran esborrades
+            department:
+                delete: Estàs segur? Tots els seus Avisos relacionats seran esborrats
+            user:
+                delete: Estàs segur? Tots els seus Avisos seran esborrats
+
+################################################################################
+######################### end backend (admin) ##################################
+################################################################################
+
+################################################################################
+############################### frontend #######################################
+################################################################################
+
+app:
+    title:
+        access: Accés
+        profile: Perfil
+        changeProfile: Canviar perfil
+        editProfile: Editar perfil
+        myProfile: El meu perfil
+        personalData: Dades personals
+        date: Data
+        request: Petició
+        status: Estat
+        credit: Crèdit
+        home: Home
+        help: Helpdesk
+        gmail: Gmail
+        changeLanguage: Canviar idioma
+        currentLanguage: Idioma actual
+        cvpdi: Currículum PDI
+    action:
+        logIn: Accedir
+        changeProfile: Canviar perfil
+        see: Veure
+        editProfile: Editar perfil
+        editCV: Currículum
+        manageHome: Gestionar Home
+        logout: Tancar sessió
+        submit: Enviar
+        change: Canviar
+        goBack: Tornar enrere
+        saveChanges: Guardar canvis
+        remove: Eliminar
+        save: Guardar
+        accept: Acceptar
+        close: Tancar
+        edit: Editar
+        show: Mostrar
+    form:
+        placeholder:
+            username: Usuari
+            password: Contrasenya
+            search: Buscar
+        requiredFields: Camps obligatoris
+    # breadcrumb:
+    #     myProfile: Mi perfil
+    dashboard:
+        title:
+            notices: Avisos eCampus
+            universityDiary: Agenda Universitària
+            helpdesk: Helpdesk
+            reservations: Reserves
+            myShortcuts: Els meus Accessos Directes
+            outstanding: Destacats
+            news: Notícies eCampus
+            editDashboard: Editar dashboard
+            manageMyDashboard: Gestió del meu dashboard
+            leftModules: Mòduls de l'esquerra
+            rightModules: Mòduls de la dreta
+            diary: Agenda
+            shortcuts: Accessos directes
+        action:
+            showAllNotices: Veure tots els avisos
+            showAllDiary: Veure tota l'agenda
+            showAllTickets: Veure tots els tickets
+            showAllReservations: Veure totes les reserves
+            showAllNews: Veure totes les notícies
+        form:
+            label:
+                name: Nom
+                position: Posició
+                active: Actiu
+        shortcut:
+            mailbox: Bústia
+            timetable: Horaris
+            academicRecord: Expedient acadèmic
+            availableWifis: Wifis disponibles
+            printCredit: Crèdit impressions
+    menu:
+        title:
+            pie: Punt informació estudiants
+            relatedSites: Llocs relacionats
+            follow: Segueix-nos
+            legalWarning: Avís legal
+            webMap: Mapa web
+            cookies: Cookies
+            thisPlace: Sobre aquest lloc
+        action:
+            showMap: Veure mapa
+            mailSuggestions: Bústia de suggeriments
+        paragraph:
+            allRightsReserved: Tots els drets reservats
+    profile:
+        title:
+            nia: NIA
+            studentCarnetCode: Codi carnet estudiant
+            academicData: Dades acadèmiques
+            manageCarnet: Gestió de carnets
+            historicalPrints: Històric d'impressions
+            lastRecharge: Última recàrrega
+            manageMyProfile: Gestió del meu perfil
+            studentMail: Email d'estudiant
+            personalMail: Email personal
+            certifications: Titulacions
+            researchGroups: Línies d'investigació
+            publications: Publicacions
+            personalInfo: Informació personal
+            position: Càrrec
+            office: Despatx
+            email: Email
+            researchId: Research ID
+            orcId: ORC ID
+            researchGate: Research Gate
+            linkedin: Linkedin
+            web: Web
+            schools: Escola
+            studies: Grau o graus als que imparteix classe
+            subjects: Assignatures que imparteix
+            description: Descripció del perfil acadèmic, investigador i/o professional
+            experience: Experiència
+            teachingExperience: Experiència docent
+            professionalExperience: Experiència professional
+            books: Llibres
+            articles: Articles
+            magazines: Revistes
+            newspaper: Diaris
+            enciclopedies: Enciclopèdies
+            webs: Webs
+            author: Autor
+            year: Any
+            title: Títol
+            location: Localització
+            publisher: Editorial
+            name: Nom
+            pages: Pàgines
+            date: Data
+            volume: Volum
+            association: Associació
+            url: Url
+            certification: Titulació
+            institution: Institució
+            company: Empresa
+        action:
+            consultAcademicRecord: Consulta el teu expedient acadèmic
+            newCarnet: Sol·licitar nou carnet
+            pdfGuide: PDF Guía
+            selectFile: Seleccionar arxiu
+            modifyPassword: Modificar contrasenya
+        form:
+            label:
+                profile: Perfil
+                name: Nom
+                lastname: Cognoms
+                usernameName: Nom d'usuari
+                email: Email
+                imageProfile: Imatge perfil
+                weightMax: Pes màxim
+                sizes: Mesures
+                personalMail: Email personal
+        historicalPrints:
+            document: Document
+            date: Data
+            hour: Hora
+            pages: Pàgines
+            copys: Copies
+            totalPages: Total pàgines
+            color: A color
+            totalCost: Cost total
+        paragraph:
+            selectProfile: Selecciona el nou perfil que vulguis cambiar en la sessió del teu usuari
+            academicData: >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quisquam, ea, praesentium libero itaque fugit, ullam exercitationem adipisci harum excepturi sint minima ut fugiat aliquid quis quod doloribus consequuntur. Suscipit voluptas consequatur magni, repellendus et itaque delectus, vitae aut ad accusantium odit at debitis aliquid veniam voluptate deserunt cumque aliquam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, consequatur!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore numquam omnis eos dolore nesciunt quis.
+                Lorem ipsum dolor sit amet.
+            manageCarnet: Lorem ipsum
+            historicalPrints: >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam debitis dolor commodi impedit cupiditate eaque, neque facere laudantium ut quibusdam vel eligendi, soluta eum suscipit deleniti. Ipsum, beatae, repellendus. Asperiores hic vel, voluptatum earum, placeat sapiente debitis, ratione, unde porro iusto quaerat. Fugiat eos maiores assumenda, provident iusto doloremque doloribus!
+            noCarnets: No hi ha carnets
+            gradeStudying: Grau que està estudiant
+            noNIA: No tens codi NIA assignat
+            noPrints: No tens impressions
+            noProfile: Sense perfil
+            seePdfVersion: Veure versió en PDF
+    aviso:
+        title:
+            avisos: Avisos
+        form:
+            label:
+                content: Contingut
+        paragraph:
+            noAvisos: No hi ha avisos
+
+    ticket:
+        title:
+            tickets: Tickets
+            newTicket: Nou ticket
+            ticketSent: Ticket enviat
+        action:
+            newTicket: Nou ticket
+            showDetail: Veure detall
+        form:
+            label:
+                number: Ticket nº
+                subject: Assumpte
+                message: Missatge
+                status: Estat
+                date: Data
+                solved: Solucionat
+                note: Nota
+                description: Descripció
+        paragraph:
+            noTickets: No hi ha tickets
+            ticketSent: El teu ticket ha sigut enviat correctament. Ens posarem en contacte amb tu el més aviat possible.
+        status:
+            Open: Obert
+            Pending: Pendent
+            Closed: Tancat
+            Cancelled: Cancel·lat
+            Resolved: Resolt
+
+    agenda:
+        paragraph:
+            noEvents: No hi ha esdeveniments
+
+    outstanding:
+        paragraph:
+            noOutstandings: No hi ha destacats
+
+    news:
+        paragraph:
+            noNews: No hi ha notícies
+
+    reserva:
+        title:
+            reservas: Reserves
+            new: Nova reserva
+        form:
+            label:
+                num_reserva: Nº reserva
+                num_recurso: Nº recurs
+                dispositivo: Dispositiu
+                modelo: Model
+                fecha_reserva: Data reserva
+                fecha_reserva_programada: Recollida
+                fecha_devolucion_programada: Devolució
+        paragraph:
+            noReservas: No hi ha reserves
+
+    pie:
+        title:
+            pie: PIE
+            howCanWeHelpYou: En què podem ajudar-te
+            contact: Contacte
+
+        button:
+            faq: Preguntes freqüents
+            contact: Contacta amb nosaltres
+
+        contact:
+            form:
+                label:
+                    subject: Assumpte
+                    title: Títol
+                    message: Missatge
+                subject:
+                    one: Subject one
+                    two: Subject two
+                    three: Subject three
+            title:
+                messageSent: Missatge enviat
+
+            paragraph:
+                messageSent: El teu missatge ha sigut enviat correctament. Ens posarem en contacte amb tu el més aviat possible.
+                messageHeader: Enviat des del formulari de contacte de la plataforma eCampus
+
+        paragraph:
+            noAnswers: No hi ha respostes
+            noQuestions: No hi ha preguntes
+
+    services:
+        title:
+            services: Serveis als estudiants
+        paragraph:
+            noServices: No hi ha serveis per al teu perfil
+
+    bolsaTalento:
+        title:
+            bolsaTalento: Borsa de talent
+            subscribe: Inscriure's a la oferta
+            requiredProfile: Perfil requerit
+            details: Detalls
+            description: >
+                 <blockquote>
+                 <p>La borsa de talent és un servei oferit a alumnes i alumnis de Tecnocampus a través del qual podeu trobar  una amplia oferta d'empreses que estàn cercant treballadors.</p>
+                 <p>També podreu trobar ofertes de feina per a realitzar beques col·laboratives amb Tecnocampus.</p>
+                 </blockquote>
+        form:
+            label:
+                description: Descripció
+        paragraph:
+            noOffers: No hi ha ofertes
+            noExist: La oferta no existeix
+
+    word:
+        affirmation: Si
+        negation: No
+
+    paragraph:
+        connectionError: Error en la connexió amb el servei
+
+################################################################################
+############################# end frontend  ####################################
+################################################################################

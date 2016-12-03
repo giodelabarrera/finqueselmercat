@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Ddeboer\DataImportBundle\DdeboerDataImportBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

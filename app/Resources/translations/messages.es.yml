@@ -1,0 +1,470 @@
+# knp_paginator
+Previous: Anterior
+Next: Siguiente
+
+################################################################################
+########################### backend (admin) ####################################
+################################################################################
+
+admin:
+    title:
+        dashboard: Dashboard
+        list: Listado
+        new: Nuevo
+        edit: Editar
+        show: Mostrar
+        actions: Acciones
+        language: Idioma
+        content: Contenido
+        aviso: Aviso
+        library: Biblioteca
+        users: Usuarios
+        main: Principal
+        yes: Sí
+        no: No
+        changePassword: Cambiar contraseña
+        file: Archivo
+        crm: CRM
+        confirm: Confirmar
+    form:
+        label:
+            id: Id
+            title: Título
+            name: Nombre
+            content: Contenido
+            baseSlug: Base slug
+            slug: Slug
+            published: Publicado
+            created: Creado
+            updated: Modificado
+            active: Activo
+            parent: Padre
+            level: Nivel
+            iconPath: Icono
+            menu: Menú
+            position: Posición
+            linkTypeId: Tipo de link
+            toUrl: URL
+            page: Página
+            newWindow: Abrir en nueva ventana
+            notLink: No link
+            sectionId: Sección
+            pageTypeId: Tipo de página
+            originContentId: Origen del contenido
+            apiTcmUrl: URL de la API TCM
+            active: Activo
+            section: Sección
+            sideMenu: Menú lateral
+            parentMenu: Menú padre
+            description: Descripción
+            department: Departamento
+            username: Nombre de usuario
+            email: Email
+            lastLogin: Último acceso
+            owner: Propietario
+            roles: Roles
+            notActive: No activo
+            yes: Sí
+            no: No
+            username: Usuario
+            surname: Apellidos
+            enabled: Activo
+            password: Contraseña
+            repeatPassword: Repetir contraseña
+            image: Imagen
+    action:
+        create: Crear
+        update: Actualizar
+        delete: Eliminar
+        edit: Editar
+        backToList: Volver a la lista
+        logout: Cerrar sesión
+        showList: Ver listado
+        createNew: Crear nuevo
+        changePassword: Cambiar contraseña
+        filter: Filtrar
+        reset: Resetear
+        actions: Acciones
+        show: Mostrar
+        list: Listado
+        select: Seleccionar
+        crm: CRM
+        yes: Sí
+        no: No
+        export: Exportar
+        simulateSession: Simular sesión
+    # entities
+
+    word:
+        default: Por defecto
+        created: Creado
+        by: por
+        and: y
+        welcome: Bienvenido
+        please: por favor
+        login: accede
+        yes: sí
+        no: no
+
+    login:
+        login:    Acceso
+        username: Usuario
+        password: Contraseña
+        submit:   Acceder
+        placeholder:
+            username: Escribe tu nombre de usuario..
+            password: Escribe tu contraseña..
+
+    validators:
+        notBlank: Este campo no debe estar en blanco
+        entity:
+            name:
+                notBlank: El campo nombre no debe estar en blanco
+            title:
+                notBlank: El campo título no debe estar en blanco
+
+    flash:
+        #error:
+        #notice:
+        success:
+            entity:
+                # created: Entidad "%entity%" creada correctamente
+                # updated: Entidad "%entity%" actualizada correctamente
+                # deleted: Entidad "%entity%" eliminada correctamente
+                created: Se ha creado correctamente
+                updated: Se ha actualizado correctamente
+                deleted: Se ha eliminado correctamente
+                passwordChanged: Se ha actualizado correctamente la contraseña
+        questions:
+            entity:
+                delete: ¿Estás seguro?
+            menu:
+                delete: ¿Estás seguro? Todos sus Menú items relacionados serán borrados
+            pie:
+                seccion:
+                    delete: ¿Estás seguro? Todas sus Preguntas relacionadas serán borradas
+            department:
+                delete: ¿Estás seguro? Todos sus Avisos relacionados serán borrados
+            user:
+                delete: ¿Estás seguro? Todos sus Avisos serán borrados
+
+################################################################################
+######################### end backend (admin) ##################################
+################################################################################
+
+################################################################################
+############################### frontend #######################################
+################################################################################
+
+app:
+    title:
+        access: Acceso
+        profile: Perfil
+        changeProfile: Cambiar perfil
+        editProfile: Editar perfil
+        myProfile: Mi perfil
+        personalData: Datos personales
+        date: Fecha
+        request: Petición
+        status: Estado
+        credit: Crédito
+        home: Home
+        help: Helpdesk
+        gmail: Gmail
+        changeLanguage: Cambiar idioma
+        currentLanguage: Idioma actual
+        cvpdi: Currículum PDI
+    action:
+        logIn: Entrar
+        changeProfile: Cambiar perfil
+        see: Ver
+        editProfile: Editar perfil
+        editCV: Currículum
+        manageHome: Gestionar Home
+        logout: Cerrar sesión
+        submit: Enviar
+        change: Cambiar
+        goBack: Volver atrás
+        saveChanges: Guardar cambios
+        remove: Eliminar
+        save: Guardar
+        accept: Aceptar
+        close: Cerrar
+        edit: Editar
+        show: Mostrar
+    form:
+        placeholder:
+            username: Usuario
+            password: Contraseña
+            search: Buscar
+        requiredFields: Campos obligatorios
+    # breadcrumb:
+    #     myProfile: Mi perfil
+    dashboard:
+        title:
+            notices: Avisos eCampus
+            universityDiary: Agenda Universitaria
+            helpdesk: Helpdesk
+            reservations: Reservas
+            myShortcuts: Mis Accesos Directos
+            outstanding: Destacados
+            news: Noticias eCampus
+            editDashboard: Editar dashboard
+            manageMyDashboard: Gestión de mi dashboard
+            leftModules: Módulos de la izquierda
+            rightModules: Módulos de la derecha
+            diary: Agenda
+            shortcuts: Accesos directos
+        action:
+            showAllNotices: Ver todos los avisos
+            showAllDiary: Ver toda la agenda
+            showAllTickets: Ver todos los tickets
+            showAllReservations: Ver todas las reservas
+            showAllNews: Ver todas las noticias
+        form:
+            label:
+                name: Nombre
+                position: Posición
+                active: Activo
+        shortcut:
+            mailbox: Buzón
+            timetable: Horarios
+            academicRecord: Expediente académico
+            availableWifis: Wifis disponibles
+            printCredit: Crédito impresiones
+
+    menu:
+        title:
+            pie: Punto información estudiantes
+            relatedSites: Lugares relacionados
+            follow: Síguenos
+            legalWarning: Aviso legal
+            webMap: Mapa web
+            cookies: Cookies
+            thisPlace: Sobre este lugar
+        action:
+            showMap: Ver mapa
+            mailSuggestions: Buzón de sugerencias
+        paragraph:
+            allRightsReserved: Todos los derechos reservados
+    profile:
+        title:
+            nia: NIA
+            studentCarnetCode: Código carnet estudiante
+            academicData: Datos académicos
+            manageCarnet: Gestión de carnets
+            historicalPrints: Histórico de impresiones
+            lastRecharge: Última recarga
+            manageMyProfile: Gestión de mi perfil
+            studentMail: Email de estudiante
+            personalMail: Email personal
+            certifications: Titulaciones
+            researchGroups: Líneas de investigación
+            publications: Publicaciones
+            personalInfo: Información personal
+            position: Cargo
+            office: Despacho
+            email: Email
+            researchId: Research ID
+            orcId: ORC ID
+            researchGate: Research Gate
+            linkedin: Linkedin
+            web: Web
+            schools: Escuelas
+            studies: Grado o grados en los que imparte clase
+            subjects: Asignaturas que imparte
+            description: Descripción del perfil académico, investigador y/o profesional
+            experience: Experiencia
+            teachingExperience: Experiencia docente
+            professionalExperience: Experiencia profesional
+            books: Libros
+            articles: Artículos
+            magazines: Revistas
+            newspaper: Diarios
+            enciclopedies: Enciclopedias
+            webs: Webs
+            author: Autor
+            year: Año
+            title: Título
+            location: Localización
+            publisher: Editorial
+            name: Nombre
+            pages: Páginas
+            date: Fecha
+            volume: Volumen
+            association: Associación
+            url: Url
+            certification: Titulación
+            institution: Institución
+            company: Empresa
+        action:
+            consultAcademicRecord: Consulta tu expediente académico
+            newCarnet: Solicitar nuevo carnet
+            pdfGuide: PDF Guía
+            selectFile: Seleccionar archivo
+            modifyPassword: Modificar contraseña
+        form:
+            label:
+                profile: Perfil
+                name: Nombre
+                lastname: Apellidos
+                usernameName: Nombre de usuario
+                email: Email
+                imageProfile: Imagen perfil
+                weightMax: Peso máximo
+                sizes: Medidas
+                personalMail: Email personal
+        historicalPrints:
+            document: Documento
+            date: Fecha
+            hour: Hora
+            pages: Páginas
+            copys: Copias
+            totalPages: Total páginas
+            color: A color
+            totalCost: Coste total
+        paragraph:
+            selectProfile: Selecciona el nuevo perfil que quieres cambiar en la sesión de tu usuario
+            academicData: >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non quisquam, ea, praesentium libero itaque fugit, ullam exercitationem adipisci harum excepturi sint minima ut fugiat aliquid quis quod doloribus consequuntur. Suscipit voluptas consequatur magni, repellendus et itaque delectus, vitae aut ad accusantium odit at debitis aliquid veniam voluptate deserunt cumque aliquam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, consequatur!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore numquam omnis eos dolore nesciunt quis.
+                Lorem ipsum dolor sit amet.
+            manageCarnet: Lorem ipsum
+            historicalPrints: >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam debitis dolor commodi impedit cupiditate eaque, neque facere laudantium ut quibusdam vel eligendi, soluta eum suscipit deleniti. Ipsum, beatae, repellendus. Asperiores hic vel, voluptatum earum, placeat sapiente debitis, ratione, unde porro iusto quaerat. Fugiat eos maiores assumenda, provident iusto doloremque doloribus!
+            noCarnets: No hay carnets
+            gradeStudying: Grado que esta estudiando
+            noNIA: No tienes código NIA
+            noPrints: No tienes impresiones
+            noProfile: Sin perfil
+            seePdfVersion: Ver versión en PDF
+    aviso:
+        title:
+            avisos: Avisos
+        form:
+            label:
+                content: Contenido
+        paragraph:
+            noAvisos: No hay avisos
+
+    ticket:
+        title:
+            tickets: Tickets
+            newTicket: Nuevo ticket
+            ticketSent: Ticket enviado
+        action:
+            newTicket: Nuevo ticket
+            showDetail: Ver detalle
+        form:
+            label:
+                number: Ticket nº
+                subject: Asunto
+                message: Mensaje
+                status: Estado
+                date: Fecha
+                solved: Solucionado
+                note: Nota
+                description: Descripción
+        paragraph:
+            noTickets: No hay tickets
+            ticketSent: Tu ticket ha sido enviado correctamente. Nos pondremos en contacto contigo lo antes posible.
+        status:
+            Open: Abierto
+            Pending: Pendiente
+            Closed: Cerrado
+            Cancelled: Cancelado
+            Resolved: Resuelto
+
+    agenda:
+        paragraph:
+            noEvents: No hay eventos
+
+    outstanding:
+        paragraph:
+            noOutstandings: No hay destacados
+
+    news:
+        paragraph:
+            noNews: No hay noticias
+
+    reserva:
+        title:
+            reservas: Reservas
+            new: Nueva reserva
+        form:
+            label:
+                num_reserva: Nº reserva
+                num_recurso: Nº recurso
+                dispositivo: Dispositivo
+                modelo: Modelo
+                fecha_reserva: Fecha reserva
+                fecha_reserva_programada: Recogida
+                fecha_devolucion_programada: Devolución
+        paragraph:
+            noReservas: No hay reservas
+
+    pie:
+        title:
+            pie: PIE
+            howCanWeHelpYou: En qué podemos ayudarte
+            contact: Contacto
+
+        button:
+            faq: Preguntas frecuentes
+            contact: Contacta con nosotros
+
+        contact:
+            form:
+                label:
+                    subject: Asunto
+                    title: Título
+                    message: Mensaje
+                subject:
+                    one: Subject one
+                    two: Subject two
+                    three: Subject three
+            title:
+                messageSent: Mensaje enviado
+                messageHeader: Enviado desde el formulario de contacto de la plataforma eCampus
+
+            paragraph:
+                messageSent: Tu mensaje ha sido enviado correctamente. Nos pondremos en contacto contigo lo antes posible.
+
+        paragraph:
+            noAnswers: No hay respuestas
+            noQuestions: No hay preguntas
+
+    services:
+        title:
+            services: Servicios a los estudiantes
+        paragraph:
+            noServices: No hay servicios para tu perfil
+
+    bolsaTalento:
+        title:
+            bolsaTalento: Bolsa de talento
+            subscribe: Inscribirse en la oferta
+            requiredProfile: Perfil requerido
+            details: Detalles
+            description: >
+                 <blockquote>
+                 <p>La bolsa de talento es un servicio ofrecido a los alumno y alumnis de Tecnocampus a traves del cual podemos encontrar una amplia oferta de empresas que estan buscando trabajadores</p>
+                 <p>También podréis encontrar ofertas de trabajo para realizar becas col·aborativas con Tecnocampus</p>
+                 </blockquote>
+            form:
+            label:
+                description: Descripción
+        paragraph:
+            noOffers: No hay ofertas
+            noExist: La oferta no existe
+
+    word:
+        affirmation: Sí
+        negation: No
+
+    paragraph:
+        connectionError: Error en la conexión con el servicio
+
+################################################################################
+############################# end frontend  ####################################
+################################################################################

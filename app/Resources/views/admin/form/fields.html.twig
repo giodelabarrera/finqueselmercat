@@ -1,0 +1,72 @@
+
+{% use "bootstrap_3_horizontal_layout.html.twig" %}
+
+{% block modal_entity_widget -%}
+
+    {# inspirado de proyecto sonata #}
+    {# /var/www/sandbox-build-2.3/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/views/Form/form_admin_fields.html.twig #}
+
+    <div class="row remove-margin-b">
+        <div class="col-sm-7">
+            <span class="form-control-static remove-margin-b form-control ott-height-auto" id="field_widget_{{ id }}">
+            {%- if value is not empty %}
+                {# {% render url(short_description_route, { 'id': value }) %} #}
+                {% render url('admin_core_get_short_description', {
+                'id': value,
+                'show_route': show_route,
+                'class': class,
+                }) %}
+            {% endif -%}
+            </span>
+        </div>
+        <div class="col-sm-5">
+            <div class="btn-group" role="group">
+                <a  href="{{ path(list_route, get_params) }}"
+                    onclick="return start_field_dialog_form_list_{{ id }}(this);"
+                    class="btn btn-info btn-modal-entity-action"
+                    title="{{ 'admin.action.list'|trans }}">
+                    <i class="fa fa-list"></i>
+                    {{ 'admin.action.list'|trans }}
+                </a>
+
+                <a  href="{{ path(new_route, get_params) }}"
+                    onclick="return start_field_dialog_form_add_{{ id }}(this);"
+                    class="btn btn-success btn-modal-entity-action"
+                    title="{{ 'admin.action.createNew'|trans }}">
+                    <i class="fa fa-plus-circle"></i>
+                    {{ 'admin.action.createNew'|trans }}
+                </a>
+            </div>
+
+            <div class="btn-group" role="group">
+                <a  href=""
+                    onclick="return remove_selected_element_{{ id }}(this);"
+                    class="btn btn-danger btn-modal-entity-action"
+                    title="{{ 'admin.action.delete'|trans }}">
+                    <i class="fa fa-minus-circle"></i>
+                    {{ 'admin.action.delete'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <span style="display: none" >
+        {# Hidden text input cannot be required, because browser will throw error "An invalid form control with name='' is not focusable"  #}
+        {{ form_widget(form, {'required':false}) }}
+    </span>
+
+    <div class="modal fade" id="field_dialog_{{ id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="width: 90%; height: 85%; padding: 0px;">
+            <div class="modal-content" style="border-radius: 0px; height: 100%; padding: 0px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body" style="width: auto; height: 90%; padding: 5px; overflow: scroll;"></div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'admin/form/modal_entity/script.html.twig' %}
+
+{%- endblock modal_entity_widget %}
