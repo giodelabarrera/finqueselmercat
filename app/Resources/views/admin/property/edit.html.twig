@@ -1,33 +1,20 @@
-{#
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Property edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_property_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
-#}
-
-
-{% extends 'admin/base.html.twig' %}
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
 
 {% set form = edit_form %}
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% form_theme form 'admin/form/fields.html.twig' %}
 {% import 'admin/property/form_macro.html.twig' as form_macro %}
+
+{% block gba_page_content_title %}
+    <h1>Inmuebles <small>{{ 'admin.title.edit'|trans }}</small></h1>
+{% endblock %}
+
+{% block gba_breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ path('admin_property_index') }}">Inmuebles</a></li>
+        <li class="active">{{ property }}</li>
+    </ol>
+{% endblock %}
 
 {% block gba_admin_content %}
 
@@ -35,11 +22,11 @@
 
         {{ form_macro.form_widget(form) }}
 
-        <div class="sonata-ba-form-actions well well-small form-actions">
-            <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> Update</button>
-            <button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> <i class="fa fa-list"></i> Update and close</button>
-            or
-            <a class="btn btn-danger" href="/admin/sonata/demo/material/1/delete"><i class="fa fa-minus-circle"></i> Delete</a>
+        <div class="well well-sm form-actions">
+            <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> {{ 'admin.action.update'|trans }}</button>
+            {#<button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> <i class="fa fa-list"></i> Update and close</button>#}
+            {{ 'admin.word.or'|trans }}
+            <a class="btn btn-danger" href="{{ path('admin_property_delete', {'id':property.id}) }}"><i class="fa fa-minus-circle"></i> {{ 'admin.action.delete'|trans }}</a>
         </div>
     {{ form_end(form) }}
 

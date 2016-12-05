@@ -1,0 +1,9 @@
+<a{% for attr, value in options %} {{ attr }}="{{ value }}"{% endfor %}>
+    <div>
+    {% set faIcon = 'fa-sort' %}
+    {% if options['class'] == 'asc' %}{% set faIcon = 'fa-sort-asc' %}
+    {% elseif options['class'] == 'desc' %}{% set faIcon = 'fa-sort-desc' %}
+    {% endif %}
+    {{ title }}<i class="fa {{ faIcon }} pull-right"></i>
+    </div>
+</a>

@@ -1,0 +1,69 @@
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
+
+{% block gba_admin_content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-body with-border no-padding">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                {% if not app.request.xmlHttpRequest %}
+                                    <th>Actions</th>
+                                {% endif %}
+                                <th>{{ knp_pagination_sortable(zones, 'Id', 'z.id') }}</th>
+                                <th>{{ knp_pagination_sortable(zones, 'Name', 'z.name') }}</th>
+                                <th>Municipality</th>
+                                <th>{{ knp_pagination_sortable(zones, 'Createdat', 'z.createdAt') }}</th>
+                                {#<th>Updatedat</th>#}
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for zone in zones %}
+                            <tr>
+                                {% if not app.request.xmlHttpRequest %}
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('admin_zone_show', { 'id': zone.id }) }}">{{ 'admin.action.show'|trans }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('admin_zone_edit', { 'id': zone.id }) }}">{{ 'admin.action.edit'|trans }}</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                {% endif %}
+                                <td><a href="{{ path('admin_zone_show', { 'id': zone.id }) }}">{{ zone.id }}</a></td>
+                                <td>{{ zone.name }}</td>
+                                <td>{{ zone.municipality }}</td>
+                                <td>{% if zone.createdAt %}{{ zone.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                {#<td>{% if zone.updatedAt %}{{ zone.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                                {% if app.request.xmlHttpRequest %}
+                                    <td class="text-center ott-list-field">
+                                        <a href="{{ path('admin_zone_show', { 'id': zone.id }) }}" data-id="{{ zone.id }}" class="btn btn-default"><i class="fa fa-arrow-right"></i>  {{ 'admin.action.select'|trans }}</a>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <div class="row">
+                        <div class="col-xs-6 text-left">
+                            {% set numPages = zones.getTotalItemCount / zones.getItemNumberPerPage %}
+                            <b>{{ zones.getCurrentPageNumber }} / {{ numPages|ceil }} - {{ zones.getTotalItemCount }} resultados</b>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            {{ knp_pagination_render(zones) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+
+{% endblock %}

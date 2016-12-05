@@ -12,6 +12,7 @@ use AppBundle\Entity\Type;
 use AppBundle\Form\EventListener\AddBankAwardedFieldSubscriber;
 use AppBundle\Form\EventListener\AddStatusReservedTypeFieldSubscriber;
 use AppBundle\Form\EventListener\AddSubtypeFieldSubscriber;
+use AppBundle\Form\Type\CollectionModalEntityType;
 use AppBundle\Form\Type\ModalEntityType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -87,6 +88,16 @@ class PropertyType extends AbstractType
                 'route_prefix' => 'admin_media_file',
                 'required' => false,
             ))
+            ->add('images', CollectionModalEntityType::class, array(
+                'entry_type' => ModalEntityType::class,
+                'entry_options' => array(
+                    'class' => 'AppBundle:MediaFile',
+                    'route_prefix' => 'admin_media_file',
+                    'hide_delete' => true,
+                    'hide_label' => true,
+                ),
+                'required' => false,
+            ))
             ;
         /*$builder
             //->add('createdAt', 'datetime')
@@ -148,8 +159,14 @@ class PropertyType extends AbstractType
         $zoneModifier = function (FormInterface $form, ModeShowAddress $modeShowAddress = null) {
             if ($modeShowAddress) {
                 if ($modeShowAddress->getSlug() == ModeShowAddress::ZONA) {
-                    $form->add('zone', null, array(
+                    /*$form->add('zone', null, array(
                         'placeholder' => 'Selecciona',
+                        'required' => true,
+                        'constraints' => new NotBlank(),
+                    ));*/
+                    $form->add('zone', ModalEntityType::class, array(
+                        'class' => 'AppBundle:Zone',
+                        'route_prefix' => 'admin_zone',
                         'required' => true,
                         'constraints' => new NotBlank(),
                     ));

@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    $(function() {
+
+        {% set collectionJQueryId = prototype.vars.id|slice(0, -prototype.vars.name|length-1) %}
+
+        {# https://github.com/ninsuo/symfony-collection #}
+        $('#{{ collectionJQueryId }}').collection({{ jquery_collection_options|json_encode()|raw }});
+    });
+</script>

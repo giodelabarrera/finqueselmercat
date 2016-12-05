@@ -6,9 +6,9 @@
     <div class="row">
         {# Detalles del nuevo inmueble #}
         <div class="col-sm-12">
-            <div class="box box-primary">
+            <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Detalles del nuevo inmueble</h3>
+                    <h3 class="box-title">Detalles</h3>
                 </div>
                 <div class="box-body">
 
@@ -32,9 +32,9 @@
 
         {# Dirección del nuevo inmueble #}
         <div class="col-sm-12">
-            <div class="box box-primary">
+            <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Dirección del nuevo inmueble</h3>
+                    <h3 class="box-title">Dirección</h3>
                 </div>
                 <div class="box-body">
 
@@ -72,9 +72,9 @@
 
         {# Datos del inmueble #}
         <div class="col-sm-12">
-            <div class="box box-primary">
+            <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Datos del inmueble</h3>
+                    <h3 class="box-title">Datos</h3>
                 </div>
                 <div class="box-body">
                     {{ form_row(form.surface) }}
@@ -106,7 +106,7 @@
 
         {# Descripción #}
         <div class="col-sm-12">
-            <div class="box box-primary">
+            <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">Descripción</h3>
                 </div>
@@ -120,7 +120,7 @@
 
         {# Extras #}
         <div class="col-sm-12">
-            <div class="box box-primary">
+            <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">Extras</h3>
                 </div>
@@ -133,12 +133,13 @@
 
         {# Fotos y documentos #}
         <div class="col-sm-12">
-            <div class="box box-primary">
+            <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Fotos y Documentos</h3>
+                    <h3 class="box-title">Documentos y Fotos</h3>
                 </div>
                 <div class="box-body">
                     {{ form_row(form.energyCertificateFile) }}
+                    {{ form_row(form.images) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -155,7 +156,7 @@
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
             // Simulate form data, but only include the selected sport value.
-            var data = {};
+            var data = {'dynamic_form_event': true};
             data[$type.attr('name')] = $type.val();
             // Submit data via AJAX to the form's action path.
             $.ajax({
@@ -179,7 +180,7 @@
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
             // Simulate form data, but only include the selected value.
-            var data = {};
+            var data = {'dynamic_form_event': true};
             if ($isBankAwarded.is(':checked')) data[$isBankAwarded.attr('name')] = '1';
             // Submit data via AJAX to the form's action path.
             $.ajax({
@@ -201,7 +202,7 @@
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
             // Simulate form data, but only include the selected value.
-            var data = {};
+            var data = {'dynamic_form_event': true};
             data[$postalCode.attr('name')] = $postalCode.val();
             // Submit data via AJAX to the form's action path.
             $.ajax({
@@ -223,7 +224,7 @@
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
             // Simulate form data, but only include the selected value.
-            var data = {};
+            var data = {'dynamic_form_event': true};
             data[$modeShowAddress.attr('name')] = $(this).val();
             // Submit data via AJAX to the form's action path.
             $.ajax({

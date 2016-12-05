@@ -1,17 +1,17 @@
 {% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
 
 {% form_theme form 'admin/form/fields.html.twig' %}
-{% import 'admin/property/form_macro.html.twig' as form_macro %}
 
 {% block gba_admin_content %}
 
-    {{ form_start(form, {attr: {'action': path('admin_media_file_new')}}) }}
+    {{ form_start(form, {attr: {'action': path('admin_zone_new')}}) }}
+
         <div class="row">
-            {# Detalles del nuevo inmueble #}
+            {# Box #}
             <div class="col-xs-12">
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Archivo</h3>
+                        <h3 class="box-title">Zona</h3>
                     </div>
                     <div class="box-body">
                         {{ form_widget(form) }}
@@ -25,7 +25,7 @@
             {#<button type="submit" class="btn btn-success" name="btn_create_and_list"><i class="fa fa-save"></i> <i class="fa fa-list"></i> Create and return to list</button>#}
             {#<button class="btn btn-success" type="submit" name="btn_create_and_create"><i class="fa fa-plus-circle"></i> Create and add another</button>#}
         </div>
+
     {{ form_end(form) }}
 
 {% endblock %}
-

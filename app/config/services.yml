@@ -14,6 +14,12 @@ services:
         tags:
             - { name: form.type }
 
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
     # admin.form.add_subtype_field_subscriber:
     #     class: AppBundle\Form\EventListener\AddSubtypeFieldSubscriber
     #    arguments: ['@doctrine.orm.entity_manager']

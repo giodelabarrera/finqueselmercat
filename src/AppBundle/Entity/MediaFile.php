@@ -14,6 +14,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class MediaFile
 {
+    /**
+     *
+     */
     const UPLOAD_DIR = 'uploads/media_file';
 
     /**
@@ -44,7 +47,7 @@ class MediaFile
     private $path;
 
     /**
-     * @Assert\File(maxSize="2000000", groups={"creation"})
+     * @Assert\File(maxSize="5000000", groups={"creation"})
      * @Assert\NotBlank(groups={"creation"})
      */
     private $file;
@@ -68,21 +71,17 @@ class MediaFile
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MediaFileTag")
-     * @ORM\JoinTable(name="media_file_media_file_tag",
-     *     joinColumns={@ORM\JoinColumn(name="media_file_id", referencedColumnName="id", onDelete="CASCADE")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="media_file_tag_id", referencedColumnName="id", onDelete="CASCADE")}
-     *     )
+     * MediaFile constructor.
      */
-    private $mediaFileTags;
-
-    
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->mediaFileTags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function __toString()
     {
         return $this->name;
@@ -108,6 +107,9 @@ class MediaFile
         return $this->file;
     }
 
+    /**
+     * @return null|string
+     */
     public function getAbsolutePath()
     {
         return null === $this->path
@@ -115,6 +117,9 @@ class MediaFile
             : $this->getUploadRootDir().'/'.$this->getHashDir($this->path).'/'.$this->path;
     }
 
+    /**
+     * @return null|string
+     */
     public function getWebPath()
     {
         return null === $this->path
@@ -122,6 +127,9 @@ class MediaFile
             : $this->getUploadDir().'/'.$this->getHashDir($this->path).'/'.$this->path;
     }
 
+    /**
+     * @return string
+     */
     public function getUploadRootDir()
     {
         // the absolute directory path where uploaded
@@ -129,6 +137,9 @@ class MediaFile
         return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
+    /**
+     * @return string
+     */
     public function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
@@ -372,38 +383,5 @@ class MediaFile
     public function getContentSize()
     {
         return $this->contentSize;
-    }
-
-    /**
-     * Add mediaFileTags
-     *
-     * @param \AppBundle\Entity\MediaFileTag $mediaFileTags
-     * @return MediaFile
-     */
-    public function addMediaFileTag(\AppBundle\Entity\MediaFileTag $mediaFileTags)
-    {
-        $this->mediaFileTags[] = $mediaFileTags;
-
-        return $this;
-    }
-
-    /**
-     * Remove mediaFileTags
-     *
-     * @param \AppBundle\Entity\MediaFileTag $mediaFileTags
-     */
-    public function removeMediaFileTag(\AppBundle\Entity\MediaFileTag $mediaFileTags)
-    {
-        $this->mediaFileTags->removeElement($mediaFileTags);
-    }
-
-    /**
-     * Get mediaFileTags
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMediaFileTags()
-    {
-        return $this->mediaFileTags;
     }
 }

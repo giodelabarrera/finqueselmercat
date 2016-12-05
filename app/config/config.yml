@@ -7,6 +7,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: es
+    # admin
+    knp_paginator.limit_page: 1
 
 framework:
     #esi:             ~
@@ -105,3 +107,10 @@ stof_doctrine_extensions:
         default:
             timestampable: true        # sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
             sluggable: true
+
+# KnpPaginatorBundle
+knp_paginator:
+    # page_range: 5
+    template:
+        pagination: 'admin/pagination/pagination.html.twig'
+        sortable: 'admin/pagination/sortable_link.html.twig'

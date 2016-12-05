@@ -1,0 +1,44 @@
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
+
+{% form_theme delete_form 'admin/form/fields.html.twig' %}
+
+{% block gba_page_content_title %}
+    <h1>Inmuebles <small>{{ 'admin.title.delete'|trans }}</small></h1>
+{% endblock %}
+
+{% block gba_breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ path('admin_property_index') }}">Inmuebles</a></li>
+        <li class="active">{{ property }}</li>
+    </ol>
+{% endblock %}
+
+{% block gba_admin_content %}
+
+    <div class="row">
+        {# Box #}
+        <div class="col-xs-12">
+            <div class="box box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">Confirmar la eliminación</h3>
+                </div>
+                <div class="box-body">
+                    ¿Está seguro de que desea eliminar el elemento "{{ property }}" seleccionado?
+                </div>
+                <div class="box-footer clearfix">
+                    {{ form_start(delete_form) }}
+                    <button class="btn btn-danger" type="submit"><i class="fa fa-minus-circle"></i> {{ 'admin.action.delete'|trans }}</button>
+                    {{ 'admin.word.or'|trans }}
+                    <a class="btn btn-success" href="{{ path('admin_property_edit', {'id':property.id}) }}"><i class="fa fa-save"></i> {{ 'admin.action.edit'|trans }}</a>
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+

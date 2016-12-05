@@ -1,0 +1,32 @@
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
+
+{% form_theme edit_form 'admin/form/fields.html.twig' %}
+
+{% block gba_admin_content %}
+
+    {{ form_start(edit_form) }}
+
+    <div class="row">
+        {# Box #}
+        <div class="col-xs-12">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h3 class="box-title">Zona</h3>
+                </div>
+                <div class="box-body">
+                    {{ form_widget(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="well well-sm form-actions">
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> {{ 'admin.action.update'|trans }}</button>
+        {#<button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> <i class="fa fa-list"></i> Update and close</button>#}
+        {{ 'admin.word.or'|trans }}
+        <a class="btn btn-danger" href="{{ path('admin_zone_delete', {'id':zone.id}) }}"><i class="fa fa-minus-circle"></i> {{ 'admin.action.delete'|trans }}</a>
+    </div>
+
+    {{ form_end(edit_form) }}
+
+{% endblock %}

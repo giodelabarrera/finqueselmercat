@@ -1,56 +1,15 @@
-{#
-{% extends 'base.html.twig' %}
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
 
-{% block body %}
-    <h1>Property list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Reference</th>
-                <th>Isnewconstruction</th>
-                <th>Isbankawarded</th>
-                <th>Activationdate</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for property in properties %}
-            <tr>
-                <td><a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ property.id }}</a></td>
-                <td>{{ property.reference }}</td>
-                <td>{% if property.isNewConstruction %}Yes{% else %}No{% endif %}</td>
-                <td>{% if property.isBankAwarded %}Yes{% else %}No{% endif %}</td>
-                <td>{% if property.activationDate %}{{ property.activationDate|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if property.createdAt %}{{ property.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if property.updatedAt %}{{ property.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_property_show', { 'id': property.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_property_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+{% block gba_page_content_title %}
+    <h1>Inmuebles <small>{{ 'admin.title.list'|trans }}</small></h1>
 {% endblock %}
-#}
 
-{% extends 'admin/base.html.twig' %}
+{% block gba_breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Inmuebles</li>
+    </ol>
+{% endblock %}
 
 {% block gba_admin_content %}
 
@@ -61,36 +20,68 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Reference</th>
-                            <th>Isnewconstruction</th>
-                            <th>Isbankawarded</th>
-                            <th>Activationdate</th>
-                            <th>Createdat</th>
-                            <th>Updatedat</th>
-                            <th>Actions</th>
+                            {% if not app.request.xmlHttpRequest %}
+                                <th>Actions</th>
+                            {% endif %}
+                            <th>{{ knp_pagination_sortable(properties, 'Id', 'p.id') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'Reference', 'p.reference') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'Type', 'p.type') }}</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>{{ knp_pagination_sortable(properties, 'Status', 'p.surface') }}</th>
+                            <th>Price</th>
+                            <th>{{ knp_pagination_sortable(properties, 'NumRoom', 'p.numRoom') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'NumBath', 'p.numBath') }}</th>
+                            <th>Photos</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for property in properties %}
+                            {% set address = property.address %}
+                            {% set modalitySale = property.modalitySale %}
+                            {% set modalityRental = property.modalityRental %}
                             <tr>
+                                {% if not app.request.xmlHttpRequest %}
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ 'admin.action.show'|trans }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">{{ 'admin.action.edit'|trans }}</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                {% endif %}
                                 <td><a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ property.id }}</a></td>
                                 <td>{{ property.reference }}</td>
-                                <td>{% if property.isNewConstruction %}Yes{% else %}No{% endif %}</td>
-                                <td>{% if property.isBankAwarded %}Yes{% else %}No{% endif %}</td>
-                                <td>{% if property.activationDate %}{{ property.activationDate|date('Y-m-d') }}{% endif %}</td>
-                                <td>{% if property.createdAt %}{{ property.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                <td>{% if property.updatedAt %}{{ property.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td><b>{{ property.type }}</b><br>{{ property.subtype }}</td>
                                 <td>
-                                    <ul>
-                                        <li>
-                                            <a href="{{ path('admin_property_show', { 'id': property.id }) }}">show</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">edit</a>
-                                        </li>
-                                    </ul>
+                                    {% if address %}
+                                        {{ address.municipality }} /
+                                        {{ address.streetType }} {{ address.street }} {{ address.number }} , {{ address.floor }} {{ address.stair }} {{ address.door }}
+                                    {% endif %}
                                 </td>
+                                <td>{{ property.status }}</td>
+                                <td>{{ property.surface }}m<sup>2</sup></td>
+                                <td>
+                                    <div>{% if modalitySale and property.sale %}
+                                        {{ modalitySale.price }}
+                                    {% endif %}
+                                    </div>
+                                    <div>{% if modalityRental and property.rental %}
+                                        {{ modalityRental.price }} / Mes
+                                    {% endif %}
+                                    </div>
+                                </td>
+                                <td>{{ property.numRoom }}</td>
+                                <td>{{ property.numBath }}</td>
+                                <td>TODO</td>
+                                {% if app.request.xmlHttpRequest %}
+                                    <td class="text-center ott-list-field">
+                                        <a href="{{ path('admin_property_show', { 'id': property.id }) }}" data-id="{{ property.id }}" class="btn btn-default"><i class="fa fa-arrow-right"></i>  {{ 'admin.action.select'|trans }}</a>
+                                    </td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -98,17 +89,15 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                    {#<div class="pull-left">
+                    <div class="row">
+                        <div class="col-xs-6 text-left">
+                            {% set numPages = properties.getTotalItemCount / properties.getItemNumberPerPage %}
+                            <b>{{ properties.getCurrentPageNumber }} / {{ numPages|ceil }} - {{ properties.getTotalItemCount }} resultados</b>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            {{ knp_pagination_render(properties) }}
+                        </div>
                     </div>
-                    <div class="pull-right">
-                    </div>#}
                 </div>
             </div>
             <!-- /.box -->

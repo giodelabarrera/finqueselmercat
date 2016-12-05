@@ -25,7 +25,6 @@ class MediaFileType extends AbstractType
             ->add('path')
             ->add('createdAt', 'datetime')
             ->add('updatedAt', 'datetime')*/
-            ->add('mediaFileTags')
         ;
     }
     
@@ -35,7 +34,8 @@ class MediaFileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\MediaFile'
+            'data_class' => 'AppBundle\Entity\MediaFile',
+            'validation_groups' => array('Default'),
         ));
     }
 }

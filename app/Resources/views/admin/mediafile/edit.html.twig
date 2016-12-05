@@ -1,14 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
 
-{% block body %}
-    <h1>MediaFile edit</h1>
+{% form_theme edit_form 'admin/form/fields.html.twig' %}
+{% import 'admin/property/form_macro.html.twig' as form_macro %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+{% block gba_admin_content %}
+
+    {{ form_start(edit_form, {attr: {'action': path('admin_media_file_edit', {'id': mediaFile.id})}}) }}
+        <div class="row">
+            {# Box #}
+            <div class="col-sm-12">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h3 class="box-title">Archivo</h3>
+                    </div>
+                    <div class="box-body">
+                        {{ form_row(edit_form.file) }}
+                        {% if edit_form.vars.value.path %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="form-control-static remove-margin-b form-control gba-height-auto" id="field_widget_ott_cursos_parentCurso">
+                                        <img class="push-5-r" src="{{ asset(mediaFile.getWebPath) }}" width="90"/>
+                                        <a target="_blank" href="{{ asset(mediaFile.getWebPath) }}">{{ mediaFile.name }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(edit_form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="well well-sm form-actions">
+            <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> {{ 'admin.action.update'|trans }}</button>
+            {#<button type="submit" class="btn btn-success" name="btn_update_and_list"><i class="fa fa-save"></i> <i class="fa fa-list"></i> Update and close</button>#}
+            {{ 'admin.word.or'|trans }}
+            <a class="btn btn-danger" href="{{ path('admin_media_file_delete', {'id':mediaFile.id}) }}"><i class="fa fa-minus-circle"></i> {{ 'admin.action.delete'|trans }}</a>
+        </div>
     {{ form_end(edit_form) }}
 
-    <ul>
+    {#<ul>
         <li>
             <a href="{{ path('admin_media_file_index') }}">Back to the list</a>
         </li>
@@ -17,5 +48,5 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul>#}
 {% endblock %}

@@ -11,8 +11,9 @@ admin:
         dashboard: Dashboard
         list: Listado
         new: Nuevo
-        edit: Editar
-        show: Mostrar
+        edit: Edición
+        show: Detalle
+        delete: Eliminación
         actions: Acciones
         language: Idioma
         content: Contenido
@@ -105,6 +106,7 @@ admin:
         login: accede
         yes: sí
         no: no
+        or: o
 
     login:
         login:    Acceso

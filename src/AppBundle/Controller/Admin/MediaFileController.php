@@ -23,11 +23,21 @@ class MediaFileController extends Controller
      * @Route("/", name="admin_media_file_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $mediaFiles = $em->getRepository('AppBundle:MediaFile')->findAll();
+        $queryBuilder = $em->getRepository('AppBundle:MediaFile')
+            ->createQueryBuilder('f')
+            ->orderBy('f.id', 'DESC')
+            ;
+
+        $paginator  = $this->get('knp_paginator');
+        $mediaFiles = $paginator->paginate(
+            $queryBuilder->getQuery(),
+            $request->query->get('page', 1),
+            $this->container->getParameter('knp_paginator.limit_page')
+        );
 
         return $this->render('admin/mediafile/index.html.twig', array(
             'mediaFiles' => $mediaFiles,
@@ -43,13 +53,17 @@ class MediaFileController extends Controller
     public function newAction(Request $request)
     {
         $mediaFile = new MediaFile();
-        $form = $this->createForm('AppBundle\Form\MediaFileType', $mediaFile);
+        $form = $this->createForm('AppBundle\Form\MediaFileType', $mediaFile, array(
+            'validation_groups' => array('Default', 'creation'),
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $mediaFile->upload();   // upload file
             $em->persist($mediaFile);
             $em->flush();
+
 
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(array(
@@ -98,8 +112,18 @@ class MediaFileController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $mediaFile->upload();   // upload file
             $em->persist($mediaFile);
             $em->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(array(
+                    'status'    => 'OK',
+                    'objectId'  => $mediaFile->getId(),
+                ));
+            }
+
+            $this->addFlash('success', $this->get('translator')->trans('admin.flash.success.entity.updated'));
 
             return $this->redirectToRoute('admin_media_file_edit', array('id' => $mediaFile->getId()));
         }
@@ -114,21 +138,26 @@ class MediaFileController extends Controller
     /**
      * Deletes a MediaFile entity.
      *
-     * @Route("/{id}", name="admin_media_file_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="admin_media_file_delete")
+     * @Method({"GET", "DELETE"})
      */
     public function deleteAction(Request $request, MediaFile $mediaFile)
     {
-        $form = $this->createDeleteForm($mediaFile);
-        $form->handleRequest($request);
+        $deleteForm = $this->createDeleteForm($mediaFile);
+        $deleteForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($deleteForm->isSubmitted() && $deleteForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($mediaFile);
             $em->flush();
+
+            return $this->redirectToRoute('admin_media_file_index');
         }
 
-        return $this->redirectToRoute('admin_media_file_index');
+        return $this->render('admin/mediafile/delete.html.twig', array(
+            'mediaFile' => $mediaFile,
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**

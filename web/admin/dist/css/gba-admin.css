@@ -11,3 +11,8 @@
     background: transparent;
     transition: all .5s;
 }
+
+/* height auto */
+.gba-height-auto {
+    height: auto !important;
+}

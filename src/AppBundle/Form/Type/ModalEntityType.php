@@ -58,6 +58,8 @@ class ModalEntityType extends AbstractType
         $view->vars['new_route'] = $options['route_prefix'].'_new';
         $view->vars['show_route'] = $options['route_prefix'].'_show';
         $view->vars['get_params'] = $options['get_params'];
+        $view->vars['hide_delete'] = $options['hide_delete'];
+        $view->vars['hide_label'] = $options['hide_label'];
     }
     
     /**
@@ -71,6 +73,8 @@ class ModalEntityType extends AbstractType
             'route_prefix' => '',
             'invalid_message' => 'The selected entity does not exist',
             'get_params' => array(),
+            'hide_delete' => false,
+            'hide_label' => false,
         ));
     }
 

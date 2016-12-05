@@ -22,11 +22,21 @@ class PropertyController extends Controller
      * @Route("/", name="admin_property_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $properties = $em->getRepository('AppBundle:Property')->findAll();
+        $queryBuilder = $em->getRepository('AppBundle:Property')
+            ->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+        ;
+
+        $paginator  = $this->get('knp_paginator');
+        $properties = $paginator->paginate(
+            $queryBuilder->getQuery(),
+            $request->query->get('page', 1),
+            $this->container->getParameter('knp_paginator.limit_page')
+        );
 
         return $this->render('admin/property/index.html.twig', array(
             'properties' => $properties,
@@ -52,6 +62,8 @@ class PropertyController extends Controller
 
             return $this->redirectToRoute('admin_property_show', array('id' => $property->getId()));
         }
+        if ($request->request->get('dynamic_form_event') && $request->isXmlHttpRequest())
+            $form = $this->createForm('AppBundle\Form\PropertyType', $property);
 
         return $this->render('admin/property/new.html.twig', array(
             'property' => $property,
@@ -94,6 +106,8 @@ class PropertyController extends Controller
 
             return $this->redirectToRoute('admin_property_edit', array('id' => $property->getId()));
         }
+        if ($request->request->get('dynamic_form_event') && $request->isXmlHttpRequest())
+            $editForm = $this->createForm('AppBundle\Form\PropertyType', $property);
 
         return $this->render('admin/property/edit.html.twig', array(
             'property' => $property,
@@ -105,21 +119,26 @@ class PropertyController extends Controller
     /**
      * Deletes a Property entity.
      *
-     * @Route("/{id}", name="admin_property_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="admin_property_delete")
+     * @Method({"GET", "DELETE"})
      */
     public function deleteAction(Request $request, Property $property)
     {
-        $form = $this->createDeleteForm($property);
-        $form->handleRequest($request);
+        $deleteForm = $this->createDeleteForm($property);
+        $deleteForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($deleteForm->isSubmitted() && $deleteForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($property);
             $em->flush();
+
+            return $this->redirectToRoute('admin_property_index');
         }
 
-        return $this->redirectToRoute('admin_property_index');
+        return $this->render('admin/property/delete.html.twig', array(
+            'property' => $property,
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**

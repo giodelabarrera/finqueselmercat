@@ -1,5 +1,5 @@
 
-{% extends app.request.xmlHttpRequest ? 'admin/ajax_modal_base.html.twig' : 'admin/base.html.twig' %}
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
 
 {% block gba_admin_content %}
 
@@ -13,12 +13,12 @@
                             {% if not app.request.xmlHttpRequest %}
                                 <th>Actions</th>
                             {% endif %}
-                            <th>Id</th>
+                            <th>{{ knp_pagination_sortable(mediaFiles, 'Id', 'f.id') }}</th>
                             <th>Archivo</th>
-                            <th>Nombre</th>
+                            <th>{{ knp_pagination_sortable(mediaFiles, 'Name', 'f.name') }}</th>
                             {#<th>Path</th>#}
-                            <th>Createdat</th>
-                            <th>Updatedat</th>
+                            <th>{{ knp_pagination_sortable(mediaFiles, 'Createdat', 'f.createdAt') }}</th>
+                            {#<th>{{ knp_pagination_sortable(mediaFiles, 'Updatedat', 'f.updatedAt') }}</th>#}
                             {% if app.request.xmlHttpRequest %}
                                 <th class="text-center"></th>
                             {% endif %}
@@ -31,10 +31,10 @@
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="{{ path('admin_media_file_show', { 'id': mediaFile.id }) }}">show</a>
+                                            <a href="{{ path('admin_media_file_show', { 'id': mediaFile.id }) }}">{{ 'admin.action.show'|trans }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('admin_media_file_edit', { 'id': mediaFile.id }) }}">edit</a>
+                                            <a href="{{ path('admin_media_file_edit', { 'id': mediaFile.id }) }}">{{ 'admin.action.edit'|trans }}</a>
                                         </li>
                                     </ul>
                                 </td>
@@ -49,7 +49,7 @@
                             <td>{{ mediaFile.name }}</td>
                             {#<td>{{ mediaFile.path }}</td>#}
                             <td>{% if mediaFile.createdAt %}{{ mediaFile.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                            <td>{% if mediaFile.updatedAt %}{{ mediaFile.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            {#<td>{% if mediaFile.updatedAt %}{{ mediaFile.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
                             {% if app.request.xmlHttpRequest %}
                                 <td class="text-center ott-list-field">
                                     <a href="{{ path('admin_media_file_show', { 'id': mediaFile.id }) }}" data-id="{{ mediaFile.id }}" class="btn btn-default"><i class="fa fa-arrow-right"></i>  {{ 'admin.action.select'|trans }}</a>
@@ -62,17 +62,15 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>
-                {#<div class="pull-left">
+                <div class="row">
+                    <div class="col-xs-6 text-left">
+                        {% set numPages = mediaFiles.getTotalItemCount / mediaFiles.getItemNumberPerPage %}
+                        <b>{{ mediaFiles.getCurrentPageNumber }} / {{ numPages|ceil }} - {{ mediaFiles.getTotalItemCount }} resultados</b>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        {{ knp_pagination_render(mediaFiles) }}
+                    </div>
                 </div>
-                <div class="pull-right">
-                </div>#}
             </div>
         </div>
         <!-- /.box -->

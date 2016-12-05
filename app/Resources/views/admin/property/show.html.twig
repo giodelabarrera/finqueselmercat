@@ -1,52 +1,71 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block body %}
-    <h1>Property</h1>
+{% block gba_admin_content %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ property.id }}</td>
-            </tr>
-            <tr>
-                <th>Reference</th>
-                <td>{{ property.reference }}</td>
-            </tr>
-            <tr>
-                <th>Isnewconstruction</th>
-                <td>{% if property.isNewConstruction %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Isbankawarded</th>
-                <td>{% if property.isBankAwarded %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Activationdate</th>
-                <td>{% if property.activationDate %}{{ property.activationDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if property.createdAt %}{{ property.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{% if property.updatedAt %}{{ property.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Property</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ property.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Reference</th>
+                                <td>{{ property.reference }}</td>
+                            </tr>
+                            <tr>
+                                <th>Isnewconstruction</th>
+                                <td>{% if property.isNewConstruction %}Yes{% else %}No{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Isbankawarded</th>
+                                <td>{% if property.isBankAwarded %}Yes{% else %}No{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Activationdate</th>
+                                <td>{% if property.activationDate %}{{ property.activationDate|date('Y-m-d') }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Createdat</th>
+                                <td>{% if property.createdAt %}{{ property.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Updatedat</th>
+                                <td>{% if property.updatedAt %}{{ property.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_property_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    {#<ul>
+                        <li>
+                            <a href="{{ path('admin_property_index') }}">Back to the list</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">Edit</a>
+                        </li>
+                        <li>
+                            {{ form_start(delete_form) }}
+                                <input type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    </ul>#}
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+
+    <div class="well well-sm form-actions">
+        <a class="btn btn-default" href="{{ path('admin_property_index') }}">Back to the list</a>
+        <a class="btn btn-default" href="{{ path('admin_property_edit', { 'id': property.id }) }}">Edit</a>
+        or
+        <a class="btn btn-danger" href="/admin/sonata/demo/material/1/delete"><i class="fa fa-minus-circle"></i> Delete</a>
+        {#{{ form_start(delete_form) }}{{ form_end(delete_form) }}<button class="btn btn-danger" type="submit">Delete</button>#}
+    </div>
 {% endblock %}

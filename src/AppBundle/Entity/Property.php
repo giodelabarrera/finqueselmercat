@@ -259,6 +259,16 @@ class Property
     private $energyCertificateFile;
 
     /**
+     * @ORM\ManyToMany(targetEntity="MediaFile")
+     * @ORM\JoinTable(
+     *     name="property_media_file",
+     *     joinColumns={@ORM\JoinColumn(name="property_id", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="media_file_id", referencedColumnName="id", onDelete="CASCADE")}
+     * )
+     */
+    private $images;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -287,6 +297,7 @@ class Property
         $this->hidePrice = false;
         $this->modalities = new ArrayCollection();
         $this->extras = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -294,7 +305,7 @@ class Property
      */
     public function __toString()
     {
-        return (string)$this->id;
+        return (string)$this->reference;
     }
 
 
@@ -1146,5 +1157,38 @@ class Property
     public function getEnergyCertificateFile()
     {
         return $this->energyCertificateFile;
+    }
+
+    /**
+     * Add images
+     *
+     * @param \AppBundle\Entity\MediaFile $images
+     * @return Property
+     */
+    public function addImage(\AppBundle\Entity\MediaFile $images)
+    {
+        $this->images[] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \AppBundle\Entity\MediaFile $images
+     */
+    public function removeImage(\AppBundle\Entity\MediaFile $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }
