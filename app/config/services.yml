@@ -8,12 +8,20 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
+#    twig extension bundle
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+#    type
     app.type.modal_entity:
         class: AppBundle\Form\Type\ModalEntityType
         arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: form.type }
 
+#    app twig extension
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
         public: false

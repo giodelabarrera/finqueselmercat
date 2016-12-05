@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html {% block html_attributes %}{% endblock %}>
+<head>
+    {% block meta_tags %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% endblock %}
+
+    <title>
+        {% block gba_head_title %}
+            Finques El Mercat | Admin
+        {% endblock %}
+    </title>
+
+    {% block stylesheets_core %}
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="{{ asset('admin/bootstrap/css/bootstrap.min.css') }}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="{{ asset('admin/dist/css/skins/_all-skins.min.css') }}">
+        <!-- Gba admin -->
+        <link rel="stylesheet" href="{{ asset('admin/dist/css/gba-admin.css') }}">
+    {% endblock %}
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts_head %}
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- jQuery 2.2.3 -->
+        <script src="{{ asset('admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+        {# fos_js_routing #}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    {% endblock %}
+</head>
+<body {% block body_attributes %}class="hold-transition login-page"{% endblock %}>
+
+{% block wrapper %}{% endblock %}
+
+{% block javascripts_core %}
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ asset('admin/bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>

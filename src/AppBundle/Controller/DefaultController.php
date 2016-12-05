@@ -13,10 +13,10 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $name = 'giorgio de la barrera';
+        /*$name = 'giorgio de la barrera';
         $slug = $this->container->get('sonata.core.slugify.cocur')->slugify($name, '-');
         dump($slug);
-        die();
+        die();*/
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(

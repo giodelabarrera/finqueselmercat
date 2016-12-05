@@ -1,1 +1,14 @@
-dashboard
+{% extends app.request.xmlHttpRequest ? 'admin/ajax_base.html.twig' : 'admin/base.html.twig' %}
+
+{% block gba_page_content_title %}
+    <h1>Dashboard</h1>
+{% endblock %}
+
+{% block gba_breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> Home</li>
+    </ol>
+{% endblock %}
+
+{% block gba_admin_content %}
+{% endblock %}

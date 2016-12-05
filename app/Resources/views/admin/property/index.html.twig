@@ -66,11 +66,11 @@
                                 <td>{{ property.surface }}m<sup>2</sup></td>
                                 <td>
                                     <div>{% if modalitySale and property.sale %}
-                                        {{ modalitySale.price }}
+                                        {{ modalitySale.price|localizedcurrency('EUR') }}
                                     {% endif %}
                                     </div>
                                     <div>{% if modalityRental and property.rental %}
-                                        {{ modalityRental.price }} / Mes
+                                        {{ modalityRental.price|localizedcurrency('EUR') }} / Mes
                                     {% endif %}
                                     </div>
                                 </td>
