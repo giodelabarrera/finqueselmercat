@@ -12,16 +12,16 @@
                 </div>
                 <div class="box-body">
 
-                    {{ form_row(form.reference) }}
-                    {{ form_row(form.type) }}
-                    {{ form_row(form.subtype) }}
-                    {{ form_row(form.isNewConstruction) }}
-                    {{ form_row(form.isBankAwarded) }}
+                    {{ form_row(form.reference, {'label': 'property.form.label.reference'|trans({}, 'admin')}) }}
+                    {{ form_row(form.type, {'label': 'property.form.label.type'|trans({}, 'admin')}) }}
+                    {{ form_row(form.subtype, {'label': 'property.form.label.subtype'|trans({}, 'admin')}) }}
+                    {{ form_row(form.isNewConstruction, {'label': 'property.form.label.isNewConstruction'|trans({}, 'admin')}) }}
+                    {{ form_row(form.isBankAwarded, {'label': 'property.form.label.isBankAwarded'|trans({}, 'admin')}) }}
                     <div class="field-wrapper" {% if not property.isBankAwarded %}style="display:none"{% endif %}">
-                    {{ form_row(form.bankAwarded) }}
+                    {{ form_row(form.bankAwarded, {'label': 'property.form.label.bankAwarded'|trans({}, 'admin')}) }}
                 </div>
-                {{ form_row(form.activationDate) }}
-                {{ form_row(form.status) }}
+                {{ form_row(form.activationDate, {'label': 'property.form.label.activationDate'|trans({}, 'admin')}) }}
+                {{ form_row(form.status, {'label': 'property.form.label.status'|trans({}, 'admin')}) }}
                 {#{{ form_row(form.statusReserved) }}
                 {{ form_row(form.statusNotAvailable) }}#}
 
@@ -38,21 +38,24 @@
                 </div>
                 <div class="box-body">
 
-                    {{ form_row(form.address.country) }}
-                    {{ form_row(form.address.postalCode, {'attr': {'class': 'select2'}}) }}
+                    {{ form_row(form.address.country, {'label': 'address.form.label.country'|trans({}, 'admin')}) }}
+                    {{ form_row(form.address.postalCode, {
+                        'attr': {'class': 'select2'},
+                        'label': 'address.form.label.country'|trans({}, 'admin')
+                    }) }}
                     {#{{ form_row(form.address.postalCode) }}#}
-                    {{ form_row(form.address.municipality) }}
-                    {{ form_row(form.address.streetType) }}
-                    {{ form_row(form.address.street) }}
+                    {{ form_row(form.address.municipality, {'label': 'address.form.label.municipality'|trans({}, 'admin')}) }}
+                    {{ form_row(form.address.streetType, {'label': 'address.form.label.streetType'|trans({}, 'admin')}) }}
+                    {{ form_row(form.address.street, {'label': 'address.form.label.street'|trans({}, 'admin')}) }}
 
                     <div class="row">
-                        <div class="col-sm-6">{{ form_row(form.address.number) }}</div>
-                        <div class="col-sm-6">{{ form_row(form.address.floor) }}</div>
-                        <div class="col-sm-6">{{ form_row(form.address.stair) }}</div>
-                        <div class="col-sm-6">{{ form_row(form.address.door) }}</div>
+                        <div class="col-sm-6">{{ form_row(form.address.number, {'label': 'address.form.label.number'|trans({}, 'admin')}) }}</div>
+                        <div class="col-sm-6">{{ form_row(form.address.floor, {'label': 'address.form.label.floor'|trans({}, 'admin')}) }}</div>
+                        <div class="col-sm-6">{{ form_row(form.address.stair, {'label': 'address.form.label.stair'|trans({}, 'admin')}) }}</div>
+                        <div class="col-sm-6">{{ form_row(form.address.door, {'label': 'address.form.label.door'|trans({}, 'admin')}) }}</div>
                     </div>
 
-                    {{ form_row(form.address.modeShowAddress) }}
+                    {{ form_row(form.address.modeShowAddress, {'label': 'address.form.label.modeShowAddress'|trans({}, 'admin')}) }}
 
                     {% set addressZoneStyle = 'display:none' %}
                     {% if property.address %}
@@ -63,7 +66,7 @@
                         {% endif %}
                     {% endif %}
                     <div class="field-wrapper" style="{{ addressZoneStyle }}">
-                        {{ form_row(form.address.zone) }}
+                        {{ form_row(form.address.zone, {'label': 'address.form.label.zone'|trans({}, 'admin')}) }}
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -77,28 +80,33 @@
                     <h3 class="box-title">Datos</h3>
                 </div>
                 <div class="box-body">
-                    {{ form_row(form.surface) }}
-                    {{ form_row(form.hideSurface) }}
-                    {{ form_row(form.sale) }}
-                    <div class="field-wrapper" style="{% if not property.sale %}display:none{% endif %}">
-                        {{ form_row(form.modalitySale) }}
+                    {{ form_row(form.surface, {'label': 'property.form.label.surface'|trans({}, 'admin')}) }}
+                    {{ form_row(form.hideSurface, {'label': 'property.form.label.hideSurface'|trans({}, 'admin')}) }}
+                    {{ form_row(form.sale, {'label': 'property.form.label.sale'|trans({}, 'admin')}) }}
+                    <div class="well well-sm field-wrapper" style="{% if not property.sale %}display:none{% endif %}">
+                        {{ form_row(form.modalitySale, {'label': 'property.form.label.modalitySale'|trans({}, 'admin')}) }}
                     </div>
-                    {{ form_row(form.rental) }}
-                    <div class="field-wrapper" style="{% if not property.rental %}display:none{% endif %}">
-                        {{ form_row(form.modalityRental) }}
+                    {{ form_row(form.rental, {'label': 'property.form.label.rental'|trans({}, 'admin')}) }}
+                    <div class="well well-sm field-wrapper" style="{% if not property.rental %}display:none{% endif %}">
+                        {{ form_row(form.modalityRental, {'label': 'property.form.label.modalityRental'|trans({}, 'admin')}) }}
                     </div>
-                    {{ form_row(form.currency) }}
-                    {{ form_row(form.hidePrice) }}
-                    {{ form_row(form.hotWater) }}
-                    {{ form_row(form.constructionYear) }}
-                    {{ form_row(form.heating) }}
-                    {{ form_row(form.energyCertificate) }}
-                    {{ form_row(form.conservation) }}
-                    {{ form_row(form.numToilet) }}
-                    {{ form_row(form.numBath) }}
-                    {{ form_row(form.numRoom) }}
-                    {{ form_row(form.orientation) }}
-                    {{ form_row(form.observation) }}
+                    {{ form_row(form.currency, {'label': 'property.form.label.currency'|trans({}, 'admin')}) }}
+                    {{ form_row(form.hidePrice, {'label': 'property.form.label.hidePrice'|trans({}, 'admin')}) }}
+                    {{ form_row(form.hotWater, {'label': 'property.form.label.hotWater'|trans({}, 'admin')}) }}
+                    {{ form_row(form.constructionYear, {'label': 'property.form.label.constructionYear'|trans({}, 'admin')}) }}
+                    {{ form_row(form.heating, {'label': 'property.form.label.heating'|trans({}, 'admin')}) }}
+                    {{ form_row(form.energyCertificate, {'label': 'property.form.label.energyCertificate'|trans({}, 'admin')}) }}
+                    {{ form_row(form.conservation, {'label': 'property.form.label.conservation'|trans({}, 'admin')}) }}
+                    {{ form_row(form.numToilet, {'label': 'property.form.label.numToilet'|trans({}, 'admin')}) }}
+                    {{ form_row(form.numBath, {'label': 'property.form.label.numBath'|trans({}, 'admin')}) }}
+                    {{ form_row(form.numRoom, {'label': 'property.form.label.numRoom'|trans({}, 'admin')}) }}
+                    {{ form_row(form.orientation, {'label': 'property.form.label.orientation'|trans({}, 'admin')}) }}
+                    {{ form_row(form.observation, {
+                        'label': 'property.form.label.observation'|trans({}, 'admin'),
+                        'attr': {
+                            'placeholder': 'Escribe aquí cualquier aspecto que quieras destacar sobre los extras... Las observaciones no se publicarán.'
+                        }
+                    }) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -111,8 +119,13 @@
                     <h3 class="box-title">Descripción</h3>
                 </div>
                 <div class="box-body">
-                    {{ form_row(form.shortDescription) }}
-                    {{ form_row(form.fullDescription) }}
+                    {{ form_row(form.shortDescription, {'label': 'property.form.label.shortDescription'|trans({}, 'admin')}) }}
+                    {{ form_row(form.fullDescription, {
+                        'label': 'property.form.label.fullDescription'|trans({}, 'admin'),
+                        'attr': {
+                            'placeholder': 'Esta es la descripción que se publicará'
+                        }
+                    }) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -125,7 +138,7 @@
                     <h3 class="box-title">Extras</h3>
                 </div>
                 <div class="box-body">
-                    {{ form_row(form.extras) }}
+                    {{ form_row(form.extras, {'label': false}) }}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -138,8 +151,8 @@
                     <h3 class="box-title">Documentos y Fotos</h3>
                 </div>
                 <div class="box-body">
-                    {{ form_row(form.energyCertificateFile) }}
-                    {{ form_row(form.images) }}
+                    {{ form_row(form.energyCertificateFile, {'label': 'property.form.label.energyCertificateFile'|trans({}, 'admin')}) }}
+                    {{ form_row(form.images, {'label': 'property.form.label.images'|trans({}, 'admin')}) }}
                 </div>
                 <!-- /.box-body -->
             </div>

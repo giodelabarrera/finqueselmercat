@@ -1,0 +1,85 @@
+
+title:
+    dashboard: Dashboard
+    list: Listado
+    actions: Acciones
+action:
+    create: Crear
+    update: Actualizar
+form:
+    label:
+        id: Id
+        createdAt: Fecha creación
+        updatedAt: Fecha actualización
+property:
+    title:
+        property: Inmueble
+        properties: Inmuebles
+    list:
+        numRoom: Hab.
+        numBath: Baños
+        price: Precio
+        surface: Sup.
+    form:
+        label:
+            id: Id
+            reference: Referencia
+            type: Tipo
+            subtype: Subtipo
+            isNewConstruction: Es obra nueva
+            isBankAwarded: Adjudicación bancaria
+            bankAwarded: Entidad
+            status: Estado
+            activationDate: Fecha activación
+            address: Dirección
+            surface: Superfície
+            hideSurface: Ocultar superficie en comunicaciones y publicaciones
+            sale: Venta
+            modalitySale: Modalidad venta
+            rental: Alquiler
+            modalityRental: Modalidad alquiler
+            currency: Moneda
+            hidePrice: Ocultar precio en comunicaciones y publicaciones
+            hotWater: Agua caliente sanitaria
+            constructionYear: Año Construcción
+            heating: Calefacción
+            energyCertificate: Certificado energético
+            conservation: Conservación
+            numToilet: Núm. aseos
+            numBath: Núm. baños
+            numRoom: Núm. habitaciones
+            numOffices: Núm. oficinas
+            orientation: Orientación
+            buildingName: Nombre del edificio
+            parkingType: Tipo de plaza
+            observation: Observaciones
+            shortDescription: Descripción abreviada
+            fullDescription: Descripción extendida
+            extras: Extras
+            energyCertificateFile: Archivo Certificado energético
+            images: Fotos
+
+    action:
+        edit: Editar el Inmueble
+        delete: Eliminar el Inmueble
+        new: Añadir nuevo Inmueble
+        create: Crear nuevo Inmueble
+        save: Guardar el Inmueble
+address:
+    title:
+        property: Dirección
+        properties: Direcciones
+    form:
+        label:
+            id: Id
+            country: País
+            postalCode: C.P.
+            municipality: Municipio
+            streetType: Tipo de vía
+            street: Calle
+            number: Nº
+            floor: Piso
+            stair: Esc.
+            door: Pta.
+            zone: Zona
+            modeShowAddress: Indica cómo mostrar la dirección del inmueble en comunicaciones y publicaciones

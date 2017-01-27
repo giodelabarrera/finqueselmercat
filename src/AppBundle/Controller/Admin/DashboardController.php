@@ -29,8 +29,10 @@ class DashboardController extends Controller
     {
         //$em = $this->getDoctrine()->getManager();
 
-        return $this->render('admin/dashboard/index.html.twig', array(
+        return $this->redirectToRoute('admin_property_index');
+
+        /*return $this->render('admin/dashboard/index.html.twig', array(
             //'bankAwardeds' => $bankAwardeds,
-        ));
+        ));*/
     }
 }

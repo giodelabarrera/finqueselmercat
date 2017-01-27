@@ -21,17 +21,17 @@
                         <thead>
                         <tr>
                             {% if not app.request.xmlHttpRequest %}
-                                <th>Actions</th>
+                                <th>{{ 'title.actions'|trans({}, 'admin') }}</th>
                             {% endif %}
                             <th>{{ knp_pagination_sortable(properties, 'Id', 'p.id') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'Reference', 'p.reference') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'Type', 'p.type') }}</th>
-                            <th>Address</th>
-                            <th>Status</th>
-                            <th>{{ knp_pagination_sortable(properties, 'Status', 'p.surface') }}</th>
-                            <th>Price</th>
-                            <th>{{ knp_pagination_sortable(properties, 'NumRoom', 'p.numRoom') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'NumBath', 'p.numBath') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'property.form.label.reference'|trans({}, 'admin'), 'p.reference') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'property.form.label.type'|trans({}, 'admin'), 'p.type') }}</th>
+                            <th>{{ 'property.form.label.address'|trans({}, 'admin') }}</th>
+                            <th>{{ 'property.form.label.status'|trans({}, 'admin') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'property.list.surface'|trans({}, 'admin'), 'p.surface') }}</th>
+                            <th>{{ 'property.list.price'|trans({}, 'admin') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'property.list.numRoom'|trans({}, 'admin'), 'p.numRoom') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'property.list.numBath'|trans({}, 'admin'), 'p.numBath') }}</th>
                             <th>Photos</th>
                         </tr>
                         </thead>
@@ -44,16 +44,17 @@
                                 {% if not app.request.xmlHttpRequest %}
                                     <td>
                                         <ul>
-                                            <li>
+                                           {#<li>
                                                 <a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ 'admin.action.show'|trans }}</a>
-                                            </li>
+                                            </li>#}
                                             <li>
                                                 <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">{{ 'admin.action.edit'|trans }}</a>
                                             </li>
                                         </ul>
                                     </td>
                                 {% endif %}
-                                <td><a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ property.id }}</a></td>
+                                {#<td><a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ property.id }}</a></td>#}
+                                <td>{{ property.id }}</td>
                                 <td>{{ property.reference }}</td>
                                 <td><b>{{ property.type }}</b><br>{{ property.subtype }}</td>
                                 <td>
