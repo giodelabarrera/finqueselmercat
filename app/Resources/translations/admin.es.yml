@@ -83,3 +83,24 @@ address:
             door: Pta.
             zone: Zona
             modeShowAddress: Indica cómo mostrar la dirección del inmueble en comunicaciones y publicaciones
+modalitySale:
+    title:
+        property: Modalidad venta
+        properties: Modalidades venta
+    form:
+        label:
+            id: Id
+            price: Precio
+            priceMeterSquare: Precio metro cuadrado
+modalityRental:
+    title:
+        property: Modalidad alquiler
+        properties: Modalidades alquiler
+    form:
+        label:
+            id: Id
+            price: Precio
+            priceMeterSquare: Precio metro cuadrado
+            optionPurchase: Opción a compra
+            purchaseFinalPrice: Precio final de compra
+            purchaseConditions: Condiciones finales

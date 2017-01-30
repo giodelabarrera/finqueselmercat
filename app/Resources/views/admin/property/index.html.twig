@@ -25,7 +25,7 @@
                             {% endif %}
                             <th>{{ knp_pagination_sortable(properties, 'Id', 'p.id') }}</th>
                             <th>{{ knp_pagination_sortable(properties, 'property.form.label.reference'|trans({}, 'admin'), 'p.reference') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'property.form.label.type'|trans({}, 'admin'), 'p.type') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'property.form.label.type'|trans({}, 'admin'), 't.name') }}</th>
                             <th>{{ 'property.form.label.address'|trans({}, 'admin') }}</th>
                             <th>{{ 'property.form.label.status'|trans({}, 'admin') }}</th>
                             <th>{{ knp_pagination_sortable(properties, 'property.list.surface'|trans({}, 'admin'), 'p.surface') }}</th>
@@ -44,12 +44,12 @@
                                 {% if not app.request.xmlHttpRequest %}
                                     <td>
                                         <ul>
-                                           {#<li>
-                                                <a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ 'admin.action.show'|trans }}</a>
-                                            </li>#}
-                                            <li>
-                                                <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">{{ 'admin.action.edit'|trans }}</a>
-                                            </li>
+                                           <li>
+                                               <a href="{{ path('admin_property_show', { 'id': property.id }) }}">{{ 'admin.action.show'|trans }}</a>
+                                           </li>
+                                           <li>
+                                               <a href="{{ path('admin_property_edit', { 'id': property.id }) }}">{{ 'admin.action.edit'|trans }}</a>
+                                           </li>
                                         </ul>
                                     </td>
                                 {% endif %}

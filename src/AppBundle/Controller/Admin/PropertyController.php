@@ -28,6 +28,8 @@ class PropertyController extends Controller
 
         $queryBuilder = $em->getRepository('AppBundle:Property')
             ->createQueryBuilder('p')
+            ->select('p')
+            ->join('p.type', 't')->addSelect('t')
             ->orderBy('p.id', 'DESC')
         ;
 

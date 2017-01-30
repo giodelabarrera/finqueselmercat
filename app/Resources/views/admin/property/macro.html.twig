@@ -41,7 +41,7 @@
                     {{ form_row(form.address.country, {'label': 'address.form.label.country'|trans({}, 'admin')}) }}
                     {{ form_row(form.address.postalCode, {
                         'attr': {'class': 'select2'},
-                        'label': 'address.form.label.country'|trans({}, 'admin')
+                        'label': 'address.form.label.postalCode'|trans({}, 'admin')
                     }) }}
                     {#{{ form_row(form.address.postalCode) }}#}
                     {{ form_row(form.address.municipality, {'label': 'address.form.label.municipality'|trans({}, 'admin')}) }}
@@ -84,11 +84,22 @@
                     {{ form_row(form.hideSurface, {'label': 'property.form.label.hideSurface'|trans({}, 'admin')}) }}
                     {{ form_row(form.sale, {'label': 'property.form.label.sale'|trans({}, 'admin')}) }}
                     <div class="well well-sm field-wrapper" style="{% if not property.sale %}display:none{% endif %}">
-                        {{ form_row(form.modalitySale, {'label': 'property.form.label.modalitySale'|trans({}, 'admin')}) }}
+                        <div id="property_modalitySale">
+                            {#{{ form_row(form.modalitySale, {'label': 'property.form.label.modalitySale'|trans({}, 'admin')}) }}#}
+                            {{ form_row(form.modalitySale.price, {'label': 'modalitySale.form.label.price'|trans({}, 'admin')}) }}
+                            {{ form_row(form.modalitySale.priceMeterSquare, {'label': 'modalitySale.form.label.priceMeterSquare'|trans({}, 'admin')}) }}
+                        </div>
                     </div>
                     {{ form_row(form.rental, {'label': 'property.form.label.rental'|trans({}, 'admin')}) }}
                     <div class="well well-sm field-wrapper" style="{% if not property.rental %}display:none{% endif %}">
-                        {{ form_row(form.modalityRental, {'label': 'property.form.label.modalityRental'|trans({}, 'admin')}) }}
+                        <div id="property_modalityRental">
+                            {#{{ form_row(form.modalityRental, {'label': 'property.form.label.modalityRental'|trans({}, 'admin')}) }}#}
+                            {{ form_row(form.modalityRental.price, {'label': 'modalityRental.form.label.price'|trans({}, 'admin')}) }}
+                            {{ form_row(form.modalityRental.priceMeterSquare, {'label': 'modalityRental.form.label.priceMeterSquare'|trans({}, 'admin')}) }}
+                            {{ form_row(form.modalityRental.optionPurchase, {'label': 'modalityRental.form.label.optionPurchase'|trans({}, 'admin')}) }}
+                            {{ form_row(form.modalityRental.purchaseFinalPrice, {'label': 'modalityRental.form.label.purchaseFinalPrice'|trans({}, 'admin')}) }}
+                            {{ form_row(form.modalityRental.purchaseConditions, {'label': 'modalityRental.form.label.purchaseConditions'|trans({}, 'admin')}) }}
+                        </div>
                     </div>
                     {{ form_row(form.currency, {'label': 'property.form.label.currency'|trans({}, 'admin')}) }}
                     {{ form_row(form.hidePrice, {'label': 'property.form.label.hidePrice'|trans({}, 'admin')}) }}

@@ -8,7 +8,7 @@ imports:
 parameters:
     locale: es
     # admin
-    knp_paginator.limit_page: 1
+    knp_paginator.limit_page: 20
 
 framework:
     #esi:             ~

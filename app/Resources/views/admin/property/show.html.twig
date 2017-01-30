@@ -62,10 +62,9 @@
     </div>
 
     <div class="well well-sm form-actions">
-        <a class="btn btn-default" href="{{ path('admin_property_index') }}">Back to the list</a>
-        <a class="btn btn-default" href="{{ path('admin_property_edit', { 'id': property.id }) }}">Edit</a>
-        or
-        <a class="btn btn-danger" href="/admin/sonata/demo/material/1/delete"><i class="fa fa-minus-circle"></i> Delete</a>
-        {#{{ form_start(delete_form) }}{{ form_end(delete_form) }}<button class="btn btn-danger" type="submit">Delete</button>#}
+        <a class="btn btn-default" href="{{ path('admin_property_index') }}">Ir a listado</a>
+        <a class="btn btn-default" href="{{ path('admin_property_edit', { 'id': property.id }) }}">Editar</a>
+        o
+        <a class="btn btn-danger" href="{{ path('admin_property_delete', {'id':property.id}) }}"><i class="fa fa-minus-circle"></i> {{ 'admin.action.delete'|trans }}</a>
     </div>
 {% endblock %}
