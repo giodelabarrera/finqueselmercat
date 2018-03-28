@@ -13,7 +13,6 @@ use Symfony\Component\Debug\Debug;
 if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
     || !(in_array(@$_SERVER['REMOTE_ADDR'], array(
-            '37.14.89.101', // gio
             '127.0.0.1',
             '::1'
         )) || php_sapi_name() === 'cli-server')
