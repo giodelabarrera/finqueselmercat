@@ -17,7 +17,6 @@ security:
             memory:
                 users:
                     admin:
-                        # 19601960
                         password: $2y$12$nFKZ4QxkJ05KbbTX.rWMM.KnZKLcLltHEvrsAbkW96X34uQNA0DAO
                         roles: 'ROLE_ADMIN'
 
